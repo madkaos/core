@@ -7,10 +7,13 @@ import com.madkaos.core.commands.CommandListener;
 import com.madkaos.core.commands.player.FlyCommand;
 import com.madkaos.core.config.ConfigManager;
 import com.madkaos.core.config.Configuration;
+import com.madkaos.core.listeners.PlayerJoinListener;
+import com.madkaos.core.listeners.PlayerQuitListener;
 import com.madkaos.core.player.MadPlayerManager;
 import com.madkaos.core.player.entities.PlayerData;
 import com.madkaos.core.player.entities.PlayerSettings;
 
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class MadKaosCore extends JavaPlugin {
@@ -27,6 +30,10 @@ public class MadKaosCore extends JavaPlugin {
     public void addCommand(CommandListener listener) {
         listener.register(this);
     }
+
+    public void addListener(Listener listener) {
+        this.getServer().getPluginManager().registerEvents(listener, this);
+    }
     
     @Override
     public void onEnable() {
@@ -42,6 +49,10 @@ public class MadKaosCore extends JavaPlugin {
 
         // Register commands
         this.addCommand(new FlyCommand());
+
+        // Register listeners
+        this.addListener(new PlayerJoinListener(this));
+        this.addListener(new PlayerQuitListener(this));
     }
 
     // Get managers

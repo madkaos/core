@@ -6,8 +6,6 @@ import com.madkaos.core.commands.CommandListener;
 import com.madkaos.core.player.MadPlayer;
 import com.madkaos.core.player.entities.PlayerSettings;
 
-import org.bukkit.entity.Player;
-
 @Command(
     name = "fly",
     permission = "core.commands.fly",
@@ -18,12 +16,11 @@ public class FlyCommand extends CommandListener {
     public void onExecuteByPlayer(CommandContext ctx) {
         MadPlayer player = ctx.getPlayer();
         PlayerSettings settings = player.getSettings();
-        Player bukkitPlayer = player.getBukkitPlayer();
 
-        bukkitPlayer.setAllowFlight(!bukkitPlayer.getAllowFlight());
-        bukkitPlayer.setFlying(bukkitPlayer.getAllowFlight());
+        boolean result = !settings.fly;
+        player.setFlying(result);
+        settings.fly = result;
 
-        settings.fly = bukkitPlayer.getAllowFlight();
         settings.save();
 
         if (settings.fly) {

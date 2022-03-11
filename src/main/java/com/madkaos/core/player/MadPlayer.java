@@ -23,6 +23,7 @@ public class MadPlayer extends CommandExecutor {
 
         this.downloadData();
         this.downloadSettings();
+        this.setupPlayer();
     }
 
     public Player getBukkitPlayer() {
@@ -37,7 +38,19 @@ public class MadPlayer extends CommandExecutor {
         return this.setttings;
     }
 
+    /* Utils */
+    public void setFlying(boolean flying) {
+        bukkitPlayer.setAllowFlight(flying);
+        bukkitPlayer.setFlying(flying);
+    }
+
     /* Initial methods */
+    void setupPlayer() {
+        if (this.setttings.fly) {
+            this.setFlying(true);
+        }
+    }
+
     void downloadSettings() {
         String id = this.data.id;
 

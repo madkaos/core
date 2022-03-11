@@ -36,6 +36,7 @@ public abstract class CommandListener implements CommandExecutor {
 
     // Utils
     public void register(MadKaosCore plugin) {
+        this.plugin = plugin;
         this.command = this.getClass().getAnnotation(Command.class);
         plugin.getCommand(this.command.name()).setExecutor(this);
     }

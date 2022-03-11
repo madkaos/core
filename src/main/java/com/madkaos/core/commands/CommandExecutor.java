@@ -1,7 +1,6 @@
 package com.madkaos.core.commands;
 
 import com.madkaos.core.MadKaosCore;
-import com.madkaos.core.player.MadPlayer;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -23,8 +22,6 @@ public class CommandExecutor {
     public void sendMessage(String message) {
         this.sender.sendMessage(
             ChatColor.translateAlternateColorCodes('&', message)
-                .replace("{tag:enabled}", this.getI18nMessage("tags.enabled"))
-                .replace("{tag:disabled}", this.getI18nMessage("tags.disabled"))
         );
     }
 
@@ -34,9 +31,5 @@ public class CommandExecutor {
 
     public boolean isPlayer() {
         return this.sender instanceof Player;
-    }
-
-    public MadPlayer toPlayer() {
-        return this.plugin.getPlayerManager().getPlayer((Player) this.sender);
     }
 }

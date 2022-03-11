@@ -4,12 +4,17 @@ import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.player.MadPlayer;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class CommandContext {
     private CommandExecutor executor;
 
     public CommandContext(MadKaosCore plugin, CommandSender sender, String[] args) {
-        this.executor = new CommandExecutor(plugin, sender);
+        if (sender instanceof Player) {
+            this.executor = plugin.getPlayerManager().getPlayer((Player) sender);
+        } else {
+            this.executor = new CommandExecutor(plugin, sender);
+        }
     }
 
     public CommandExecutor getExecutor() {
@@ -17,7 +22,7 @@ public class CommandContext {
     }
 
     public MadPlayer getPlayer() {
-        return this.executor.toPlayer();
+        return (MadPlayer) this.executor;
     }
 
     public boolean isPlayer() {

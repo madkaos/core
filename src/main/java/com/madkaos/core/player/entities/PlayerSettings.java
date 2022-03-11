@@ -18,12 +18,17 @@ public class PlayerSettings extends Entity {
     @Prop
     public int playerVisibilityFilter = PlayerFilter.ANYBODY;
 
+    // Chat settings
+    @Prop
+    public String chatColor = "7";
+
     @Prop
     public int chatVisibilityFilter = PlayerFilter.ANYBODY;
 
     @Prop
     public int messageRequestsFilter = PlayerFilter.ANYBODY;
 
+    // Social settings
     @Prop
     public int friendRequestsFilter = PlayerFilter.ANYBODY;
 
