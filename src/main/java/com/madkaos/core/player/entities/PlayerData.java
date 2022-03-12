@@ -18,6 +18,9 @@ public class PlayerData extends Entity {
     public String displayName;
 
     @Prop
+    public String pron = "o";
+
+    @Prop
     public String[] friendRequests = new String[0];
 
     @Prop

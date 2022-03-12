@@ -15,14 +15,16 @@ public class CommandExecutor {
         this.sender = sender;
     }
 
+    public String formatMessage(String message) {
+        return ChatColor.translateAlternateColorCodes('&', message);
+    }
+
     public String getI18nMessage(String key) {
         return this.plugin.getMessages().getString(key);
     }
 
     public void sendMessage(String message) {
-        this.sender.sendMessage(
-            ChatColor.translateAlternateColorCodes('&', message)
-        );
+        this.sender.sendMessage(this.formatMessage(message));
     }
 
     public void sendI18nMessage(String key) {

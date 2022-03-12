@@ -65,6 +65,11 @@ public class MadKaosCore extends JavaPlugin {
         this.addListener(new PlayerQuitListener(this));
     }
 
+    // Utils
+    public boolean isLobby() {
+        return this.getMainConfig().getString("server.type").equalsIgnoreCase("lobby");
+    }
+
     // Get managers
     public MadPlayerManager getPlayerManager() {
         return this.playerManager;

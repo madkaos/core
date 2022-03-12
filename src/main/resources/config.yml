@@ -5,3 +5,22 @@ server:
 
 settings:
   mongodb-uri: mongodb://localhost/madkaos
+
+motd: |-
+  &r
+  &r
+  &r
+  &r
+  &r
+  &r
+  &r
+  &r
+  &8&m-+-------------------------------+-
+  &r
+  &b¡Hola {username}! Bienvenid{pron} a MadKaos
+  &r
+  &r &7» &6&lPATREON&r &fpatreon.com/rubius
+  &r &7» &3&lTWITTER&r &ftwitter.com/madkaosoficial
+  &r &7» &9&lDISCORD&r &fdiscord.gg/madkaos
+  &r
+  &8&m-+------------------------------+--

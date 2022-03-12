@@ -14,14 +14,33 @@ public class PlayerJoinListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent e) {
-        this.plugin.getPlayerManager().addPlayer(e.getPlayer()).setupPlayer();
+    private void handleMotd(MadPlayer player) {
+        player.sendMessage(this.plugin.getMainConfig().getString("motd"));
+    }
 
+    private String handleJoinMessage(MadPlayer player) {
+        if (player.getBukkitPlayer().hasPermission("core.module.join-message") && !player.getSettings().vanished) {
+            return player.formatMessage(player.getI18nMessage("join-message"));
+        } else {
+            return null;
+        }
+    }
+
+    private void handleVanish(MadPlayer player) {
         for (MadPlayer mp : this.plugin.getPlayerManager().getPlayers()) {
             if (mp.isVanished()) {
-                e.getPlayer().hidePlayer(this.plugin, mp.getBukkitPlayer());
+                player.getBukkitPlayer().hidePlayer(this.plugin, mp.getBukkitPlayer());
             }
         }
+    }
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent e) {
+        MadPlayer player = this.plugin.getPlayerManager().addPlayer(e.getPlayer());
+        player.setupPlayer();
+
+        this.handleMotd(player);
+        this.handleVanish(player);
+        e.setJoinMessage(handleJoinMessage(player));
     }
 }

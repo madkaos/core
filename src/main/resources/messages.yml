@@ -1,3 +1,7 @@
+# Modules
+join-message: "&8[&2+&8] &7{display_name}"
+
+# Commands
 common:
   no-permission-vip: "&aNecesitas rango &6VIP &ao superior para usar este comando."
   no-permission-admin: "&cEste comando es solo para uso administrativo."

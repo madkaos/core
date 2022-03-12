@@ -89,6 +89,16 @@ public class MadPlayer extends CommandExecutor {
         this.bukkitPlayer.teleport(loc);
     }
 
+    /* Override methods */
+    @Override
+    public String formatMessage(String message) {
+        return super.formatMessage(message
+            .replace("{display_name}", this.data.displayName)
+            .replace("{gamemode}", this.getBukkitPlayer().getGameMode().name())
+            .replace("{pron}", this.data.pron)
+        );
+    }
+
     /* Initial methods */
     public void setupPlayer() {
         this.downloadData();
