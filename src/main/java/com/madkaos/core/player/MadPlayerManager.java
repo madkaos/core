@@ -1,5 +1,6 @@
 package com.madkaos.core.player;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.bukkit.entity.Player;
 
 public class MadPlayerManager {
     private MadKaosCore plugin;
+
     private Map<Player, MadPlayer> players;
 
     public MadPlayerManager(MadKaosCore plugin) {
@@ -30,6 +32,10 @@ public class MadPlayerManager {
 
     public MadPlayer getPlayer(Player bukkitPlayer) {
         return this.players.get(bukkitPlayer);
+    }
+
+    public Collection<MadPlayer> getPlayers() {
+        return this.players.values();
     }
 
     public void clear() {

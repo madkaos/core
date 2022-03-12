@@ -12,6 +12,10 @@ public class PlayerSettings extends Entity {
     @Prop
     public String playerId;
 
+    // Staff settings
+    public boolean vanished = false;
+
+    // Player settings
     @Prop
     public boolean fly = false;
 

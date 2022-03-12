@@ -8,10 +8,15 @@ common:
 
 fly:
   description: "Activa o desactiva el modo de vuelo."
-  enabled: "&aHas &2activado &eel modo de vuelo."
-  disabled: "&aHas &adesactivado &eel modo de vuelo."
+  enabled: "&aHas &2activado &ael modo de vuelo."
+  disabled: "&aHas &cdesactivado &ael modo de vuelo."
 
 gamemode:
   description: "Cambia tu modo de juego"
   usage: "&eUso: &b/gamemode <creative|survival|spectator|adventure>"
   switched: "&aHas cambiado tu modo de juego a &b{gamemode}"
+
+vanish:
+  description: "Ocultate de los demas jugadores."
+  enabled: "&aHas &2activado &ael modo vanish &e(nadie podrá verte)"
+  disabled: "&aHas &cdesactivado &ael modo vanish &c(todos podrán verte)"

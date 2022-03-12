@@ -7,6 +7,7 @@ import com.madkaos.core.commands.CommandExecutor;
 import com.madkaos.core.player.entities.PlayerData;
 import com.madkaos.core.player.entities.PlayerSettings;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -16,6 +17,8 @@ public class MadPlayer extends CommandExecutor {
 
     protected PlayerData data = null;
     protected PlayerSettings setttings = null;
+
+    private boolean vanished = false;
     
     public MadPlayer(MadKaosCore plugin, Player bukkitPlayer) {
         super(plugin, bukkitPlayer);
@@ -42,6 +45,24 @@ public class MadPlayer extends CommandExecutor {
         bukkitPlayer.setFlying(flying);
     }
 
+    public void setVanish(boolean vanished) {
+        if (this.vanished == vanished) {
+            return;
+        } else {
+            this.vanished = vanished;
+        }
+        
+        if (vanished) {
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                player.hidePlayer(this.plugin, this.getBukkitPlayer());
+            }
+        } else {
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                player.showPlayer(this.plugin, this.getBukkitPlayer());
+            }
+        }
+    }
+
     public void teleport(int x, int y, int z) {
         Location loc = this.bukkitPlayer.getLocation().clone();
         loc.setX(x);
@@ -54,9 +75,12 @@ public class MadPlayer extends CommandExecutor {
     void setupPlayer() {
         this.downloadData();
         this.downloadSettings();
+
         if (this.setttings.fly) {
             this.setFlying(true);
         }
+
+        this.setVanish(setttings.vanished);
     }
 
     void downloadSettings() {
