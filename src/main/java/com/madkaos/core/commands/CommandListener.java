@@ -54,7 +54,6 @@ public abstract class CommandListener implements CommandExecutor {
 
     public void addSubcommand(CommandListener subCommand) {
         this.subCommands.add(subCommand);
-        subCommand.register(this.plugin, true);
     }
 
     public CommandListener getSubCommand(String name) {
@@ -73,6 +72,10 @@ public abstract class CommandListener implements CommandExecutor {
 
         if (!isSubCommand) {
             plugin.getCommand(this.command.name()).setExecutor(this);
+        }
+
+        for (CommandListener subCommand : this.subCommands) {
+            subCommand.register(this.plugin, true);
         }
     }
 
@@ -97,7 +100,7 @@ public abstract class CommandListener implements CommandExecutor {
         }
 
         // Check for arguments count
-        if (command.minArguments() < args.length) {
+        if (command.minArguments() > args.length) {
             this.onBadUsage(ctx);
             return;
         }
@@ -114,6 +117,7 @@ public abstract class CommandListener implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, org.bukkit.command.Command cmd, String label, String[] args) {
+        this.execute(sender, args);
         return true;
     }
 }

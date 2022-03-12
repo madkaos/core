@@ -26,7 +26,7 @@ public class FriendListSubCommand extends CommandListener {
                 entries += "\n";
             }
 
-            entries += "&c" + data.displayName + " &8(&7offline&8)";
+            entries += "&7" + data.displayName + " &8(&7offline&8)";
         }
 
         player.sendMessage(

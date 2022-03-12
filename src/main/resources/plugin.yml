@@ -10,7 +10,7 @@ commands:
   gamemode:
     aliases: ["gm"]
   friends:
-    aliases: ["amigos"]
+    aliases: ["amigos", "friend"]
   tp:
     aliases: []
   tpos:

@@ -24,7 +24,7 @@ public class OfflineMadPlayer extends MadPlayer {
 
     /* Initial methods */
     @Override
-    void setupPlayer() {
+    public void setupPlayer() {
         if (this.isOnline()) {
             super.setupPlayer();
             return;

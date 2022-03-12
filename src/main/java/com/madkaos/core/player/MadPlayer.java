@@ -90,7 +90,7 @@ public class MadPlayer extends CommandExecutor {
     }
 
     /* Initial methods */
-    void setupPlayer() {
+    public void setupPlayer() {
         this.downloadData();
         this.downloadSettings();
 

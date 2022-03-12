@@ -16,7 +16,7 @@ public class PlayerJoinListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
-        this.plugin.getPlayerManager().addPlayer(e.getPlayer());
+        this.plugin.getPlayerManager().addPlayer(e.getPlayer()).setupPlayer();
 
         for (MadPlayer mp : this.plugin.getPlayerManager().getPlayers()) {
             if (mp.isVanished()) {
