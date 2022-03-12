@@ -13,6 +13,7 @@ public class PlayerSettings extends Entity {
     public String playerId;
 
     // Staff settings
+    @Prop
     public boolean vanished = false;
 
     // Player settings

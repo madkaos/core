@@ -16,5 +16,7 @@ public class PlayerQuitListener implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e) {
         this.plugin.getPlayerManager().removePlayer(e.getPlayer());
+
+        e.setQuitMessage(null);
     }
 }

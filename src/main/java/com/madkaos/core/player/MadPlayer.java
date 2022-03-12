@@ -101,9 +101,6 @@ public class MadPlayer extends CommandExecutor {
 
     /* Initial methods */
     public void setupPlayer() {
-        this.downloadData();
-        this.downloadSettings();
-
         // Fly
         if (this.setttings.fly) {
             this.setFlying(true);
@@ -116,8 +113,12 @@ public class MadPlayer extends CommandExecutor {
         }
     }
 
-    void downloadSettings() {
+    public void downloadSettings() {
         String id = this.data.id;
+
+        if (id == null) {
+            return;
+        }
 
         this.setttings = this.plugin.getPlayerSettingsRepository().findOne(MapFactory.create("playerId", id));
 
@@ -128,7 +129,7 @@ public class MadPlayer extends CommandExecutor {
         }
     }
 
-    void downloadData() {
+    public void downloadData() {
         String uuid = this.bukkitPlayer.getUniqueId().toString();
         String name = this.bukkitPlayer.getName();
 

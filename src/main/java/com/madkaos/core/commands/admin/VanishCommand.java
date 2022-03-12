@@ -17,8 +17,9 @@ public class VanishCommand extends CommandListener {
         PlayerSettings settings = player.getSettings();
 
         boolean result = !settings.vanished;
-        player.setFlying(result);
+        player.setVanish(result);
         settings.vanished = result;
+
         settings.save();
 
         if (settings.vanished) {

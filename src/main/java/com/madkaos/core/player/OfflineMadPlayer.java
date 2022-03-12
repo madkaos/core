@@ -29,14 +29,10 @@ public class OfflineMadPlayer extends MadPlayer {
             super.setupPlayer();
             return;
         }
-
-        this.downloadData();
-        this.downloadSettings();
-        this.setupPlayer();
     }
 
     @Override
-    void downloadData() {
+    public void downloadData() {
         if (this.isOnline()) {
             super.downloadData();
             return;
