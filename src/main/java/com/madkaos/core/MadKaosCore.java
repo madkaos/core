@@ -4,6 +4,8 @@ import com.dotphin.milkshakeorm.MilkshakeORM;
 import com.dotphin.milkshakeorm.providers.Provider;
 import com.dotphin.milkshakeorm.repository.Repository;
 import com.madkaos.core.commands.CommandListener;
+import com.madkaos.core.commands.admin.GameModeCommand;
+import com.madkaos.core.commands.admin.TeleportCommand;
 import com.madkaos.core.commands.player.FlyCommand;
 import com.madkaos.core.config.ConfigManager;
 import com.madkaos.core.config.Configuration;
@@ -48,7 +50,9 @@ public class MadKaosCore extends JavaPlugin {
         this.playerSettingsRepository = MilkshakeORM.addRepository(PlayerSettings.class, provider, "PlayerSettings");
 
         // Register commands
+        this.addCommand(new GameModeCommand());
         this.addCommand(new FlyCommand());
+        this.addCommand(new TeleportCommand());
 
         // Register listeners
         this.addListener(new PlayerJoinListener(this));
