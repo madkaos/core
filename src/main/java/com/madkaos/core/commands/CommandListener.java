@@ -9,6 +9,7 @@ import com.madkaos.core.errors.PlayerNotFoundException;
 import com.madkaos.core.errors.PlayerOfflineException;
 import com.madkaos.core.utils.ArrayUtils;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
@@ -44,7 +45,12 @@ public abstract class CommandListener implements CommandExecutor {
     }
 
     protected void onBadUsage(CommandContext ctx) {
-        ctx.getExecutor().sendI18nMessage(command.name().toLowerCase() + ".usage");
+        String key = command.usageKey();
+        if (key == null || key.isEmpty()) {
+            key = command.name().toLowerCase() + ".usage";
+        }
+
+        ctx.getExecutor().sendI18nMessage(key);
     }
 
     // Utils
@@ -110,8 +116,12 @@ public abstract class CommandListener implements CommandExecutor {
             ctx.parseArguments(args);
             // Execute
             this.onExecute(ctx);
-        } catch (BadArgumentException | PlayerNotFoundException | PlayerOfflineException e) {
-            ctx.getExecutor().sendMessage(e.getMessage());
+        } catch (PlayerNotFoundException e) {
+            ctx.getExecutor().sendI18nMessage("common.unknown-player");
+        } catch (PlayerOfflineException e) {
+            ctx.getExecutor().sendI18nMessage("common.offline-player");
+        } catch (BadArgumentException e) {
+            ctx.getExecutor().sendMessage(ChatColor.RED + e.getMessage());
         }
     }
 

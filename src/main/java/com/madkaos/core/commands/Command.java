@@ -10,6 +10,8 @@ import java.lang.annotation.Target;
 public @interface Command {
     public String name();
 
+    public String usageKey() default "";
+
     public String permission() default "";
 
     public boolean isVIP() default false;

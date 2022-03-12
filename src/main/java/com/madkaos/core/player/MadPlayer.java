@@ -42,6 +42,7 @@ public class MadPlayer extends CommandExecutor {
         return this.setttings;
     }
 
+    /* Utils */
     public List<PlayerData> getFriends() {
         String[] friendIds = this.data.friends;
         List<PlayerData> friends = new ArrayList<>();
@@ -53,7 +54,17 @@ public class MadPlayer extends CommandExecutor {
         return friends;
     }
 
-    /* Utils */
+    public List<PlayerData> getFriendRequests() {
+        String[] friendIds = this.data.friendRequests;
+        List<PlayerData> friends = new ArrayList<>();
+
+        for (String id : friendIds) {
+            friends.add(this.plugin.getPlayerDataRepository().findByID(id));
+        }
+
+        return friends;
+    }
+
     public void setFlying(boolean flying) {
         bukkitPlayer.setAllowFlight(flying);
         bukkitPlayer.setFlying(flying);

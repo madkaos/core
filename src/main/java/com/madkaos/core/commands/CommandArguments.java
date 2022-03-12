@@ -48,6 +48,11 @@ public class CommandArguments {
         int i = 0;
 
         for (String arg : args) {
+            if (this.requiredArguments.length <= i) {
+                this.arguments.add(arg);
+                continue;
+            }
+
             Argument type = this.requiredArguments[i];
             Object value = null;
 
@@ -79,6 +84,7 @@ public class CommandArguments {
 
             if (type == Argument.PLAYER) {
                 OfflineMadPlayer player = new OfflineMadPlayer(plugin, arg);
+                player.downloadData();
                 if (player.exist()) {
                     value = player;
                 } else {

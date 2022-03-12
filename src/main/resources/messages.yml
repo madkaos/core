@@ -7,8 +7,11 @@ common:
   no-permission-admin: "&cEste comando es solo para uso administrativo."
   unknown-command: "&cComando desconocido, intenta usar /help para obtener ayuda."
   offline-player: "&cEste jugador no se encuentra conectado."
+  unknown-player: "&cEste jugador no ha sido encontrado."
   no-by-player: "&cEste comando no puede ser ejecutado por un jugador."
   no-by-console: "&cEste comando no puede ser ejecutado por la consola."
+  accept: "&a&lACEPTAR"
+  deny: "&c&lRECHAZAR"
 
 fly:
   description: "Activa o desactiva el modo de vuelo."
@@ -16,6 +19,17 @@ fly:
   disabled: "&aHas &cdesactivado &ael modo de vuelo."
 
 friends:
+  add:
+    usage: "&eUso: &c/friends add <jugador>"
+    user-dont-accept-friends: "&cEste usuario no acepta solicitudes de amistad."
+    request-sent: "&aSe ha enviado tu solicitud de amistad, el usuario tiene 5 minutos para aceptarla."
+    already-sent: "&eEste usuario ya posee una solicitud pendiente de amistad."
+    already-friend: "&eYa eres amig{pron} de {friend_name}"
+    friend-request: |-
+      &r
+      &eEl jugador &a{display_name} &ete ha enviado solicitud de amistad
+      &r{options}
+      &r
   help: |-
     &r
     &dComando de amigos:
@@ -30,6 +44,11 @@ friends:
     &r
     &dLista de Amigos&r &e({count}/{limit})
     {friends}
+    &r
+  requests: |-
+    &r
+    &dPeticiones de amistad &e({count})
+    {requests}
     &r
 
 gamemode:
