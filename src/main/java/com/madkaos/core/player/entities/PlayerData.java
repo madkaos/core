@@ -1,7 +1,5 @@
 package com.madkaos.core.player.entities;
 
-import java.util.List;
-
 import com.dotphin.milkshakeorm.entity.Entity;
 import com.dotphin.milkshakeorm.entity.ID;
 import com.dotphin.milkshakeorm.entity.Prop;
@@ -20,8 +18,8 @@ public class PlayerData extends Entity {
     public String displayName;
 
     @Prop
-    public List<String> friendRequests;
+    public String[] friendRequests;
 
     @Prop
-    public List<String> friends;
+    public String[] friends;
 }

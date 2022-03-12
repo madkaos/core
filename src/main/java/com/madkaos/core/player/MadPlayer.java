@@ -1,5 +1,8 @@
 package com.madkaos.core.player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.dotphin.milkshakeorm.utils.MapFactory;
 
 import com.madkaos.core.MadKaosCore;
@@ -37,6 +40,17 @@ public class MadPlayer extends CommandExecutor {
 
     public PlayerSettings getSettings() {
         return this.setttings;
+    }
+
+    public List<PlayerData> getFriends() {
+        String[] friendIds = this.data.friends;
+        List<PlayerData> friends = new ArrayList<>();
+
+        for (String id : friendIds) {
+            friends.add(this.plugin.getPlayerDataRepository().findByID(id));
+        }
+
+        return friends;
     }
 
     /* Utils */

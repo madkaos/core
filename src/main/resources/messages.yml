@@ -11,6 +11,19 @@ fly:
   enabled: "&aHas &2activado &ael modo de vuelo."
   disabled: "&aHas &cdesactivado &ael modo de vuelo."
 
+friends:
+  help: |-
+    &d&lFriends
+    &7- &b/friends add <nombre> &8- &aAñadir a un amigo.
+    &7- &b/friends accept <nombre> &8- &aAceptar una peticion.
+    &7- &b/friends deny <nombre> &8- &aRechazar una peticion.
+    &7- &b/friends list &8- &aVer lista de amigos.
+    &7- &b/friends requests &8- &aVer lista de peticiones.
+    &7- &b/friends remove <nombre> &8- &aEliminar a un amigo.
+  list: |-
+    &d&lFriends&r &e({count}/{limit})
+    {friends}
+
 gamemode:
   description: "Cambia tu modo de juego"
   usage: "&eUso: &b/gamemode <creative|survival|spectator|adventure>"

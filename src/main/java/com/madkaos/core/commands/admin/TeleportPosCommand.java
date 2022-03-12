@@ -5,7 +5,7 @@ import com.madkaos.core.commands.Command;
 import com.madkaos.core.commands.CommandContext;
 import com.madkaos.core.commands.CommandListener;
 
-@Command(name = "tpos", permission = "core.commands.tpos", minArguments = 1, arguments = {
+@Command(name = "tpos", permission = "core.commands.tpos", minArguments = 3, arguments = {
         Argument.INT,
         Argument.INT,
         Argument.INT

@@ -9,7 +9,11 @@ commands:
     aliases: ["vuelo"]
   gamemode:
     aliases: ["gm"]
+  friends:
+    aliases: ["amigos"]
   tp:
     aliases: []
   tpos:
     aliases: []
+  vanish:
+    aliases: ["v"]

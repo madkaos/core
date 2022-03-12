@@ -10,6 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandContext {
+    private MadKaosCore plugin;
     private CommandExecutor executor;
     private CommandArguments arguments;
 
@@ -20,11 +21,16 @@ public class CommandContext {
             this.executor = new CommandExecutor(plugin, sender);
         }
 
+        this.plugin = plugin;
         this.arguments = new CommandArguments(plugin, requiredArguments);
     }
 
     public void parseArguments(String[] args) throws BadArgumentException, PlayerNotFoundException, PlayerOfflineException {
         this.arguments.parse(args);
+    }
+
+    public MadKaosCore getPlugin() {
+        return this.plugin;
     }
 
     public CommandExecutor getExecutor() {

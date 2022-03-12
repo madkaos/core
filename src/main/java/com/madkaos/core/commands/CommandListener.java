@@ -78,6 +78,15 @@ public abstract class CommandListener implements CommandExecutor {
 
     // Command logic
     public void execute(CommandSender sender, String[] args) {
+        CommandContext ctx = new CommandContext(this.plugin, sender, command.arguments());
+
+        // Check for permissions
+        if (!command.permission().isEmpty() && !sender.hasPermission(command.permission())) {
+            this.onMissingPermission(ctx);
+            return;
+        }
+
+        // Check for subcommands
         if (args.length > 0) {
             String possibleSubCommand = args[0];
             CommandListener sc = this.getSubCommand(possibleSubCommand);
@@ -87,20 +96,16 @@ public abstract class CommandListener implements CommandExecutor {
             }
         }
 
-        CommandContext ctx = new CommandContext(this.plugin, sender, command.arguments());
-
-        if (!command.permission().isEmpty() && !sender.hasPermission(command.permission())) {
-            this.onMissingPermission(ctx);
-            return;
-        }
-
+        // Check for arguments count
         if (command.minArguments() < args.length) {
             this.onBadUsage(ctx);
             return;
         }
 
+        // Check for arguments type
         try {
             ctx.parseArguments(args);
+            // Execute
             this.onExecute(ctx);
         } catch (BadArgumentException | PlayerNotFoundException | PlayerOfflineException e) {
             ctx.getExecutor().sendMessage(e.getMessage());
