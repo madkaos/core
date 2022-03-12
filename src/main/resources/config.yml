@@ -1,2 +1,7 @@
+server:
+  id: server-1
+  # Server types: lobby, game
+  type: lobby
+
 settings:
   mongodb-uri: mongodb://localhost/madkaos

@@ -1,6 +1,7 @@
 package com.madkaos.core.player;
 
 import com.dotphin.milkshakeorm.utils.MapFactory;
+
 import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.commands.CommandExecutor;
 import com.madkaos.core.player.entities.PlayerData;
@@ -9,21 +10,17 @@ import com.madkaos.core.player.entities.PlayerSettings;
 import org.bukkit.entity.Player;
 
 public class MadPlayer extends CommandExecutor {
-    private MadKaosCore plugin;
-    private Player bukkitPlayer;
+    protected MadKaosCore plugin;
+    protected Player bukkitPlayer;
 
-    private PlayerData data = null;
-    private PlayerSettings setttings = null;
+    protected PlayerData data = null;
+    protected PlayerSettings setttings = null;
     
     public MadPlayer(MadKaosCore plugin, Player bukkitPlayer) {
         super(plugin, bukkitPlayer);
         
         this.plugin = plugin;
         this.bukkitPlayer = bukkitPlayer;
-
-        this.downloadData();
-        this.downloadSettings();
-        this.setupPlayer();
     }
 
     public Player getBukkitPlayer() {
@@ -46,6 +43,8 @@ public class MadPlayer extends CommandExecutor {
 
     /* Initial methods */
     void setupPlayer() {
+        this.downloadData();
+        this.downloadSettings();
         if (this.setttings.fly) {
             this.setFlying(true);
         }

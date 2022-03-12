@@ -1,5 +1,5 @@
 package com.madkaos.core.commands;
 
-public enum CommandArgument {
+public enum Argument {
     STRING, INT, BOOL, PLAYER, ONLINE_PLAYER
 }
