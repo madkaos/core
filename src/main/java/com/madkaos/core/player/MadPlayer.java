@@ -45,6 +45,10 @@ public class MadPlayer extends CommandExecutor {
         bukkitPlayer.setFlying(flying);
     }
 
+    public boolean isVanished() {
+        return this.vanished;
+    }
+
     public void setVanish(boolean vanished) {
         if (this.vanished == vanished) {
             return;
