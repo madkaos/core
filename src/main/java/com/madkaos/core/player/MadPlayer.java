@@ -80,11 +80,16 @@ public class MadPlayer extends CommandExecutor {
         this.downloadData();
         this.downloadSettings();
 
+        // Fly
         if (this.setttings.fly) {
             this.setFlying(true);
         }
 
-        this.setVanish(setttings.vanished);
+        // Vanish
+        if (this.setttings.vanished) {
+            this.sendI18nMessage("vanish.join");
+            this.setVanish(true);
+        }
     }
 
     void downloadSettings() {

@@ -20,3 +20,4 @@ vanish:
   description: "Ocultate de los demas jugadores."
   enabled: "&aHas &2activado &ael modo vanish &e(nadie podrá verte)"
   disabled: "&aHas &cdesactivado &ael modo vanish &c(todos podrán verte)"
+  join: "&aEstás en modo vanish &e(nadie podrá verte)"

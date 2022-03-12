@@ -32,7 +32,7 @@ public class MadKaosCore extends JavaPlugin {
 
     // Util methods
     public void addCommand(CommandListener listener) {
-        listener.register(this);
+        listener.register(this, false);
     }
 
     public void addListener(Listener listener) {
