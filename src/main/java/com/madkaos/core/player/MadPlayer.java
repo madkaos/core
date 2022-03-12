@@ -7,6 +7,7 @@ import com.madkaos.core.commands.CommandExecutor;
 import com.madkaos.core.player.entities.PlayerData;
 import com.madkaos.core.player.entities.PlayerSettings;
 
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public class MadPlayer extends CommandExecutor {
@@ -39,6 +40,14 @@ public class MadPlayer extends CommandExecutor {
     public void setFlying(boolean flying) {
         bukkitPlayer.setAllowFlight(flying);
         bukkitPlayer.setFlying(flying);
+    }
+
+    public void teleport(int x, int y, int z) {
+        Location loc = this.bukkitPlayer.getLocation().clone();
+        loc.setX(x);
+        loc.setY(y);
+        loc.setZ(z);
+        this.bukkitPlayer.teleport(loc);
     }
 
     /* Initial methods */

@@ -7,3 +7,9 @@ url: ${url}
 commands:
   fly:
     aliases: ["vuelo"]
+  gamemode:
+    aliases: ["gm"]
+  tp:
+    aliases: []
+  tpos:
+    aliases: []
