@@ -10,8 +10,10 @@ common:
   unknown-player: "&cEste jugador no ha sido encontrado."
   no-by-player: "&cEste comando no puede ser ejecutado por un jugador."
   no-by-console: "&cEste comando no puede ser ejecutado por la consola."
-  accept: "&a&lACEPTAR"
-  deny: "&c&lRECHAZAR"
+  accept: "&8[&aAceptar&r&8]"
+  accept-icon: "&8[&a✔&8]"
+  deny: "&8[&cRechazar&r&8]"
+  deny-icon: "&8[&c❌&8]"
 
 fly:
   description: "Activa o desactiva el modo de vuelo."
@@ -28,9 +30,11 @@ friends:
     cannot-your-self: "&cNo puedes ser amigo de ti mismo."
     friend-request: |-
       &r
-      &eEl jugador &a{player} &ete ha enviado solicitud de amistad
-      &r{options}
+      &a======= &lSolicitud De amistad&r &a=======
       &r
+      &7El jugador &b{player} &7quiere sean amigos
+      &r
+      &7¿Que desea hacer? 
   help: |-
     &r
     &a======== &lComando de Amigos&r &a========
@@ -46,13 +50,9 @@ friends:
     &r
     &a========= &lLista de Amigos&r &a=========
     &r
-    {friends}
-    &r
   requests: |-
     &r
     &a======= &lLista de Peticiones&r &a=======
-    &r
-    {requests}
     &r
 
 gamemode:

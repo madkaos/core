@@ -8,6 +8,11 @@ import com.madkaos.core.commands.CommandListener;
 import com.madkaos.core.player.MadPlayer;
 import com.madkaos.core.player.entities.PlayerData;
 
+import org.bukkit.ChatColor;
+
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+
 @Command(
     name = "requests"
 )
@@ -19,19 +24,31 @@ public class FriendRequestsSubCommand extends CommandListener {
 
         int count = requests.size();
 
-        String entries = "";
-        for (PlayerData data : requests) {
-            if (entries != "") {
-                entries += "\n";
-            }
+        ComponentBuilder entries = new ComponentBuilder();
 
-            entries += "&7" + data.displayName + " &8(&7offline&8)";
+        for (PlayerData data : requests) {
+            String username = data.displayName;
+
+            entries.append(ChatColor.GRAY + username);
+            entries.append(" ");
+            entries.append(new ComponentBuilder(
+                player.formatMessage(
+                    player.getI18nMessage("common.accept-icon")
+                )
+            ).event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/friends accept " + username)).create());
+            entries.append(" ");
+            entries.append(new ComponentBuilder(
+                player.formatMessage(
+                    player.getI18nMessage("common.deny-icon")
+                )
+            ).event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/friends accept " + username)).create());
+            entries.append("\n");
         }
 
         player.sendMessage(
             player.getI18nMessage("friends.requests")
                 .replace("{count}", count + "")
-                .replace("{requests}", entries)
         );
+        player.getBukkitPlayer().spigot().sendMessage(entries.create());
     }
 }
