@@ -6,8 +6,6 @@ import com.madkaos.core.messaging.packets.FriendRequestPacket;
 import com.madkaos.core.messaging.packets.MessagePacket;
 import com.madkaos.core.player.MadPlayer;
 
-import org.bukkit.entity.Player;
-
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -20,9 +18,15 @@ public class MessageProcessor {
     }
 
     public void processMessagePacket(MessagePacket packet) {
-        Player player = this.plugin.getServer().getPlayerExact(packet.getTarget());
-        if (player.isOnline()) {
-            player.sendMessage(packet.getMessage());
+        MadPlayer player = this.plugin.getPlayerManager().getPlayer(packet.getTarget());
+        String author = packet.getAuthor();
+        String message = packet.getMessage();
+        if (player != null) {
+            player.sendMessage(
+                player.getI18nMessage("message.message-other")
+                    .replace("{player}", author)
+                    .replace("{message}", message)
+            );
         }
     }
 

@@ -16,6 +16,7 @@ import org.bukkit.entity.Player;
 public class CommandArguments {
     private MadKaosCore plugin;
     private Argument[] requiredArguments;
+    private boolean isParsingLargeString = false;
     
     private List<Object> arguments = new ArrayList<>();
 
@@ -49,14 +50,27 @@ public class CommandArguments {
 
         for (String arg : args) {
             if (this.requiredArguments.length <= i) {
-                this.arguments.add(arg);
+                if (isParsingLargeString) {
+                    int index = this.arguments.size() - 1;
+                    String str = (String) this.arguments.get(index);
+                    str += " " + arg;
+                    this.arguments.set(index, str);
+                } else {
+                    this.arguments.add(arg);
+                }
                 continue;
             }
 
             Argument type = this.requiredArguments[i];
             Object value = null;
 
-            if (type == Argument.BOOL) {
+            if (type == Argument.LARGE_STRING)
+            {
+                isParsingLargeString = true;
+                value = arg;
+            } 
+            
+            else if (type == Argument.BOOL) {
                 if (arg.equalsIgnoreCase("true")) {
                     value = true;
                 } else if (arg.equalsIgnoreCase("false")) {
@@ -65,7 +79,7 @@ public class CommandArguments {
                 throw new BadArgumentException(arg, "true o false");
             }
 
-            if (type == Argument.INT) {
+            else if (type == Argument.INT) {
                 try {
                     value = Integer.parseInt(arg);
                 } catch (Exception _exception) {
@@ -73,7 +87,7 @@ public class CommandArguments {
                 }
             }
 
-            if (type == Argument.ONLINE_PLAYER) {
+            else if (type == Argument.ONLINE_PLAYER) {
                 Player player = Bukkit.getServer().getPlayer(arg);
                 if (player.isOnline()) {
                     value = this.plugin.getPlayerManager().getPlayer(player);
@@ -82,7 +96,7 @@ public class CommandArguments {
                 }
             }
 
-            if (type == Argument.PLAYER) {
+            else if (type == Argument.PLAYER) {
                 Player bukkitPlayer = Bukkit.getServer().getPlayer(arg);
 
                 if (bukkitPlayer != null && bukkitPlayer.isOnline()) {
@@ -100,7 +114,7 @@ public class CommandArguments {
                 }
             }
 
-            if (type == Argument.STRING) {
+            else if (type == Argument.STRING) {
                 value = arg;
             }
 

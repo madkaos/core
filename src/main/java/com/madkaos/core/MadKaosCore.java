@@ -10,6 +10,7 @@ import com.madkaos.core.commands.admin.TeleportPosCommand;
 import com.madkaos.core.commands.admin.VanishCommand;
 import com.madkaos.core.commands.player.FlyCommand;
 import com.madkaos.core.commands.player.FriendsCommand;
+import com.madkaos.core.commands.player.MessageCommand;
 import com.madkaos.core.config.ConfigManager;
 import com.madkaos.core.config.Configuration;
 import com.madkaos.core.listeners.PlayerJoinListener;
@@ -61,6 +62,7 @@ public class MadKaosCore extends JavaPlugin {
         this.addCommand(new FlyCommand());
         this.addCommand(new FriendsCommand());
         this.addCommand(new GameModeCommand());
+        this.addCommand(new MessageCommand());
         this.addCommand(new TeleportCommand());
         this.addCommand(new TeleportPosCommand());
         this.addCommand(new VanishCommand());

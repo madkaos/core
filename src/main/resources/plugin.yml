@@ -7,10 +7,12 @@ url: ${url}
 commands:
   fly:
     aliases: ["vuelo"]
-  gamemode:
-    aliases: ["gm"]
   friends:
     aliases: ["amigos", "friend"]
+  gamemode:
+    aliases: ["gm"]
+  message:
+    aliases: ["msg"]
   tp:
     aliases: []
   tpos:

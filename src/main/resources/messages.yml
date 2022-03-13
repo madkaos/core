@@ -67,6 +67,14 @@ gamemode:
   usage: "&eUso: &b/gamemode <modo>"
   switched: "&aHas cambiado tu modo de juego a &b{gamemode}"
 
+message:
+  usage: "&eUso: &b/msg <player> <mensaje>"
+  cannot-your-self: "&cNo puedes enviarte mensaje a ti mismo."
+  user-dont-accept-messages: "&cEste usuario no acepta mensajes privados."
+  user-dont-accept-unknown: "&cEste usuario solo acepta mensajes de sus amigos."
+  your-message: "&d(Mensaje) &aTu &8→ &7{player}&8: &7{message}"
+  message-other: "&d(Mensaje) &a{player} &8→ &7Tu&8: &7{message}"
+
 vanish:
   description: "Ocultate de los demas jugadores."
   enabled: "&aHas &2activado &ael modo vanish &e(nadie podrá verte)"
