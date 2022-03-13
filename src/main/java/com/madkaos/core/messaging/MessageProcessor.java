@@ -4,6 +4,7 @@ import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.messaging.packets.FriendAcceptedPacket;
 import com.madkaos.core.messaging.packets.FriendRequestPacket;
 import com.madkaos.core.messaging.packets.MessagePacket;
+import com.madkaos.core.messaging.packets.PlayerRefreshPacket;
 import com.madkaos.core.player.MadPlayer;
 
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -76,6 +77,13 @@ public class MessageProcessor {
                 player.getI18nMessage("friends.accept.accepted-notify")
                     .replace("{player}", packet.getAuthor())
             );
+        }
+    }
+
+    public void processPlayerRefreshPacket(PlayerRefreshPacket packet) {
+        MadPlayer player = this.plugin.getPlayerManager().getPlayer(packet.getTarget());
+        if (player != null) {
+            player.getData().refresh();
         }
     }
 }

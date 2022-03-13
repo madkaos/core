@@ -27,7 +27,7 @@ public class FriendAcceptSubCommand extends CommandListener {
         if (!player.getData().friendRequests.contains(target.getData().id)) {
             player.sendMessage(
                 player.getI18nMessage("friends.accept.no-request")
-                    .replace("{friend_name}", target.getData().displayName)
+                    .replace("{player}", target.getData().displayName)
             );
         }
 

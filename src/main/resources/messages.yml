@@ -26,7 +26,7 @@ friends:
     user-dont-accept-friends: "&cEste usuario no acepta solicitudes de amistad."
     request-sent: "&aSe ha enviado tu solicitud de amistad, el usuario tiene 5 minutos para aceptarla."
     already-sent: "&eEste usuario ya posee una solicitud pendiente de amistad."
-    already-friend: "&eYa eres amig{pron} de {friend_name}"
+    already-friend: "&cYa eres amig{pron} de {player}"
     cannot-your-self: "&cNo puedes ser amigo de ti mismo."
     friend-request: |-
       &r
@@ -42,6 +42,14 @@ friends:
     max-friends-other: "&c{player} ya ha alcanzado el límite máximo de amigos."
     accepted: "&a¡Bien! Ahora {player} y tu son amigos."
     accepted-notify: "&b{player} &aaceptó tu solicitud de amistad."
+  deny:
+    usage: "&eUso: &c/friends deny <jugador>"
+    no-request: "&cNo tienes una solicitud de amistad pendiente de este usuario."
+    denied: "&eHas rechazado la solicitud de amistad de &b{player}"
+  remove:
+    usage: "&eUso: &c/friends remove <jugador>"
+    not-your-friend: "&cEste jugador no es tu amigo."
+    removed: "&eHas removido al jugador &b{player} &ede tus amigos."
   help: |-
     &r
     &a======== &lComando de Amigos&r &a========

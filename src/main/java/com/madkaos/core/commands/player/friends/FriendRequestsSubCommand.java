@@ -41,7 +41,7 @@ public class FriendRequestsSubCommand extends CommandListener {
                 player.formatMessage(
                     player.getI18nMessage("common.deny-icon")
                 )
-            ).event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/friends accept " + username)).create());
+            ).event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/friends deny " + username)).create());
             entries.append("\n");
         }
 

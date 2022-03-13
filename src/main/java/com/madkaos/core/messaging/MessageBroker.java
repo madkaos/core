@@ -5,6 +5,7 @@ import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.messaging.packets.FriendAcceptedPacket;
 import com.madkaos.core.messaging.packets.FriendRequestPacket;
 import com.madkaos.core.messaging.packets.MessagePacket;
+import com.madkaos.core.messaging.packets.PlayerRefreshPacket;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -44,7 +45,8 @@ public class MessageBroker {
                     hooker.subscribe(pubsub, 
                         Channel.MESSAGE_CHANNEL,
                         Channel.FRIEND_REQUEST_CHANNEL,
-                        Channel.FRIEND_ACCEPTED_CHANNEL
+                        Channel.FRIEND_ACCEPTED_CHANNEL,
+                        Channel.PLAYER_REFRESH_CHANNEL
                     );
                 } catch (Exception _ignored) {}
             }
@@ -55,7 +57,8 @@ public class MessageBroker {
         this.pubsub.unsubscribe(
             Channel.MESSAGE_CHANNEL,
             Channel.FRIEND_REQUEST_CHANNEL,
-            Channel.FRIEND_ACCEPTED_CHANNEL
+            Channel.FRIEND_ACCEPTED_CHANNEL,
+            Channel.PLAYER_REFRESH_CHANNEL
         );
         this.publisher.disconnect();
         this.hooker.disconnect();
@@ -80,6 +83,11 @@ public class MessageBroker {
                 gson.fromJson(message, FriendAcceptedPacket.class)
             );
         }
+        else if (channel.equals(Channel.PLAYER_REFRESH_CHANNEL)) {
+            this.processor.processPlayerRefreshPacket(
+                gson.fromJson(message, PlayerRefreshPacket.class)
+            );
+        }
     }
 
     private void publishPacket(String channel, String rawPacket) {
@@ -96,5 +104,9 @@ public class MessageBroker {
 
     public void publishFriendAcceptPacket(FriendAcceptedPacket packet) {
         this.publishPacket(Channel.FRIEND_ACCEPTED_CHANNEL, gson.toJson(packet));
+    }
+
+    public void publishPlayerRefreshPacket(PlayerRefreshPacket packet) {
+        this.publishPacket(Channel.PLAYER_REFRESH_CHANNEL, gson.toJson(packet));
     }
 }

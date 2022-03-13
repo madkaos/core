@@ -31,7 +31,7 @@ public class FriendAddSubCommand extends CommandListener {
             player.sendMessage(
                 player.formatMessage(
                     player.getI18nMessage("friends.add.already-friend")
-                        .replace("{friend_name}", target.getData().displayName)
+                        .replace("{player}", target.getData().displayName)
                 )
             );
         }
