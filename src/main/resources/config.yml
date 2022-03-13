@@ -17,7 +17,8 @@ motd: |-
   &r
   &8&m-+-------------------------------+-
   &r
-  &b¡Hola {username}! Bienvenid{pron} a MadKaos
+  &r Bienvenid{pron} a &d&lMADKAOS NETWORK
+  &r ¡Hola! &b{username}
   &r
   &r &7» &6&lPATREON&r &fpatreon.com/rubius
   &r &7» &3&lTWITTER&r &ftwitter.com/madkaosoficial
