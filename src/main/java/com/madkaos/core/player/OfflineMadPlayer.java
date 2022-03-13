@@ -17,11 +17,7 @@ public class OfflineMadPlayer extends MadPlayer {
     public boolean exist() {
         return this.data != null;
     }
-
-    public boolean isOnline() {
-        return this.bukkitPlayer != null && this.bukkitPlayer.isOnline();
-    }
-
+    
     /* Initial methods */
     @Override
     public void setupPlayer() {

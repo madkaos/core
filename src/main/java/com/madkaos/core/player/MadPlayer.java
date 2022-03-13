@@ -44,10 +44,9 @@ public class MadPlayer extends CommandExecutor {
 
     /* Utils */
     public List<PlayerData> getFriends() {
-        String[] friendIds = this.data.friends;
         List<PlayerData> friends = new ArrayList<>();
 
-        for (String id : friendIds) {
+        for (String id : this.data.friends) {
             friends.add(this.plugin.getPlayerDataRepository().findByID(id));
         }
 
@@ -55,10 +54,9 @@ public class MadPlayer extends CommandExecutor {
     }
 
     public List<PlayerData> getFriendRequests() {
-        String[] friendIds = this.data.friendRequests;
         List<PlayerData> friends = new ArrayList<>();
 
-        for (String id : friendIds) {
+        for (String id : this.data.friendRequests) {
             friends.add(this.plugin.getPlayerDataRepository().findByID(id));
         }
 
@@ -68,6 +66,10 @@ public class MadPlayer extends CommandExecutor {
     public void setFlying(boolean flying) {
         bukkitPlayer.setAllowFlight(flying);
         bukkitPlayer.setFlying(flying);
+    }
+
+    public boolean isOnline() {
+        return this.bukkitPlayer != null && this.bukkitPlayer.isOnline();
     }
 
     public boolean isVanished() {
@@ -125,12 +127,11 @@ public class MadPlayer extends CommandExecutor {
     }
 
     public void downloadSettings() {
-        String id = this.data.id;
-
-        if (id == null) {
+        if (this.data == null) {
             return;
         }
 
+        String id = this.data.id;
         this.setttings = this.plugin.getPlayerSettingsRepository().findOne(MapFactory.create("playerId", id));
 
         if (this.setttings == null) {

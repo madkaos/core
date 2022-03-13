@@ -36,8 +36,8 @@ public class CommandArguments {
         return (boolean) this.arguments.get(index);
     }
 
-    public OfflineMadPlayer getOfflinePlayer(int index) {
-        return (OfflineMadPlayer) this.arguments.get(index);
+    public MadPlayer getOfflinePlayer(int index) {
+        return (MadPlayer) this.arguments.get(index);
     }
 
     public MadPlayer getPlayer(int index) {
@@ -83,12 +83,20 @@ public class CommandArguments {
             }
 
             if (type == Argument.PLAYER) {
-                OfflineMadPlayer player = new OfflineMadPlayer(plugin, arg);
-                player.downloadData();
-                if (player.exist()) {
-                    value = player;
+                Player bukkitPlayer = Bukkit.getServer().getPlayer(arg);
+
+                if (bukkitPlayer != null && bukkitPlayer.isOnline()) {
+                    value = this.plugin.getPlayerManager().getPlayer(bukkitPlayer);
                 } else {
-                    throw new PlayerNotFoundException(arg);
+                    OfflineMadPlayer player = new OfflineMadPlayer(plugin, arg);
+                    player.downloadData();
+                    player.downloadSettings();
+
+                    if (player.exist()) {
+                        value = player;
+                    } else {
+                        throw new PlayerNotFoundException(arg);
+                    }
                 }
             }
 

@@ -5,9 +5,7 @@ import com.madkaos.core.commands.Command;
 import com.madkaos.core.commands.CommandContext;
 import com.madkaos.core.commands.CommandListener;
 import com.madkaos.core.player.MadPlayer;
-import com.madkaos.core.player.OfflineMadPlayer;
 import com.madkaos.core.player.PlayerFilter;
-import com.madkaos.core.utils.ArrayUtils;
 
 @Command(
     name = "add",
@@ -21,14 +19,14 @@ public class FriendAddSubCommand extends CommandListener {
     @Override
     protected void onExecuteByPlayer(CommandContext ctx) {
         MadPlayer player = ctx.getPlayer();
-        OfflineMadPlayer target = ctx.getArguments().getOfflinePlayer(0);
+        MadPlayer target = ctx.getArguments().getOfflinePlayer(0);
 
         if (player.getData().id.equals(target.getData().id)) {
             ctx.getPlayer().sendI18nMessage("friends.add.cannot-your-self");
             return;
         }
 
-        if (ArrayUtils.contains(target.getData().friends, player.getData().id)) {
+        if (target.getData().friends.contains(player.getData().id)) {
             player.sendMessage(
                 player.formatMessage(
                     player.getI18nMessage("friends.add.already-friend")
@@ -37,15 +35,14 @@ public class FriendAddSubCommand extends CommandListener {
             );
         }
         
-        else if (ArrayUtils.contains(target.getData().friendRequests, player.getData().id)) {
+        else if (target.getData().friendRequests.contains(player.getData().id)) {
             player.sendI18nMessage("friends.add.already-sent");
         }
 
         else {
-            target.downloadSettings();
-
             if (target.getSettings().friendRequestsFilter == PlayerFilter.ANYBODY) {
-                ArrayUtils.addElement(target.getData().friendRequests, player.getData().id);
+                target.getData().friendRequests.add(player.getData().id);
+                target.getData().save();
                 player.sendI18nMessage("friends.add.request-sent");
             } else {
                 player.sendI18nMessage("friends.add.user-dont-accept-friends");

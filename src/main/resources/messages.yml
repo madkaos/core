@@ -45,11 +45,13 @@ friends:
   list: |-
     &r
     &a========= &lLista de Amigos&r &a=========
+    &r
     {friends}
     &r
   requests: |-
     &r
     &a======= &lLista de Peticiones&r &a=======
+    &r
     {requests}
     &r
 

@@ -1,5 +1,8 @@
 package com.madkaos.core.player.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.dotphin.milkshakeorm.entity.Entity;
 import com.dotphin.milkshakeorm.entity.ID;
 import com.dotphin.milkshakeorm.entity.Prop;
@@ -21,8 +24,8 @@ public class PlayerData extends Entity {
     public String pron = "o";
 
     @Prop
-    public String[] friendRequests = new String[0];
+    public List<String> friendRequests = new ArrayList<>();
 
     @Prop
-    public String[] friends = new String[0];
+    public List<String> friends = new ArrayList<>();
 }
