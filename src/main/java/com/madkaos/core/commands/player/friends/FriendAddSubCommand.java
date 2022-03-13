@@ -23,6 +23,11 @@ public class FriendAddSubCommand extends CommandListener {
         MadPlayer player = ctx.getPlayer();
         OfflineMadPlayer target = ctx.getArguments().getOfflinePlayer(0);
 
+        if (player.getData().id.equals(target.getData().id)) {
+            ctx.getPlayer().sendI18nMessage("friends.add.cannot-your-self");
+            return;
+        }
+
         if (ArrayUtils.contains(target.getData().friends, player.getData().id)) {
             player.sendMessage(
                 player.formatMessage(

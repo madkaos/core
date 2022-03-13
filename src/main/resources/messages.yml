@@ -25,6 +25,7 @@ friends:
     request-sent: "&aSe ha enviado tu solicitud de amistad, el usuario tiene 5 minutos para aceptarla."
     already-sent: "&eEste usuario ya posee una solicitud pendiente de amistad."
     already-friend: "&eYa eres amig{pron} de {friend_name}"
+    cannot-your-self: "&cNo puedes ser amigo de ti mismo."
     friend-request: |-
       &r
       &eEl jugador &a{display_name} &ete ha enviado solicitud de amistad
