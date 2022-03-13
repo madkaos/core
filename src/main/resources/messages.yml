@@ -72,8 +72,12 @@ message:
   cannot-your-self: "&cNo puedes enviarte mensaje a ti mismo."
   user-dont-accept-messages: "&cEste usuario no acepta mensajes privados."
   user-dont-accept-unknown: "&cEste usuario solo acepta mensajes de sus amigos."
-  your-message: "&d(Mensaje) &aTu &8→ &7{player}&8: &7{message}"
+  your-message: "&d(Mensaje) &7Tu &8→ &b{player}&8: &7{message}"
   message-other: "&d(Mensaje) &a{player} &8→ &7Tu&8: &7{message}"
+
+reply:
+  usage: "&eUso: &b/r <mensaje>"
+  no-reply: "&cNo tienes a nadie para responder."
 
 vanish:
   description: "Ocultate de los demas jugadores."

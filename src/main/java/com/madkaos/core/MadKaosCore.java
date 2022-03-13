@@ -3,6 +3,7 @@ package com.madkaos.core;
 import com.dotphin.milkshakeorm.MilkshakeORM;
 import com.dotphin.milkshakeorm.providers.Provider;
 import com.dotphin.milkshakeorm.repository.Repository;
+import com.madkaos.core.cache.CacheEngine;
 import com.madkaos.core.commands.CommandListener;
 import com.madkaos.core.commands.admin.GameModeCommand;
 import com.madkaos.core.commands.admin.TeleportCommand;
@@ -11,6 +12,7 @@ import com.madkaos.core.commands.admin.VanishCommand;
 import com.madkaos.core.commands.player.FlyCommand;
 import com.madkaos.core.commands.player.FriendsCommand;
 import com.madkaos.core.commands.player.MessageCommand;
+import com.madkaos.core.commands.player.ReplyCommand;
 import com.madkaos.core.config.ConfigManager;
 import com.madkaos.core.config.Configuration;
 import com.madkaos.core.listeners.PlayerJoinListener;
@@ -28,6 +30,8 @@ public class MadKaosCore extends JavaPlugin {
     // Managers
     private ConfigManager configManager;
     private MadPlayerManager playerManager;
+
+    private CacheEngine cacheEngine;
     private MessageBroker messageBroker;
 
     // Repositories
@@ -56,13 +60,16 @@ public class MadKaosCore extends JavaPlugin {
         this.playerSettingsRepository = MilkshakeORM.addRepository(PlayerSettings.class, provider, "PlayerSettings");
 
         // Connect to redis cache & pubsub
-        this.messageBroker = new MessageBroker(this, this.getMainConfig().getString("settings.redis-uri"));
+        String redisURI = this.getMainConfig().getString("settings.redis-uri");
+        this.cacheEngine = new CacheEngine(redisURI);
+        this.messageBroker = new MessageBroker(this, redisURI);
 
         // Register commands
         this.addCommand(new FlyCommand());
         this.addCommand(new FriendsCommand());
         this.addCommand(new GameModeCommand());
         this.addCommand(new MessageCommand());
+        this.addCommand(new ReplyCommand());
         this.addCommand(new TeleportCommand());
         this.addCommand(new TeleportPosCommand());
         this.addCommand(new VanishCommand());
@@ -77,6 +84,7 @@ public class MadKaosCore extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        this.cacheEngine.stop();
         this.messageBroker.stop();
         this.playerManager.clear();
     }
@@ -93,6 +101,10 @@ public class MadKaosCore extends JavaPlugin {
 
     public Configuration getConfig(String name) {
         return this.configManager.getConfig(name);
+    }
+
+    public CacheEngine getCacheEngine() {
+        return this.cacheEngine;
     }
 
     public MessageBroker getMessageBroker() {

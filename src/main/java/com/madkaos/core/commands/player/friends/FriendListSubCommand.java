@@ -2,7 +2,6 @@ package com.madkaos.core.commands.player.friends;
 
 import java.util.List;
 
-import com.madkaos.core.commands.Argument;
 import com.madkaos.core.commands.Command;
 import com.madkaos.core.commands.CommandContext;
 import com.madkaos.core.commands.CommandListener;
@@ -13,11 +12,7 @@ import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 
 @Command(
-    name = "list",
-    minArguments = 1,
-    arguments = {
-        Argument.PLAYER
-    }
+    name = "list"
 )
 public class FriendListSubCommand extends CommandListener {
     @Override

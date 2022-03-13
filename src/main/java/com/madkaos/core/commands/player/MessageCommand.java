@@ -1,5 +1,6 @@
 package com.madkaos.core.commands.player;
 
+import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.commands.Argument;
 import com.madkaos.core.commands.Command;
 import com.madkaos.core.commands.CommandContext;
@@ -20,6 +21,7 @@ import com.madkaos.core.player.PlayerFilter;
 public class MessageCommand extends CommandListener {
     @Override
     protected void onExecuteByPlayer(CommandContext ctx) {
+        MadKaosCore plugin = ctx.getPlugin();
         MadPlayer player = ctx.getPlayer();
         MadPlayer target = ctx.getArguments().getOfflinePlayer(0);
 
@@ -41,7 +43,10 @@ public class MessageCommand extends CommandListener {
             }
         }
 
-        ctx.getPlugin().getMessageBroker().publishMessagePacket(
+        plugin.getCacheEngine().setReplyTo(player.getData().displayName, target.getData().displayName);
+        plugin.getCacheEngine().setReplyTo(target.getData().displayName, player.getData().displayName);
+
+        plugin.getMessageBroker().publishMessagePacket(
             new MessagePacket(player.getData().displayName, username, message)
         );
 

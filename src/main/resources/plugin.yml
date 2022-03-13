@@ -13,6 +13,8 @@ commands:
     aliases: ["gm"]
   message:
     aliases: ["msg"]
+  reply:
+    aliases: ["r"]
   tp:
     aliases: []
   tpos:

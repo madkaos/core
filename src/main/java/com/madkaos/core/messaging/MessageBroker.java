@@ -17,6 +17,7 @@ public class MessageBroker {
 
     private Jedis publisher;
     private Jedis hooker;
+    private JedisPubSub pubsub;
 
     public MessageBroker(MadKaosCore plugin, String redisURI) {
         this.gson = new Gson();
@@ -25,30 +26,39 @@ public class MessageBroker {
         this.hooker = new Jedis(redisURI);
         this.publisher = new Jedis(redisURI);
 
+        this.pubsub = new JedisPubSub() {
+            @Override
+            public void onMessage(String channel, String message) {
+                processPubsubMessage(channel, message);
+            }
+            @Override
+            public void onSubscribe(String channel, int subscribedChannels) {
+                plugin.getLogger().info("Message Broker suscribed to " + channel + " channel");
+            }
+        };
+
         new Thread(new BukkitRunnable() {
             @Override
             public void run() {
-                hooker.subscribe(new JedisPubSub() {
-                    @Override
-                    public void onMessage(String channel, String message) {
-                        processPubsubMessage(channel, message);
-                    }
-                    @Override
-                    public void onSubscribe(String channel, int subscribedChannels) {
-                        plugin.getLogger().info("Message Broker suscribed to " + channel + " channel");
-                    }
-                }, 
-                    Channel.MESSAGE_CHANNEL,
-                    Channel.FRIEND_REQUEST_CHANNEL,
-                    Channel.FRIEND_ACCEPTED_CHANNEL
-                );
+                try {
+                    hooker.subscribe(pubsub, 
+                        Channel.MESSAGE_CHANNEL,
+                        Channel.FRIEND_REQUEST_CHANNEL,
+                        Channel.FRIEND_ACCEPTED_CHANNEL
+                    );
+                } catch (Exception _ignored) {}
             }
         }).start();
     }
 
     public void stop() {
-        this.publisher.close();
-        this.hooker.close();
+        this.pubsub.unsubscribe(
+            Channel.MESSAGE_CHANNEL,
+            Channel.FRIEND_REQUEST_CHANNEL,
+            Channel.FRIEND_ACCEPTED_CHANNEL
+        );
+        this.publisher.disconnect();
+        this.hooker.disconnect();
     }
 
     private void processPubsubMessage(String channel, String message) {
