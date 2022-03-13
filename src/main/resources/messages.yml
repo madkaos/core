@@ -28,7 +28,7 @@ friends:
     cannot-your-self: "&cNo puedes ser amigo de ti mismo."
     friend-request: |-
       &r
-      &eEl jugador &a{display_name} &ete ha enviado solicitud de amistad
+      &eEl jugador &a{player} &ete ha enviado solicitud de amistad
       &r{options}
       &r
   help: |-

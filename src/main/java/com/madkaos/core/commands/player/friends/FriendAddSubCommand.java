@@ -4,6 +4,7 @@ import com.madkaos.core.commands.Argument;
 import com.madkaos.core.commands.Command;
 import com.madkaos.core.commands.CommandContext;
 import com.madkaos.core.commands.CommandListener;
+import com.madkaos.core.messaging.packets.FriendRequestPacket;
 import com.madkaos.core.player.MadPlayer;
 import com.madkaos.core.player.PlayerFilter;
 
@@ -44,6 +45,13 @@ public class FriendAddSubCommand extends CommandListener {
                 target.getData().friendRequests.add(player.getData().id);
                 target.getData().save();
                 player.sendI18nMessage("friends.add.request-sent");
+
+                this.plugin.getMessageBroker().publishFriendRequestPacket(
+                    new FriendRequestPacket(
+                        player.getData().displayName,
+                        target.getData().displayName
+                    )
+                );
             } else {
                 player.sendI18nMessage("friends.add.user-dont-accept-friends");
             }

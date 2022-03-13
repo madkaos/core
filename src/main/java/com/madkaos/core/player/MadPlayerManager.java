@@ -32,6 +32,15 @@ public class MadPlayerManager {
         return this.players.get(bukkitPlayer);
     }
 
+    public MadPlayer getPlayer(String name) {
+        Player bukkitPlayer = this.plugin.getServer().getPlayerExact(name);
+        if (bukkitPlayer != null && bukkitPlayer.isOnline()) {
+            return this.getPlayer(bukkitPlayer);
+        } else {
+            return null;
+        }
+    }
+
     public Collection<MadPlayer> getPlayers() {
         return this.players.values();
     }

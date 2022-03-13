@@ -14,6 +14,7 @@ import com.madkaos.core.config.ConfigManager;
 import com.madkaos.core.config.Configuration;
 import com.madkaos.core.listeners.PlayerJoinListener;
 import com.madkaos.core.listeners.PlayerQuitListener;
+import com.madkaos.core.messaging.MessageBroker;
 import com.madkaos.core.player.MadPlayerManager;
 import com.madkaos.core.player.entities.PlayerData;
 import com.madkaos.core.player.entities.PlayerSettings;
@@ -26,6 +27,7 @@ public class MadKaosCore extends JavaPlugin {
     // Managers
     private ConfigManager configManager;
     private MadPlayerManager playerManager;
+    private MessageBroker messageBroker;
 
     // Repositories
     private Repository<PlayerData> playerDataRepository;
@@ -52,6 +54,9 @@ public class MadKaosCore extends JavaPlugin {
         this.playerDataRepository = MilkshakeORM.addRepository(PlayerData.class, provider, "Players");
         this.playerSettingsRepository = MilkshakeORM.addRepository(PlayerSettings.class, provider, "PlayerSettings");
 
+        // Connect to redis cache & pubsub
+        this.messageBroker = new MessageBroker(this, this.getMainConfig().getString("settings.redis-uri"));
+
         // Register commands
         this.addCommand(new FlyCommand());
         this.addCommand(new FriendsCommand());
@@ -68,6 +73,12 @@ public class MadKaosCore extends JavaPlugin {
         this.playerManager.addAll();
     }
 
+    @Override
+    public void onDisable() {
+        this.messageBroker.stop();
+        this.playerManager.clear();
+    }
+
     // Utils
     public boolean isLobby() {
         return this.getMainConfig().getString("server.type").equalsIgnoreCase("lobby");
@@ -80,6 +91,10 @@ public class MadKaosCore extends JavaPlugin {
 
     public Configuration getConfig(String name) {
         return this.configManager.getConfig(name);
+    }
+
+    public MessageBroker getMessageBroker() {
+        return this.messageBroker;
     }
 
     // Get repositories
