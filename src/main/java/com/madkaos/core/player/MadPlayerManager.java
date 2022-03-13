@@ -16,8 +16,6 @@ public class MadPlayerManager {
     public MadPlayerManager(MadKaosCore plugin) {
         this.plugin = plugin;
         this.players = new HashMap<>();
-
-        this.addAll();
     }
 
     public MadPlayer addPlayer(Player bukkitPlayer) {
@@ -44,7 +42,10 @@ public class MadPlayerManager {
 
     public void addAll() {
         for (Player bukkitPlayer : this.plugin.getServer().getOnlinePlayers()) {
-            this.addPlayer(bukkitPlayer);
+            MadPlayer player = this.addPlayer(bukkitPlayer);
+            player.downloadData();
+            player.downloadSettings();
+            player.setupPlayer();
         }
     }
 }

@@ -63,6 +63,9 @@ public class MadKaosCore extends JavaPlugin {
         // Register listeners
         this.addListener(new PlayerJoinListener(this));
         this.addListener(new PlayerQuitListener(this));
+
+        // Initialize
+        this.playerManager.addAll();
     }
 
     // Utils

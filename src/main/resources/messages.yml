@@ -33,22 +33,23 @@ friends:
       &r
   help: |-
     &r
-    &dComando de amigos:
-    &b/friends add <nombre> &8- &aAñadir a un amigo.
-    &b/friends accept <nombre> &8- &aAceptar una peticion.
-    &b/friends deny <nombre> &8- &aRechazar una peticion.
-    &b/friends list &8- &aVer lista de amigos.
-    &b/friends requests &8- &aVer lista de peticiones.
-    &b/friends remove <nombre> &8- &aEliminar a un amigo.
+    &a======== &lComando de Amigos&r &a========
+    &r
+    &a/friends add <nombre> &8» &7Añadir a un amigo.
+    &a/friends accept <nombre> &8» &7Aceptar una peticion.
+    &a/friends deny <nombre> &8» &7Rechazar una peticion.
+    &a/friends list &8» &7Ver lista de amigos.
+    &a/friends requests &8» &7Ver lista de peticiones.
+    &a/friends remove <nombre> &8» &7Eliminar a un amigo.
     &r
   list: |-
     &r
-    &dLista de Amigos&r &e({count}/{limit})
+    &a========= &lLista de Amigos&r &a=========
     {friends}
     &r
   requests: |-
     &r
-    &dPeticiones de amistad &e({count})
+    &a======= &lLista de Peticiones&r &a=======
     {requests}
     &r
 
