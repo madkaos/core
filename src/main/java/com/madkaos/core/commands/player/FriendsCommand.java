@@ -3,6 +3,7 @@ package com.madkaos.core.commands.player;
 import com.madkaos.core.commands.Command;
 import com.madkaos.core.commands.CommandContext;
 import com.madkaos.core.commands.CommandListener;
+import com.madkaos.core.commands.player.friends.FriendAcceptSubCommand;
 import com.madkaos.core.commands.player.friends.FriendAddSubCommand;
 import com.madkaos.core.commands.player.friends.FriendListSubCommand;
 import com.madkaos.core.commands.player.friends.FriendRequestsSubCommand;
@@ -13,6 +14,7 @@ import com.madkaos.core.commands.player.friends.FriendRequestsSubCommand;
 )
 public class FriendsCommand extends CommandListener {
     public FriendsCommand() {
+        this.addSubcommand(new FriendAcceptSubCommand());
         this.addSubcommand(new FriendAddSubCommand());
         this.addSubcommand(new FriendListSubCommand());
         this.addSubcommand(new FriendRequestsSubCommand());

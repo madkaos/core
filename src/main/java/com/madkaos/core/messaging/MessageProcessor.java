@@ -1,6 +1,7 @@
 package com.madkaos.core.messaging;
 
 import com.madkaos.core.MadKaosCore;
+import com.madkaos.core.messaging.packets.FriendAcceptedPacket;
 import com.madkaos.core.messaging.packets.FriendRequestPacket;
 import com.madkaos.core.messaging.packets.MessagePacket;
 import com.madkaos.core.player.MadPlayer;
@@ -60,6 +61,17 @@ public class MessageProcessor {
             actionMSG.append("\n");
 
             player.getBukkitPlayer().spigot().sendMessage(actionMSG.create());
+        }
+    }
+
+    public void processFriendAcceptedPacket(FriendAcceptedPacket packet) {
+        MadPlayer player = this.plugin.getPlayerManager().getPlayer(packet.getTarget());
+        if (player != null) {
+            player.getData().refresh();
+            player.sendMessage(
+                player.getI18nMessage("friends.accept.accepted-notify")
+                    .replace("{player}", packet.getAuthor())
+            );
         }
     }
 }

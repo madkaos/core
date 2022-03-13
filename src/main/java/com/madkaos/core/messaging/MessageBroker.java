@@ -2,6 +2,7 @@ package com.madkaos.core.messaging;
 
 import com.google.gson.Gson;
 import com.madkaos.core.MadKaosCore;
+import com.madkaos.core.messaging.packets.FriendAcceptedPacket;
 import com.madkaos.core.messaging.packets.FriendRequestPacket;
 import com.madkaos.core.messaging.packets.MessagePacket;
 
@@ -38,7 +39,8 @@ public class MessageBroker {
                     }
                 }, 
                     Channel.MESSAGE_CHANNEL,
-                    Channel.FRIEND_REQUEST_CHANNEL
+                    Channel.FRIEND_REQUEST_CHANNEL,
+                    Channel.FRIEND_ACCEPTED_CHANNEL
                 );
             }
         }).start();
@@ -62,6 +64,12 @@ public class MessageBroker {
                 gson.fromJson(message, FriendRequestPacket.class)
             );
         }
+
+        else if (channel.equals(Channel.FRIEND_ACCEPTED_CHANNEL)) {
+            this.processor.processFriendAcceptedPacket(
+                gson.fromJson(message, FriendAcceptedPacket.class)
+            );
+        }
     }
 
     private void publishPacket(String channel, String rawPacket) {
@@ -74,5 +82,9 @@ public class MessageBroker {
 
     public void publishFriendRequestPacket(FriendRequestPacket packet) {
         this.publishPacket(Channel.FRIEND_REQUEST_CHANNEL, gson.toJson(packet));
+    }
+
+    public void publishFriendAcceptPacket(FriendAcceptedPacket packet) {
+        this.publishPacket(Channel.FRIEND_ACCEPTED_CHANNEL, gson.toJson(packet));
     }
 }

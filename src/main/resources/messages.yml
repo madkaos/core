@@ -35,6 +35,13 @@ friends:
       &7El jugador &b{player} &7quiere sean amigos
       &r
       &7¿Que desea hacer? 
+  accept:
+    usage: "&eUso: &c/friends accept <jugador>"
+    no-request: "&cNo tienes una solicitud de amistad pendiente de este usuario."
+    max-friends-reached: "&cYa has alcanzado el límite de amigos para tu cuenta ({count}/{max})"
+    max-friends-other: "&c{player} ya ha alcanzado el límite máximo de amigos."
+    accepted: "&a¡Bien! Ahora {player} y tu son amigos."
+    accepted-notify: "&b{player} &aaceptó tu solicitud de amistad."
   help: |-
     &r
     &a======== &lComando de Amigos&r &a========
