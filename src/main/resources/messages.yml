@@ -32,7 +32,7 @@ friends:
       &r
       &a======= &lSolicitud De amistad&r &a=======
       &r
-      &7El jugador &b{player} &7quiere sean amigos
+      &7El jugador &b{player} &7quiere que sean amigos
       &r
       &7¿Que desea hacer? 
   accept:
