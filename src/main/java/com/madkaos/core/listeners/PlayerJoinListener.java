@@ -37,11 +37,18 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         MadPlayer player = this.plugin.getPlayerManager().getPlayer(e.getPlayer());
+        
+        String currentAddress = player.getAddress();
+        
+        if (player.getData().address == null || player.getData().address != currentAddress) {
+            player.getData().address = currentAddress;
+            player.getData().save();
+        }
 
         this.handleMotd(player);
         this.handleVanish(player);
-        e.setJoinMessage(handleJoinMessage(player));
 
+        e.setJoinMessage(handleJoinMessage(player));
         player.setupPlayer();
     }
 }

@@ -5,6 +5,7 @@ import com.dotphin.milkshakeorm.providers.Provider;
 import com.dotphin.milkshakeorm.repository.Repository;
 import com.madkaos.core.cache.CacheEngine;
 import com.madkaos.core.commands.CommandListener;
+import com.madkaos.core.commands.admin.AltsCommand;
 import com.madkaos.core.commands.admin.GameModeCommand;
 import com.madkaos.core.commands.admin.TeleportCommand;
 import com.madkaos.core.commands.admin.TeleportPosCommand;
@@ -24,6 +25,7 @@ import com.madkaos.core.listeners.PlayerQuitListener;
 import com.madkaos.core.messaging.MessageBroker;
 import com.madkaos.core.player.MadPlayerManager;
 import com.madkaos.core.player.entities.PlayerData;
+import com.madkaos.core.player.entities.PlayerPunishment;
 import com.madkaos.core.player.entities.PlayerSettings;
 
 import org.bukkit.event.Listener;
@@ -41,6 +43,7 @@ public class MadKaosCore extends JavaPlugin {
     // Repositories
     private Repository<PlayerData> playerDataRepository;
     private Repository<PlayerSettings> playerSettingsRepository;
+    private Repository<PlayerPunishment> playerPunishments;
 
     // Util methods
     public void addCommand(CommandListener listener) {
@@ -69,6 +72,7 @@ public class MadKaosCore extends JavaPlugin {
 
         this.playerDataRepository = MilkshakeORM.addRepository(PlayerData.class, provider, "Players");
         this.playerSettingsRepository = MilkshakeORM.addRepository(PlayerSettings.class, provider, "PlayerSettings");
+        this.playerPunishments = MilkshakeORM.addRepository(PlayerPunishment.class, provider, "PlayerPunishments");
 
         // Connect to redis cache & pubsub
         String redisURI = this.getMainConfig().getString("settings.redis-uri");
@@ -76,6 +80,7 @@ public class MadKaosCore extends JavaPlugin {
         this.messageBroker = new MessageBroker(this, redisURI).start();
 
         // Register commands
+        this.addCommand(new AltsCommand());
         this.addCommand(new FlyCommand());
         this.addCommand(new FriendsCommand());
         this.addCommand(new GameModeCommand());
@@ -133,6 +138,10 @@ public class MadKaosCore extends JavaPlugin {
 
     public Repository<PlayerSettings> getPlayerSettingsRepository() {
         return this.playerSettingsRepository;
+    }
+
+    public Repository<PlayerPunishment> getPlayerPunishmentsRepository() {
+        return this.playerPunishments;
     }
 
     // Get configurations

@@ -17,6 +17,13 @@ common:
   deny: "&8[&cRechazar&r&8]"
   deny-icon: "&8[&c❌&8]"
 
+alts:
+  usage: "&eUso: &c/alts <jugador>"
+  alts-list: |-
+    &7
+    &c======== &lAlts de {player}&r &c========
+    &7
+
 fly:
   description: "Activa o desactiva el modo de vuelo."
   enabled: "&aHas &2activado &ael modo de vuelo."

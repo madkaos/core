@@ -6,10 +6,12 @@ version: ${version}
 url: ${url}
 depend: [PlaceholderAPI, Milkshake-Bukkit]
 commands:
+  alts:
+    aliases: []
   fly:
-    aliases: ["vuelo"]
+    aliases: []
   friends:
-    aliases: ["amigos", "friend"]
+    aliases: ["friend"]
   gamemode:
     aliases: ["gm"]
   message:
@@ -17,7 +19,7 @@ commands:
   reply:
     aliases: ["r"]
   report:
-    aliases: ["reportar"]
+    aliases: []
   tp:
     aliases: []
   tpos:

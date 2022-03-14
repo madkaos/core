@@ -8,6 +8,7 @@ import com.dotphin.milkshakeorm.utils.MapFactory;
 import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.commands.CommandExecutor;
 import com.madkaos.core.player.entities.PlayerData;
+import com.madkaos.core.player.entities.PlayerPunishment;
 import com.madkaos.core.player.entities.PlayerSettings;
 import com.madkaos.core.utils.ProxyUtils;
 
@@ -63,6 +64,10 @@ public class MadPlayer extends CommandExecutor {
         return this.setttings;
     }
 
+    public String getAddress() {
+        return this.bukkitPlayer.getAddress().getAddress().toString();
+    }
+
     public boolean isFriend(String id) {
         return this.data.friends.contains(id);
     }
@@ -77,6 +82,24 @@ public class MadPlayer extends CommandExecutor {
 
     public void sendPluginMessage(String channel, byte[] message) {
         this.getBukkitPlayer().sendPluginMessage(this.plugin, channel, message);
+    }
+
+    public PlayerPunishment[] getPunishments() {
+        return this.plugin.getPlayerPunishmentsRepository().findMany(
+            MapFactory.create("playerId", this.getData().id)
+        );
+    }
+
+    public PlayerPunishment[] getPunishmentsEmited() {
+        return this.plugin.getPlayerPunishmentsRepository().findMany(
+            MapFactory.create("emisorId", this.getData().id)
+        );
+    }
+
+    public PlayerData[] getAlts() {
+        return this.plugin.getPlayerDataRepository().findMany(
+            MapFactory.create("address", this.getAddress())
+        );
     }
 
     /* Utils */

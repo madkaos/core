@@ -21,6 +21,9 @@ public class PlayerData extends Entity {
     public String displayName;
 
     @Prop
+    public String address;
+
+    @Prop
     public String pron = "o";
 
     @Prop
