@@ -9,6 +9,8 @@ settings:
 
 chat:
   format: "&7%player_name% &8» &7{message}"
+  command-cooldown: 1000
+  message-cooldown: 1000
 
 motd: |-
   &r

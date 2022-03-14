@@ -1,5 +1,7 @@
 # Modules
 join-message: "&8[&2+&8] &7%player_name%"
+chat-cooldown: "&cNo envies mensajes tan rápido."
+command-cooldown: "&cNo uses comandos tan rápido."
 
 # Commands
 common:

@@ -25,12 +25,30 @@ public class MadPlayer extends CommandExecutor {
     protected PlayerSettings setttings = null;
 
     private boolean vanished = false;
+    private long lastMessage = 0;
+    private long lastCommand = 0;
     
     public MadPlayer(MadKaosCore plugin, Player bukkitPlayer) {
         super(plugin, bukkitPlayer);
         
         this.plugin = plugin;
         this.bukkitPlayer = bukkitPlayer;
+    }
+
+    public void setLastMessage() {
+        this.lastMessage = System.currentTimeMillis();
+    }
+
+    public void setLastCommand() {
+        this.lastCommand = System.currentTimeMillis();
+    }
+
+    public long getLastMessage() {
+        return System.currentTimeMillis() - this.lastMessage;
+    }
+
+    public long getLastCommand() {
+        return System.currentTimeMillis() - this.lastCommand;
     }
 
     public Player getBukkitPlayer() {

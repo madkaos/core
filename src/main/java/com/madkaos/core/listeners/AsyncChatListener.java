@@ -13,14 +13,26 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public class AsyncChatListener implements Listener {
     private MadKaosCore plugin;
+    private int chatCooldown;
     
     public AsyncChatListener(MadKaosCore plugin) {
         this.plugin = plugin;
+
+        this.chatCooldown =  this.plugin.getMainConfig().getInt("chat.message-cooldown");
     }
 
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent e) {
         MadPlayer player = this.plugin.getPlayerManager().getPlayer(e.getPlayer());
+
+        // Chat cooldown
+        if (player.getLastMessage() < this.chatCooldown) {
+            player.sendI18nMessage("chat-cooldown");
+            e.setCancelled(true);
+            return;
+        } else {
+            player.setLastMessage();
+        }
 
         // Chat format
         e.setFormat(
