@@ -36,9 +36,7 @@ public class PlayerJoinListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
-        MadPlayer player = this.plugin.getPlayerManager().addPlayer(e.getPlayer());
-        player.downloadData();
-        player.downloadSettings();
+        MadPlayer player = this.plugin.getPlayerManager().getPlayer(e.getPlayer());
 
         this.handleMotd(player);
         this.handleVanish(player);

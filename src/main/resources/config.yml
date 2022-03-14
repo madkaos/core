@@ -23,7 +23,7 @@ motd: |-
   &r
   &8&m-+-------------------------------+-
   &r
-  &r ¡Hola! &b{display_name}
+  &r ¡Hola! &b%player_name%
   &r Bienvenid{pron} a &5&lMADKAOS NETWORK
   &r
   &r &7» &6&lPATREON&r &fpatreon.com/rubius
