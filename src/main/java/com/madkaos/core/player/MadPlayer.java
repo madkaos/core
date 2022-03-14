@@ -9,6 +9,7 @@ import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.commands.CommandExecutor;
 import com.madkaos.core.player.entities.PlayerData;
 import com.madkaos.core.player.entities.PlayerSettings;
+import com.madkaos.core.utils.ProxyUtils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -50,6 +51,14 @@ public class MadPlayer extends CommandExecutor {
 
     public boolean isFriend(MadPlayer player) {
         return this.isFriend(player.getData().id);
+    }
+
+    public void sendToServer(String server) {
+        ProxyUtils.sendPlayerToServer(this, server);
+    }
+
+    public void sendPluginMessage(String channel, byte[] message) {
+        this.getBukkitPlayer().sendPluginMessage(this.plugin, channel, message);
     }
 
     /* Utils */

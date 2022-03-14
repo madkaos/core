@@ -87,6 +87,10 @@ reply:
   usage: "&eUso: &b/r <mensaje>"
   no-reply: "&cNo tienes a nadie para responder."
 
+server:
+  usage: "&eUso: &b/server <server>"
+  unknown-error: "&cNo se pudo enviarte al servidor {server}."
+
 vanish:
   description: "Ocultate de los demas jugadores."
   enabled: "&aHas &2activado &ael modo vanish &e(nadie podrá verte)"

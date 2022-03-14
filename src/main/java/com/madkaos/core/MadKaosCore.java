@@ -47,9 +47,16 @@ public class MadKaosCore extends JavaPlugin {
     public void addListener(Listener listener) {
         this.getServer().getPluginManager().registerEvents(listener, this);
     }
+
+    public void registerChannel(String channel) {
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, channel);
+    }
     
     @Override
     public void onEnable() {
+        // Register channels
+        this.registerChannel("BungeeCord");
+
         // Initialize managers
         this.configManager = new ConfigManager(this);
         this.playerManager = new MadPlayerManager(this);
