@@ -7,6 +7,9 @@ settings:
   redis-uri: redis://localhost:6379/0
   mongodb-uri: mongodb://localhost/madkaos
 
+chat:
+  format: "&7%player_name% &8» &7{message}"
+
 motd: |-
   &r
   &r

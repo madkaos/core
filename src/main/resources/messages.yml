@@ -1,5 +1,5 @@
 # Modules
-join-message: "&8[&2+&8] &7{display_name}"
+join-message: "&8[&2+&8] &7%player_name%"
 
 # Commands
 common:
@@ -73,7 +73,7 @@ friends:
 gamemode:
   description: "Cambia tu modo de juego"
   usage: "&eUso: &b/gamemode <modo>"
-  switched: "&aHas cambiado tu modo de juego a &b{gamemode}"
+  switched: "&aHas cambiado tu modo de juego a &b%player_gamemode%"
 
 message:
   usage: "&eUso: &b/msg <player> <mensaje>"

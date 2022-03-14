@@ -33,11 +33,11 @@ public class MessageCommand extends CommandListener {
             return;
         }
 
-        if (target.getSettings().friendRequestsFilter == PlayerFilter.NOBODY) {
+        if (target.getSettings().messageRequestsFilter == PlayerFilter.NOBODY) {
             player.sendI18nMessage("message.user-dont-accept-message");
             return;
-        } else if (target.getSettings().friendRequestsFilter == PlayerFilter.ONLY_FRIENDS) {
-            if (!target.getData().friends.contains(player.getData().id)) {
+        } else if (target.getSettings().messageRequestsFilter == PlayerFilter.ONLY_FRIENDS) {
+            if (!target.isFriend(player)) {
                 player.sendI18nMessage("message.user-dont-accept-unknown");
                 return;
             }

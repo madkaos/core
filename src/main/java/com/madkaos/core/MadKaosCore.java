@@ -15,6 +15,7 @@ import com.madkaos.core.commands.player.MessageCommand;
 import com.madkaos.core.commands.player.ReplyCommand;
 import com.madkaos.core.config.ConfigManager;
 import com.madkaos.core.config.Configuration;
+import com.madkaos.core.listeners.AsyncChatListener;
 import com.madkaos.core.listeners.PlayerJoinListener;
 import com.madkaos.core.listeners.PlayerQuitListener;
 import com.madkaos.core.messaging.MessageBroker;
@@ -75,6 +76,7 @@ public class MadKaosCore extends JavaPlugin {
         this.addCommand(new VanishCommand());
 
         // Register listeners
+        this.addListener(new AsyncChatListener(this));
         this.addListener(new PlayerJoinListener(this));
         this.addListener(new PlayerQuitListener(this));
 

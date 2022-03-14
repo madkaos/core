@@ -14,6 +14,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import me.clip.placeholderapi.PlaceholderAPI;
+
 public class MadPlayer extends CommandExecutor {
     protected MadKaosCore plugin;
     protected Player bukkitPlayer;
@@ -40,6 +42,14 @@ public class MadPlayer extends CommandExecutor {
 
     public PlayerSettings getSettings() {
         return this.setttings;
+    }
+
+    public boolean isFriend(String id) {
+        return this.data.friends.contains(id);
+    }
+
+    public boolean isFriend(MadPlayer player) {
+        return this.isFriend(player.getData().id);
     }
 
     /* Utils */
@@ -105,10 +115,9 @@ public class MadPlayer extends CommandExecutor {
     /* Override methods */
     @Override
     public String formatMessage(String message) {
-        return super.formatMessage(message
-            .replace("{display_name}", this.data.displayName)
-            .replace("{gamemode}", this.getBukkitPlayer().getGameMode().name())
-            .replace("{pron}", this.data.pron)
+        return super.formatMessage(
+            PlaceholderAPI.setPlaceholders(this.bukkitPlayer, message)
+                .replace("{pron}", this.data.pron)
         );
     }
 
