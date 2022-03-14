@@ -12,6 +12,9 @@ public class PlayerPunishment extends Entity {
     public String emisorId;
 
     @Prop
+    public String revokedId;
+
+    @Prop
     public String playerId;
 
     @Prop

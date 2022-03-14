@@ -17,6 +17,9 @@ common:
   deny: "&8[&cRechazar&r&8]"
   deny-icon: "&8[&c❌&8]"
 
+######                      ######
+###     Punishments Module     ###
+######                      ######
 alts:
   usage: "&eUso: &c/alts <jugador>"
   alts-list: |-
@@ -24,11 +27,69 @@ alts:
     &c======== &lAlts de {player}&r &c========
     &7
 
+ban:
+  usage: "&eUso: &c/ban <jugador> [tiempo] <razon>"
+  notify: "&b⛏ {emisor} &7ha baneado a &c{player} &7por &6{reason}"
+  ban-join: |-
+    &5&lMad&d&lKaos
+    &cHas sido baneado del servidor
+    &7
+    &dRazón: &7{reason}
+    &dBaneado por: &7{emisor}
+    &dExpira en: &7{expiration}
+    &r
+    &bhttps://discord.gg/madkaos
+
+######                      ######
+###        Staff Module        ###
+######                      ######
+gamemode:
+  description: "Cambia tu modo de juego"
+  usage: "&eUso: &b/gamemode <modo>"
+  switched: "&aHas cambiado tu modo de juego a &b%player_gamemode%"
+
+report:
+  usage: "&eUso: &b/report <jugador> <razón>"
+  report-success: |-
+    &r
+    &6============= &lReporte&r &6=============
+    &7
+    &eHas reportado correctamente a &b{player}
+    &7(Nota: hacer reportes falsos es sancionable)
+    &7
+  report-notify: |-
+    &r
+    &6============= &lReporte&r &6=============
+    &7
+    &eReportante: &7{author}
+    &eReportado: &7{target}
+    &eRazón: &7{reason}
+    &7
+    &7
+
+vanish:
+  description: "Ocultate de los demas jugadores."
+  enabled: "&aHas &2activado &ael modo vanish &e(nadie podrá verte)"
+  disabled: "&aHas &cdesactivado &ael modo vanish &c(todos podrán verte)"
+  join: "&aEstás en modo vanish &e(nadie podrá verte)"
+
+
+######                      ######
+###        Utils Module        ###
+######                      ######
 fly:
   description: "Activa o desactiva el modo de vuelo."
   enabled: "&aHas &2activado &ael modo de vuelo."
   disabled: "&aHas &cdesactivado &ael modo de vuelo."
 
+server:
+  usage: "&eUso: &b/server <server>"
+  unknown-error: "&cNo se pudo enviarte al servidor {server}."
+
+
+######                      ######
+###       Social Module        ###
+######                      ######
 friends:
   add:
     usage: "&eUso: &c/friends add <jugador>"
@@ -79,11 +140,6 @@ friends:
     &2======= &lLista de Peticiones&r &2=======
     &r
 
-gamemode:
-  description: "Cambia tu modo de juego"
-  usage: "&eUso: &b/gamemode <modo>"
-  switched: "&aHas cambiado tu modo de juego a &b%player_gamemode%"
-
 message:
   usage: "&eUso: &b/msg <player> <mensaje>"
   cannot-your-self: "&cNo puedes enviarte mensaje a ti mismo."
@@ -95,32 +151,3 @@ message:
 reply:
   usage: "&eUso: &b/r <mensaje>"
   no-reply: "&cNo tienes a nadie para responder."
-
-report:
-  usage: "&eUso: &b/report <jugador> <razón>"
-  report-success: |-
-    &r
-    &6============= &lReporte&r &6=============
-    &7
-    &eHas reportado correctamente a &b{player}
-    &7(Nota: hacer reportes falsos es sancionable)
-    &7
-  report-notify: |-
-    &r
-    &6============= &lReporte&r &6=============
-    &7
-    &eReportante: &7{author}
-    &eReportado: &7{target}
-    &eRazón: &7{reason}
-    &7
-    &7
-
-server:
-  usage: "&eUso: &b/server <server>"
-  unknown-error: "&cNo se pudo enviarte al servidor {server}."
-
-vanish:
-  description: "Ocultate de los demas jugadores."
-  enabled: "&aHas &2activado &ael modo vanish &e(nadie podrá verte)"
-  disabled: "&aHas &cdesactivado &ael modo vanish &c(todos podrán verte)"
-  join: "&aEstás en modo vanish &e(nadie podrá verte)"

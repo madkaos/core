@@ -4,9 +4,12 @@ import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.messaging.packets.FriendAcceptedPacket;
 import com.madkaos.core.messaging.packets.FriendRequestPacket;
 import com.madkaos.core.messaging.packets.MessagePacket;
+import com.madkaos.core.messaging.packets.PlayerPunishPacket;
 import com.madkaos.core.messaging.packets.PlayerRefreshPacket;
 import com.madkaos.core.messaging.packets.ReportPacket;
 import com.madkaos.core.player.MadPlayer;
+import com.madkaos.core.player.PunishmentType;
+import com.madkaos.core.utils.TimeUtils;
 
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -110,6 +113,50 @@ public class MessageProcessor {
                 builder.append("\n");
 
                 player.getBukkitPlayer().spigot().sendMessage(builder.create());
+            }
+        }
+    }
+
+    public void process(PlayerPunishPacket packet) {
+        // Check if player is online for warn or disconnect.
+        MadPlayer target = this.plugin.getPlayerManager().getPlayer(packet.getTarget());
+
+        String reason = packet.getReason();
+        String emisor = packet.getEmisor();
+        String username = packet.getTarget();
+        String expires = packet.getExpiresOn() == -1 
+            ? 
+            "(Permanente)" 
+            : 
+            TimeUtils.getStringFromMilis(packet.getExpiresOn() );
+
+        int type = packet.getType();
+
+        if (target != null) {
+            if (type == PunishmentType.BAN) {
+                target.kick(
+                    target.formatMessage(
+                        target.getI18nMessage("ban.ban-join")
+                            .replace("{reason}", reason)
+                            .replace("{emisor}", emisor)
+                            .replace("{expiration}", expires)
+                    )
+                );
+            }
+        }
+
+        // Announce to all staff online about the punishment.
+        for (MadPlayer player : this.plugin.getPlayerManager().getPlayers()) {
+            if (player.getBukkitPlayer().hasPermission("core.module.punishments")) {
+                if (type == PunishmentType.BAN) {
+                    player.sendMessage(
+                        player.getI18nMessage("ban.notify")
+                            .replace("{emisor}", emisor)
+                            .replace("{player}", username) 
+                            .replace("{reason}", reason)
+                            .replace("{expiration}", expires)
+                    );
+                }
             }
         }
     }

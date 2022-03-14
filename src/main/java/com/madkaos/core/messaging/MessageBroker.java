@@ -6,6 +6,7 @@ import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.messaging.packets.FriendAcceptedPacket;
 import com.madkaos.core.messaging.packets.FriendRequestPacket;
 import com.madkaos.core.messaging.packets.MessagePacket;
+import com.madkaos.core.messaging.packets.PlayerPunishPacket;
 import com.madkaos.core.messaging.packets.PlayerRefreshPacket;
 import com.madkaos.core.messaging.packets.ReportPacket;
 
@@ -52,7 +53,8 @@ public class MessageBroker {
                         Channel.FRIEND_REQUEST_CHANNEL,
                         Channel.MESSAGE_CHANNEL,
                         Channel.PLAYER_REFRESH_CHANNEL,
-                        Channel.REPORT_CHANNEL
+                        Channel.REPORT_CHANNEL,
+                        Channel.PUNISHMENT_CHANNEL
                     );
                 } catch (Exception _ignored) {}
             }
@@ -67,7 +69,8 @@ public class MessageBroker {
             Channel.FRIEND_REQUEST_CHANNEL,
             Channel.MESSAGE_CHANNEL,
             Channel.PLAYER_REFRESH_CHANNEL,
-            Channel.REPORT_CHANNEL
+            Channel.REPORT_CHANNEL,
+            Channel.PUNISHMENT_CHANNEL
         );
         this.publisher.disconnect();
         this.hooker.disconnect();
@@ -89,6 +92,9 @@ public class MessageBroker {
                 break;
             case Channel.REPORT_CHANNEL:
                 this.processor.process(gson.fromJson(message, ReportPacket.class));
+                break;
+            case Channel.PUNISHMENT_CHANNEL:
+                this.processor.process(gson.fromJson(message, PlayerPunishPacket.class));
                 break;
         }
     }

@@ -8,6 +8,8 @@ depend: [PlaceholderAPI, Milkshake-Bukkit]
 commands:
   alts:
     aliases: []
+  ban:
+    aliases: []
   fly:
     aliases: []
   friends:

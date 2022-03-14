@@ -25,23 +25,47 @@ public class CommandArguments {
         this.requiredArguments = requiredArguments;
     }
 
+    public boolean hasIndex(int index) {
+        return index < arguments.size() && index >= 0;
+    }
+
     public String getString(int index) {
+        if (!this.hasIndex(index)) {
+            return null;
+        }
+
         return (String) this.arguments.get(index);
     }
 
     public int getInt(int index) {
+        if (!this.hasIndex(index)) {
+            return 0;
+        }
+
         return (int) this.arguments.get(index);
     }
 
     public boolean getBoolean(int index) {
+        if (!this.hasIndex(index)) {
+            return false;
+        }
+
         return (boolean) this.arguments.get(index);
     }
 
     public MadPlayer getOfflinePlayer(int index) {
+        if (!this.hasIndex(index)) {
+            return null;
+        }
+
         return (MadPlayer) this.arguments.get(index);
     }
 
     public MadPlayer getPlayer(int index) {
+        if (!this.hasIndex(index)) {
+            return null;
+        }
+
         return (MadPlayer) this.arguments.get(index);
     }
 

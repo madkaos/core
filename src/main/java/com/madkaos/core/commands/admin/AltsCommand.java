@@ -30,7 +30,7 @@ public class AltsCommand extends CommandListener {
         for (PlayerData data : alts) {
             String username = data.displayName;
             entries.append(ChatColor.GRAY + username);
-            entries.append(ChatColor.GRAY + " (offline)");
+            entries.append(ChatColor.DARK_GRAY + " (offline)");
             entries.append("\n");
         }
 

@@ -6,6 +6,7 @@ import com.dotphin.milkshakeorm.repository.Repository;
 import com.madkaos.core.cache.CacheEngine;
 import com.madkaos.core.commands.CommandListener;
 import com.madkaos.core.commands.admin.AltsCommand;
+import com.madkaos.core.commands.admin.BanCommand;
 import com.madkaos.core.commands.admin.GameModeCommand;
 import com.madkaos.core.commands.admin.TeleportCommand;
 import com.madkaos.core.commands.admin.TeleportPosCommand;
@@ -81,6 +82,7 @@ public class MadKaosCore extends JavaPlugin {
 
         // Register commands
         this.addCommand(new AltsCommand());
+        this.addCommand(new BanCommand());
         this.addCommand(new FlyCommand());
         this.addCommand(new FriendsCommand());
         this.addCommand(new GameModeCommand());

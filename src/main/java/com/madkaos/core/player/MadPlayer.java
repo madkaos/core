@@ -11,6 +11,7 @@ import com.madkaos.core.player.entities.PlayerData;
 import com.madkaos.core.player.entities.PlayerPunishment;
 import com.madkaos.core.player.entities.PlayerSettings;
 import com.madkaos.core.utils.ProxyUtils;
+import com.madkaos.core.utils.PunishmentsUtil;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -84,6 +85,12 @@ public class MadPlayer extends CommandExecutor {
         this.getBukkitPlayer().sendPluginMessage(this.plugin, channel, message);
     }
 
+    public void kick(String message) {
+        Bukkit.getScheduler().runTask(this.plugin, () -> {
+            this.getBukkitPlayer().kickPlayer(message);
+        });
+    }
+
     public PlayerPunishment[] getPunishments() {
         return this.plugin.getPlayerPunishmentsRepository().findMany(
             MapFactory.create("playerId", this.getData().id)
@@ -94,6 +101,16 @@ public class MadPlayer extends CommandExecutor {
         return this.plugin.getPlayerPunishmentsRepository().findMany(
             MapFactory.create("emisorId", this.getData().id)
         );
+    }
+
+    public PlayerPunishment getActiveBan() {
+        for (PlayerPunishment punishment : this.getPunishments()) {
+            if (punishment.type == PunishmentType.BAN && PunishmentsUtil.isActive(punishment)) {
+                return punishment;
+            }
+        }
+    
+        return null;
     }
 
     public PlayerData[] getAlts() {
