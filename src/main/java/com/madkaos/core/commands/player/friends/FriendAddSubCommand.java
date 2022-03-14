@@ -46,7 +46,7 @@ public class FriendAddSubCommand extends CommandListener {
                 target.getData().save();
                 player.sendI18nMessage("friends.add.request-sent");
 
-                this.plugin.getMessageBroker().publishFriendRequestPacket(
+                this.plugin.getMessageBroker().publish(
                     new FriendRequestPacket(
                         player.getData().displayName,
                         target.getData().displayName

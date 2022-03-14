@@ -5,6 +5,7 @@ import com.madkaos.core.messaging.packets.FriendAcceptedPacket;
 import com.madkaos.core.messaging.packets.FriendRequestPacket;
 import com.madkaos.core.messaging.packets.MessagePacket;
 import com.madkaos.core.messaging.packets.PlayerRefreshPacket;
+import com.madkaos.core.messaging.packets.ReportPacket;
 import com.madkaos.core.player.MadPlayer;
 
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -18,7 +19,7 @@ public class MessageProcessor {
         this.plugin = plugin;
     }
 
-    public void processMessagePacket(MessagePacket packet) {
+    public void process(MessagePacket packet) {
         MadPlayer player = this.plugin.getPlayerManager().getPlayer(packet.getTarget());
         String author = packet.getAuthor();
         String message = packet.getMessage();
@@ -31,7 +32,7 @@ public class MessageProcessor {
         }
     }
 
-    public void processFriendRequestPacket(FriendRequestPacket packet) {
+    public void process(FriendRequestPacket packet) {
         MadPlayer player = this.plugin.getPlayerManager().getPlayer(packet.getTarget());
         String author = packet.getAuthor();
 
@@ -69,7 +70,7 @@ public class MessageProcessor {
         }
     }
 
-    public void processFriendAcceptedPacket(FriendAcceptedPacket packet) {
+    public void process(FriendAcceptedPacket packet) {
         MadPlayer player = this.plugin.getPlayerManager().getPlayer(packet.getTarget());
         if (player != null) {
             player.getData().refresh();
@@ -80,10 +81,36 @@ public class MessageProcessor {
         }
     }
 
-    public void processPlayerRefreshPacket(PlayerRefreshPacket packet) {
+    public void process(PlayerRefreshPacket packet) {
         MadPlayer player = this.plugin.getPlayerManager().getPlayer(packet.getTarget());
         if (player != null) {
             player.getData().refresh();
+        }
+    }
+
+    public void process(ReportPacket packet) {
+        for (MadPlayer player : this.plugin.getPlayerManager().getPlayers()) {
+            if (player.getBukkitPlayer().hasPermission("core.module.reports")) {
+                ComponentBuilder builder = new ComponentBuilder(
+                    player.formatMessage(
+                        player.getI18nMessage("report.report-notify")
+                            .replace("{author}", packet.getAuthor())
+                            .replace("{target}", packet.getTarget())
+                            .replace("{reason}", packet.getReason())
+                    )
+                );
+
+                builder.append(
+                    new ComponentBuilder("§6§nClick para ir al servidor")
+                        .event(
+                            new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/jump " + packet.getTarget())
+                    ).create()
+                );
+
+                builder.append("\n");
+
+                player.getBukkitPlayer().spigot().sendMessage(builder.create());
+            }
         }
     }
 }

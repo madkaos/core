@@ -1,11 +1,13 @@
 package com.madkaos.core.messaging;
 
 import com.google.gson.Gson;
+
 import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.messaging.packets.FriendAcceptedPacket;
 import com.madkaos.core.messaging.packets.FriendRequestPacket;
 import com.madkaos.core.messaging.packets.MessagePacket;
 import com.madkaos.core.messaging.packets.PlayerRefreshPacket;
+import com.madkaos.core.messaging.packets.ReportPacket;
 
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -13,6 +15,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPubSub;
 
 public class MessageBroker {
+    private MadKaosCore plugin;
     private MessageProcessor processor;
     private Gson gson;
 
@@ -21,16 +24,18 @@ public class MessageBroker {
     private JedisPubSub pubsub;
 
     public MessageBroker(MadKaosCore plugin, String redisURI) {
+        this.plugin = plugin;
         this.gson = new Gson();
         this.processor = new MessageProcessor(plugin);
 
         this.hooker = new Jedis(redisURI);
         this.publisher = new Jedis(redisURI);
+    }
 
-        this.pubsub = new JedisPubSub() {
+    public MessageBroker start() {        this.pubsub = new JedisPubSub() {
             @Override
             public void onMessage(String channel, String message) {
-                processPubsubMessage(channel, message);
+                processMessage(channel, message);
             }
             @Override
             public void onSubscribe(String channel, int subscribedChannels) {
@@ -43,70 +48,52 @@ public class MessageBroker {
             public void run() {
                 try {
                     hooker.subscribe(pubsub, 
-                        Channel.MESSAGE_CHANNEL,
-                        Channel.FRIEND_REQUEST_CHANNEL,
                         Channel.FRIEND_ACCEPTED_CHANNEL,
-                        Channel.PLAYER_REFRESH_CHANNEL
+                        Channel.FRIEND_REQUEST_CHANNEL,
+                        Channel.MESSAGE_CHANNEL,
+                        Channel.PLAYER_REFRESH_CHANNEL,
+                        Channel.REPORT_CHANNEL
                     );
                 } catch (Exception _ignored) {}
             }
         }).start();
+
+        return this;
     }
 
     public void stop() {
         this.pubsub.unsubscribe(
-            Channel.MESSAGE_CHANNEL,
-            Channel.FRIEND_REQUEST_CHANNEL,
             Channel.FRIEND_ACCEPTED_CHANNEL,
-            Channel.PLAYER_REFRESH_CHANNEL
+            Channel.FRIEND_REQUEST_CHANNEL,
+            Channel.MESSAGE_CHANNEL,
+            Channel.PLAYER_REFRESH_CHANNEL,
+            Channel.REPORT_CHANNEL
         );
         this.publisher.disconnect();
         this.hooker.disconnect();
     }
 
-    private void processPubsubMessage(String channel, String message) {
-        // Process message to player packet
-        if (channel.equals(Channel.MESSAGE_CHANNEL)) {
-            this.processor.processMessagePacket(
-                gson.fromJson(message, MessagePacket.class)
-            );
-        }
-        
-        else if (channel.equals(Channel.FRIEND_REQUEST_CHANNEL)) {
-            this.processor.processFriendRequestPacket(
-                gson.fromJson(message, FriendRequestPacket.class)
-            );
-        }
-
-        else if (channel.equals(Channel.FRIEND_ACCEPTED_CHANNEL)) {
-            this.processor.processFriendAcceptedPacket(
-                gson.fromJson(message, FriendAcceptedPacket.class)
-            );
-        }
-        else if (channel.equals(Channel.PLAYER_REFRESH_CHANNEL)) {
-            this.processor.processPlayerRefreshPacket(
-                gson.fromJson(message, PlayerRefreshPacket.class)
-            );
+    private void processMessage(String channel, String message) {
+        switch(channel) {
+            case Channel.FRIEND_ACCEPTED_CHANNEL:
+                this.processor.process(gson.fromJson(message, FriendAcceptedPacket.class));
+                break;
+            case Channel.FRIEND_REQUEST_CHANNEL:
+                this.processor.process(gson.fromJson(message, FriendRequestPacket.class));
+                break;
+            case Channel.MESSAGE_CHANNEL:
+                this.processor.process(gson.fromJson(message, MessagePacket.class));
+                break;
+            case Channel.PLAYER_REFRESH_CHANNEL:
+                this.processor.process(gson.fromJson(message, PlayerRefreshPacket.class));
+                break;
+            case Channel.REPORT_CHANNEL:
+                this.processor.process(gson.fromJson(message, ReportPacket.class));
+                break;
         }
     }
 
-    private void publishPacket(String channel, String rawPacket) {
-        this.publisher.publish(channel, rawPacket);
-    }
-
-    public void publishMessagePacket(MessagePacket packet) {
-        this.publishPacket(Channel.MESSAGE_CHANNEL, gson.toJson(packet));
-    }
-
-    public void publishFriendRequestPacket(FriendRequestPacket packet) {
-        this.publishPacket(Channel.FRIEND_REQUEST_CHANNEL, gson.toJson(packet));
-    }
-
-    public void publishFriendAcceptPacket(FriendAcceptedPacket packet) {
-        this.publishPacket(Channel.FRIEND_ACCEPTED_CHANNEL, gson.toJson(packet));
-    }
-
-    public void publishPlayerRefreshPacket(PlayerRefreshPacket packet) {
-        this.publishPacket(Channel.PLAYER_REFRESH_CHANNEL, gson.toJson(packet));
+    public void publish(IPacket packet) {
+        this.publisher.publish(packet.getChannel(), gson.toJson(packet));
     }
 }

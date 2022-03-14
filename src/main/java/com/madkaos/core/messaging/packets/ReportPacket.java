@@ -3,22 +3,24 @@ package com.madkaos.core.messaging.packets;
 import com.madkaos.core.messaging.Channel;
 import com.madkaos.core.messaging.IPacket;
 
-public class FriendRequestPacket implements IPacket {
+public class ReportPacket implements IPacket {
     private String author;
     private String target;
+    private String reason;
 
-    public FriendRequestPacket(String author, String target) {
+    public ReportPacket(String author, String target, String reason) {
         this.author = author;
         this.target = target;
+        this.reason = reason;
     }
 
-    public FriendRequestPacket() {
-        this(null, null);
+    public ReportPacket() {
+        this(null, null, null);
     }
 
     @Override
     public String getChannel() {
-        return Channel.FRIEND_REQUEST_CHANNEL;
+        return Channel.REPORT_CHANNEL;
     }
 
     public String getAuthor() {
@@ -29,11 +31,19 @@ public class FriendRequestPacket implements IPacket {
         return this.target;
     }
 
-    public void setAuthor(String message) {
-        this.author = message;
+    public String getReason() {
+        return this.reason;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public void setTarget(String target) {
         this.target = target;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }

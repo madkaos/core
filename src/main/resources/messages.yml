@@ -30,7 +30,7 @@ friends:
     cannot-your-self: "&cNo puedes ser amigo de ti mismo."
     friend-request: |-
       &r
-      &a======= &lSolicitud De amistad&r &a=======
+      &2======= &lSolicitud De amistad&r &2=======
       &r
       &7El jugador &b{player} &7quiere que sean amigos
       &r
@@ -52,7 +52,7 @@ friends:
     removed: "&eHas removido al jugador &b{player} &ede tus amigos."
   help: |-
     &r
-    &a======== &lComando de Amigos&r &a========
+    &2======== &lComando de Amigos&r &2========
     &r
     &a/friends add <nombre> &8» &7Añadir a un amigo.
     &a/friends accept <nombre> &8» &7Aceptar una peticion.
@@ -63,11 +63,11 @@ friends:
     &r
   list: |-
     &r
-    &a========= &lLista de Amigos&r &a=========
+    &2========= &lLista de Amigos&r &2=========
     &r
   requests: |-
     &r
-    &a======= &lLista de Peticiones&r &a=======
+    &2======= &lLista de Peticiones&r &2=======
     &r
 
 gamemode:
@@ -86,6 +86,25 @@ message:
 reply:
   usage: "&eUso: &b/r <mensaje>"
   no-reply: "&cNo tienes a nadie para responder."
+
+report:
+  usage: "&eUso: &b/report <jugador> <razón>"
+  report-success: |-
+    &r
+    &6============= &lReporte&r &6=============
+    &7
+    &eHas reportado correctamente a &b{player}
+    &7(Nota: hacer reportes falsos es sancionable)
+    &7
+  report-notify: |-
+    &r
+    &6============= &lReporte&r &6=============
+    &7
+    &eReportante: &7{author}
+    &eReportado: &7{target}
+    &eRazón: &7{reason}
+    &7
+    &7
 
 server:
   usage: "&eUso: &b/server <server>"

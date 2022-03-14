@@ -16,6 +16,8 @@ commands:
     aliases: ["msg"]
   reply:
     aliases: ["r"]
+  report:
+    aliases: ["reportar"]
   tp:
     aliases: []
   tpos:

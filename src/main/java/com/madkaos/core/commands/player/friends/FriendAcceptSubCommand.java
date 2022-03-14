@@ -62,7 +62,7 @@ public class FriendAcceptSubCommand extends CommandListener {
             player.getData().friendRequests.remove(targetId);
             player.getData().save();
 
-            this.plugin.getMessageBroker().publishFriendAcceptPacket(
+            this.plugin.getMessageBroker().publish(
                     new FriendAcceptedPacket(
                         player.getData().displayName,
                         target.getData().displayName

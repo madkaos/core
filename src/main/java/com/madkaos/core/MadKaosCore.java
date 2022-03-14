@@ -13,6 +13,7 @@ import com.madkaos.core.commands.player.FlyCommand;
 import com.madkaos.core.commands.player.FriendsCommand;
 import com.madkaos.core.commands.player.MessageCommand;
 import com.madkaos.core.commands.player.ReplyCommand;
+import com.madkaos.core.commands.player.ReportCommand;
 import com.madkaos.core.config.ConfigManager;
 import com.madkaos.core.config.Configuration;
 import com.madkaos.core.listeners.AsyncChatListener;
@@ -70,7 +71,7 @@ public class MadKaosCore extends JavaPlugin {
         // Connect to redis cache & pubsub
         String redisURI = this.getMainConfig().getString("settings.redis-uri");
         this.cacheEngine = new CacheEngine(redisURI);
-        this.messageBroker = new MessageBroker(this, redisURI);
+        this.messageBroker = new MessageBroker(this, redisURI).start();
 
         // Register commands
         this.addCommand(new FlyCommand());
@@ -78,6 +79,7 @@ public class MadKaosCore extends JavaPlugin {
         this.addCommand(new GameModeCommand());
         this.addCommand(new MessageCommand());
         this.addCommand(new ReplyCommand());
+        this.addCommand(new ReportCommand());
         this.addCommand(new TeleportCommand());
         this.addCommand(new TeleportPosCommand());
         this.addCommand(new VanishCommand());

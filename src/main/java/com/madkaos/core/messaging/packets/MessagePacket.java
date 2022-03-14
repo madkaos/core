@@ -1,6 +1,9 @@
 package com.madkaos.core.messaging.packets;
 
-public class MessagePacket {
+import com.madkaos.core.messaging.Channel;
+import com.madkaos.core.messaging.IPacket;
+
+public class MessagePacket implements IPacket {
     private String author;
     private String target;
     private String message;
@@ -13,6 +16,11 @@ public class MessagePacket {
 
     public MessagePacket() {
         this(null, null, null);
+    }
+
+    @Override
+    public String getChannel() {
+        return Channel.MESSAGE_CHANNEL;
     }
 
     public String getAuthor() {

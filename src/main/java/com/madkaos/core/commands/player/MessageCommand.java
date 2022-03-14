@@ -46,7 +46,7 @@ public class MessageCommand extends CommandListener {
         plugin.getCacheEngine().setReplyTo(player.getData().displayName, target.getData().displayName);
         plugin.getCacheEngine().setReplyTo(target.getData().displayName, player.getData().displayName);
 
-        plugin.getMessageBroker().publishMessagePacket(
+        plugin.getMessageBroker().publish(
             new MessagePacket(player.getData().displayName, username, message)
         );
 

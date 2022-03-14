@@ -28,7 +28,7 @@ public class ReplyCommand extends CommandListener {
         if (last == null) {
             player.sendI18nMessage("reply.no-reply");
         } else {
-            plugin.getMessageBroker().publishMessagePacket(
+            plugin.getMessageBroker().publish(
                 new MessagePacket(player.getData().displayName, last, message)
             );
 

@@ -1,6 +1,9 @@
 package com.madkaos.core.messaging.packets;
 
-public class FriendAcceptedPacket {
+import com.madkaos.core.messaging.Channel;
+import com.madkaos.core.messaging.IPacket;
+
+public class FriendAcceptedPacket implements IPacket {
     private String author;
     private String target;
 
@@ -11,6 +14,11 @@ public class FriendAcceptedPacket {
 
     public FriendAcceptedPacket() {
         this(null, null);
+    }
+
+    @Override
+    public String getChannel() {
+        return Channel.FRIEND_ACCEPTED_CHANNEL;
     }
 
     public String getAuthor() {

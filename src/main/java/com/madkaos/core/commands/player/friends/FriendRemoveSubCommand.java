@@ -42,7 +42,7 @@ public class FriendRemoveSubCommand extends CommandListener {
                     .replace("{player}", target.getData().displayName)
             );
 
-            this.plugin.getMessageBroker().publishPlayerRefreshPacket(
+            this.plugin.getMessageBroker().publish(
                 new PlayerRefreshPacket(target.getData().displayName)
             );
         }
