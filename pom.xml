@@ -7,7 +7,7 @@
     <packaging>jar</packaging>
 
     <!-- Plugin Information -->
-    <name>MadKaos-Core</name>
+    <name>MadKaos</name>
     <description>MadKaos server core</description>
     <version>0.0.1</version>
     <url>https://github.com/madkaos/core</url>
