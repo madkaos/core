@@ -1,0 +1,10 @@
+bans:
+  cheating:
+    title: "&c&lCHEATING"
+    description: "Uso de cheats o ventajas ilegales."
+    duration: "30d"
+mute:
+  flood:
+    title: "&e&lFLOOD"
+    description: "Inundar el chat de caracteres para molestar."
+    duration: "2h"

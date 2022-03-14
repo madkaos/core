@@ -140,6 +140,10 @@ public class MadKaosCore extends JavaPlugin {
         return this.configManager.getConfig("config.yml");
     }
 
+    public Configuration getPunishmentConfig() {
+        return this.configManager.getConfig("punishments.yml");
+    }
+
     public Configuration getMessages() {
         return this.configManager.getConfig("messages.yml");
     }
