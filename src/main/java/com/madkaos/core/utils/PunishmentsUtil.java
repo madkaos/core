@@ -19,6 +19,6 @@ public class PunishmentsUtil {
     }
 
     public static long getRemainingTime(long createdOn, long expiresOn) {
-        return Math.max(0, (System.currentTimeMillis() - createdOn) - expiresOn);
+        return Math.max(0, (createdOn + expiresOn) - System.currentTimeMillis());
     }
 }
