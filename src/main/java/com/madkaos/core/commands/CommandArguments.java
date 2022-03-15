@@ -129,6 +129,7 @@ public class CommandArguments {
                     OfflineMadPlayer player = new OfflineMadPlayer(plugin, arg);
                     player.downloadData();
                     player.downloadSettings();
+                    player.getPunishments();
 
                     if (player.exist()) {
                         value = player;

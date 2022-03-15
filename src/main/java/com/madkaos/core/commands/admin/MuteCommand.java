@@ -47,6 +47,12 @@ public class MuteCommand extends CommandListener {
                 reason += commandParts[1];
             }
 
+            PlayerPunishment prevMute = target.getActiveMute();
+            if (prevMute != null) {
+                prevMute.revokedId = player.getUUID();
+                prevMute.save();
+            }
+
             PlayerPunishment punishment = new PlayerPunishment();
             punishment.createdOn = System.currentTimeMillis();
             punishment.expiresOn =  time;

@@ -47,6 +47,12 @@ public class BanCommand extends CommandListener {
                 reason += commandParts[1];
             }
 
+            PlayerPunishment prevBan = target.getActiveBan();
+            if (prevBan != null) {
+                prevBan.revokedId = player.getUUID();
+                prevBan.save();
+            }
+
             PlayerPunishment punishment = new PlayerPunishment();
             punishment.createdOn = System.currentTimeMillis();
             punishment.expiresOn =  time;
