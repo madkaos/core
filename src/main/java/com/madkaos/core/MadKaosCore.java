@@ -8,6 +8,7 @@ import com.madkaos.core.commands.CommandListener;
 import com.madkaos.core.commands.admin.AltsCommand;
 import com.madkaos.core.commands.admin.BanCommand;
 import com.madkaos.core.commands.admin.GameModeCommand;
+import com.madkaos.core.commands.admin.MuteCommand;
 import com.madkaos.core.commands.admin.TeleportCommand;
 import com.madkaos.core.commands.admin.TeleportPosCommand;
 import com.madkaos.core.commands.admin.VanishCommand;
@@ -87,6 +88,7 @@ public class MadKaosCore extends JavaPlugin {
         this.addCommand(new FriendsCommand());
         this.addCommand(new GameModeCommand());
         this.addCommand(new MessageCommand());
+        this.addCommand(new MuteCommand());
         this.addCommand(new ReplyCommand());
         this.addCommand(new ReportCommand());
         this.addCommand(new TeleportCommand());

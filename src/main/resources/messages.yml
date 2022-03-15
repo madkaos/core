@@ -29,7 +29,7 @@ alts:
 
 ban:
   usage: "&eUso: &c/ban <jugador> [tiempo] <razon>"
-  notify: "&b⛏ {emisor} &7ha baneado a &c{player} &7por &6{reason}"
+  notify: "&b⛏ {emisor} &7ha baneado a &c{player} &7por &6{reason} &7durante &d{expiration}"
   message: |-
     &5&lMad&d&lKaos
     &cHas sido baneado del servidor
@@ -41,17 +41,19 @@ ban:
     &bhttps://discord.gg/madkaos
 
 mute:
-  usage: "&eUso: &c/ban <jugador> [tiempo] <razon>"
-  notify: "&b⛏ {emisor} &7ha baneado a &c{player} &7por &6{reason}"
+  usage: "&eUso: &c/mute <jugador> [tiempo] <razon>"
+  notify: "&b⛏ {emisor} &7ha muteado a &c{player} &7por &6{reason} &7durante &d{expiration}"
   message: |-
-    &5&lMad&d&lKaos
-    &cHas sido baneado del servidor
+    &r
+    &8===========================
+    &cEstás muteado del servidor
     &7
     &dRazón: &7{reason}
-    &dBaneado por: &7{emisor}
+    &dMuteado por: &7{emisor}
     &dExpira en: &7{expiration}
     &r
     &bhttps://discord.gg/madkaos
+    &8===========================
 
 ######                      ######
 ###        Staff Module        ###

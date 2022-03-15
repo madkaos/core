@@ -18,6 +18,8 @@ commands:
     aliases: ["gm"]
   message:
     aliases: ["msg"]
+  mute:
+    aliases: []
   reply:
     aliases: ["r"]
   report:

@@ -143,6 +143,7 @@ public class MessageProcessor {
                     )
                 );
             } else if (type == PunishmentType.MUTE) {
+                target.downloadPunishments();
                 target.sendMessage(
                     target.getI18nMessage("mute.message")
                         .replace("{reason}", reason)

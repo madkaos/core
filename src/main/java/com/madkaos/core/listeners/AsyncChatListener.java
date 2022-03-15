@@ -43,7 +43,7 @@ public class AsyncChatListener implements Listener {
             player.sendMessage(
                 player.getI18nMessage("mute.message")
                         .replace("{reason}", mute.reason)
-                        .replace("{emisor}", mute.emisorId)
+                        .replace("{emisor}", mute.emisorName)
                         .replace("{expiration}", 
                             TimeUtils.getStringFromMilis(
                                 PunishmentsUtil.getRemainingTime(mute.createdOn, mute.expiresOn)

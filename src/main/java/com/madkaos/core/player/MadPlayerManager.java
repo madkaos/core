@@ -54,6 +54,7 @@ public class MadPlayerManager {
             MadPlayer player = this.addPlayer(bukkitPlayer);
             player.downloadData();
             player.downloadSettings();
+            player.downloadPunishments();
             player.setupPlayer();
         }
     }
