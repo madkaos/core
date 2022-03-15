@@ -28,7 +28,7 @@ public class MessageCommand extends CommandListener {
         String username = target.getData().displayName;
         String message = ctx.getArguments().getString(1);
 
-        if (player.getData().id.equals(target.getData().id)) {
+        if (player.getUUID().equals(target.getUUID())) {
             ctx.getPlayer().sendI18nMessage("message.cannot-your-self");
             return;
         }

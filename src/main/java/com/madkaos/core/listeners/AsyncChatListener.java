@@ -5,6 +5,9 @@ import java.util.Iterator;
 import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.player.MadPlayer;
 import com.madkaos.core.player.PlayerFilter;
+import com.madkaos.core.player.entities.PlayerPunishment;
+import com.madkaos.core.utils.PunishmentsUtil;
+import com.madkaos.core.utils.TimeUtils;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -34,6 +37,23 @@ public class AsyncChatListener implements Listener {
             player.setLastMessage();
         }
 
+        // Check for mute
+        PlayerPunishment mute = player.getActiveMute();
+        if (mute != null) {
+            player.sendMessage(
+                player.getI18nMessage("mute.message")
+                        .replace("{reason}", mute.reason)
+                        .replace("{emisor}", mute.emisorId)
+                        .replace("{expiration}", 
+                            TimeUtils.getStringFromMilis(
+                                PunishmentsUtil.getRemainingTime(mute.createdOn, mute.expiresOn)
+                            )
+                        )
+                );
+            e.setCancelled(true);
+            return;
+        }
+
         // Chat format
         e.setFormat(
             player.formatMessage(
@@ -50,7 +70,7 @@ public class AsyncChatListener implements Listener {
             MadPlayer recipient = this.plugin.getPlayerManager().getPlayer(bukkitRecipient);
             int filter = recipient.getSettings().chatVisibilityFilter;
 
-            if (recipient.getData().id.equals(player.getData().id)) {
+            if (recipient.getUUID().equals(player.getUUID())) {
                 continue;
             } else if (filter == PlayerFilter.NOBODY) {
                 iterator.remove();

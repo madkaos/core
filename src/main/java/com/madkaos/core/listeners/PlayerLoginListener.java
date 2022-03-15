@@ -2,7 +2,6 @@ package com.madkaos.core.listeners;
 
 import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.player.MadPlayer;
-import com.madkaos.core.player.entities.PlayerData;
 import com.madkaos.core.player.entities.PlayerPunishment;
 import com.madkaos.core.utils.PunishmentsUtil;
 import com.madkaos.core.utils.TimeUtils;
@@ -26,12 +25,12 @@ public class PlayerLoginListener implements Listener {
             MadPlayer player = this.plugin.getPlayerManager().addPlayer(e.getPlayer());
             player.downloadData();
             player.downloadSettings();
+            player.downloadPunishments();
 
             // Check for ban
             PlayerPunishment ban = player.getActiveBan();
             if (ban != null) {
-                PlayerData emisor = this.plugin.getPlayerDataRepository().findByID(ban.emisorId);
-                String emisorName = emisor != null ? emisor.displayName : "Console";
+                String emisorName = ban.emisorName;
 
                 String expires = ban.expiresOn == -1 
                     ? 
@@ -42,7 +41,7 @@ public class PlayerLoginListener implements Listener {
                 e.disallow(
                     Result.KICK_BANNED, 
                     player.formatMessage(
-                        player.getI18nMessage("ban.ban-join")
+                        player.getI18nMessage("ban.message")
                             .replace("{emisor}", emisorName)
                             .replace("{reason}", ban.reason)
                             .replace("{expiration}", expires)

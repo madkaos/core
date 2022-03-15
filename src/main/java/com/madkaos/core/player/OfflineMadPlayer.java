@@ -17,6 +17,15 @@ public class OfflineMadPlayer extends MadPlayer {
     public boolean exist() {
         return this.data != null;
     }
+
+    @Override
+    public String getUUID() {
+        if (this.data == null) {
+            return null;
+        }
+        
+        return this.data.uuid;
+    }
     
     /* Initial methods */
     @Override

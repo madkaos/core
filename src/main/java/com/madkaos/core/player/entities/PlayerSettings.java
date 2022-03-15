@@ -10,7 +10,7 @@ public class PlayerSettings extends Entity {
     public String id;
 
     @Prop
-    public String playerId;
+    public String uuid;
 
     // Staff settings
     @Prop

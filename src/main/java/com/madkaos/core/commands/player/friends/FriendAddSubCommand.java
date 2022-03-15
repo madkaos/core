@@ -22,12 +22,12 @@ public class FriendAddSubCommand extends CommandListener {
         MadPlayer player = ctx.getPlayer();
         MadPlayer target = ctx.getArguments().getOfflinePlayer(0);
 
-        if (player.getData().id.equals(target.getData().id)) {
+        if (player.getUUID().equals(target.getUUID())) {
             ctx.getPlayer().sendI18nMessage("friends.add.cannot-your-self");
             return;
         }
 
-        if (target.getData().friends.contains(player.getData().id)) {
+        if (target.getData().friends.contains(player.getUUID())) {
             player.sendMessage(
                 player.formatMessage(
                     player.getI18nMessage("friends.add.already-friend")
@@ -36,13 +36,13 @@ public class FriendAddSubCommand extends CommandListener {
             );
         }
         
-        else if (target.getData().friendRequests.contains(player.getData().id)) {
+        else if (target.getData().friendRequests.contains(player.getUUID())) {
             player.sendI18nMessage("friends.add.already-sent");
         }
 
         else {
             if (target.getSettings().friendRequestsFilter == PlayerFilter.ANYBODY) {
-                target.getData().friendRequests.add(player.getData().id);
+                target.getData().friendRequests.add(player.getUUID());
                 target.getData().save();
                 player.sendI18nMessage("friends.add.request-sent");
 

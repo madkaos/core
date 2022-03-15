@@ -136,11 +136,18 @@ public class MessageProcessor {
             if (type == PunishmentType.BAN) {
                 target.kick(
                     target.formatMessage(
-                        target.getI18nMessage("ban.ban-join")
+                        target.getI18nMessage("ban.message")
                             .replace("{reason}", reason)
                             .replace("{emisor}", emisor)
                             .replace("{expiration}", expires)
                     )
+                );
+            } else if (type == PunishmentType.MUTE) {
+                target.sendMessage(
+                    target.getI18nMessage("mute.message")
+                        .replace("{reason}", reason)
+                        .replace("{emisor}", emisor)
+                        .replace("{expiration}", expires)
                 );
             }
         }
@@ -148,15 +155,21 @@ public class MessageProcessor {
         // Announce to all staff online about the punishment.
         for (MadPlayer player : this.plugin.getPlayerManager().getPlayers()) {
             if (player.getBukkitPlayer().hasPermission("core.module.punishments")) {
+                String path = null;
+
                 if (type == PunishmentType.BAN) {
-                    player.sendMessage(
-                        player.getI18nMessage("ban.notify")
-                            .replace("{emisor}", emisor)
-                            .replace("{player}", username) 
-                            .replace("{reason}", reason)
-                            .replace("{expiration}", expires)
-                    );
+                    path = "ban";
+                } else if (type == PunishmentType.MUTE) {
+                    path = "mute";
                 }
+                
+                player.sendMessage(
+                    player.getI18nMessage(path + ".notify")
+                        .replace("{emisor}", emisor)
+                         .replace("{player}", username) 
+                        .replace("{reason}", reason)
+                        .replace("{expiration}", expires)
+                );
             }
         }
     }

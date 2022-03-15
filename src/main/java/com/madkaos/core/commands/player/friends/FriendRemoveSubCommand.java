@@ -21,7 +21,7 @@ public class FriendRemoveSubCommand extends CommandListener {
         MadPlayer player = ctx.getPlayer();
         MadPlayer target = ctx.getArguments().getOfflinePlayer(0);
 
-        if (!target.getData().friends.contains(player.getData().id)) {
+        if (!target.getData().friends.contains(player.getUUID())) {
             player.sendMessage(
                 player.formatMessage(
                     player.getI18nMessage("friends.remove.not-your-friend")
@@ -31,10 +31,10 @@ public class FriendRemoveSubCommand extends CommandListener {
         }
         
         else {
-            player.getData().friends.remove(target.getData().id);
+            player.getData().friends.remove(target.getUUID());
             player.getData().save();
 
-            target.getData().friends.remove(player.getData().id);
+            target.getData().friends.remove(player.getUUID());
             target.getData().save();
 
             player.sendMessage(

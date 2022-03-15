@@ -11,11 +11,14 @@ public class PlayerPunishment extends Entity {
     @Prop
     public String emisorId;
 
+    // Auto filled
+    public String emisorName;
+
     @Prop
     public String revokedId;
 
     @Prop
-    public String playerId;
+    public String uuid;
 
     @Prop
     public long createdOn;

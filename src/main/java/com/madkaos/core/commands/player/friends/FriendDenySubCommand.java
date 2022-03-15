@@ -20,7 +20,7 @@ public class FriendDenySubCommand extends CommandListener {
         MadPlayer player = ctx.getPlayer();
         MadPlayer target = ctx.getArguments().getOfflinePlayer(0);
 
-        if (!player.getData().friendRequests.contains(target.getData().id)) {
+        if (!player.getData().friendRequests.contains(target.getUUID())) {
             player.sendMessage(
                 player.getI18nMessage("friends.deny.no-request")
                     .replace("{player}", target.getData().displayName)
@@ -33,7 +33,7 @@ public class FriendDenySubCommand extends CommandListener {
                     .replace("{player}", target.getData().displayName)
             );
 
-            String targetId = target.getData().id;
+            String targetId = target.getUUID();
             player.getData().friendRequests.remove(targetId);
             player.getData().save();
         }

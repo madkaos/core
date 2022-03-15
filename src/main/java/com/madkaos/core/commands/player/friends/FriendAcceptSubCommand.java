@@ -24,7 +24,7 @@ public class FriendAcceptSubCommand extends CommandListener {
         int count = player.getData().friends.size();
         int max = 10;
 
-        if (!player.getData().friendRequests.contains(target.getData().id)) {
+        if (!player.getData().friendRequests.contains(target.getUUID())) {
             player.sendMessage(
                 player.getI18nMessage("friends.accept.no-request")
                     .replace("{player}", target.getData().displayName)
@@ -52,8 +52,8 @@ public class FriendAcceptSubCommand extends CommandListener {
                     .replace("{player}", target.getData().displayName)
             );
 
-            String playerId = player.getData().id;
-            String targetId = target.getData().id;
+            String playerId = player.getUUID();
+            String targetId = target.getUUID();
 
             target.getData().friends.add(playerId);
             target.getData().save();

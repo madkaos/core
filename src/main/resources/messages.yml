@@ -30,7 +30,20 @@ alts:
 ban:
   usage: "&eUso: &c/ban <jugador> [tiempo] <razon>"
   notify: "&b⛏ {emisor} &7ha baneado a &c{player} &7por &6{reason}"
-  ban-join: |-
+  message: |-
+    &5&lMad&d&lKaos
+    &cHas sido baneado del servidor
+    &7
+    &dRazón: &7{reason}
+    &dBaneado por: &7{emisor}
+    &dExpira en: &7{expiration}
+    &r
+    &bhttps://discord.gg/madkaos
+
+mute:
+  usage: "&eUso: &c/ban <jugador> [tiempo] <razon>"
+  notify: "&b⛏ {emisor} &7ha baneado a &c{player} &7por &6{reason}"
+  message: |-
     &5&lMad&d&lKaos
     &cHas sido baneado del servidor
     &7

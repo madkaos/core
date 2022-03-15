@@ -11,15 +11,15 @@ import com.madkaos.core.player.entities.PlayerPunishment;
 import com.madkaos.core.utils.TimeUtils;
 
 @Command(
-    name = "ban",
-    permission = "core.commands.ban",
+    name = "mute",
+    permission = "core.commands.mute",
     minArguments = 1,
     arguments = { 
         Argument.PLAYER,
         Argument.LARGE_STRING
     }
 )
-public class BanCommand extends CommandListener {
+public class MuteCommand extends CommandListener {
     @Override
     public void onExecuteByPlayer(CommandContext ctx) {
         MadPlayer player = ctx.getPlayer();
@@ -54,7 +54,7 @@ public class BanCommand extends CommandListener {
             punishment.ofIP = false;
             punishment.uuid = target.getUUID();
             punishment.reason = reason;
-            punishment.type = PunishmentType.BAN;
+            punishment.type = PunishmentType.MUTE;
             punishment.save();
 
             PlayerPunishPacket packet = new PlayerPunishPacket(

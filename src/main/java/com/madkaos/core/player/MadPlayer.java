@@ -25,6 +25,7 @@ public class MadPlayer extends CommandExecutor {
 
     protected PlayerData data = null;
     protected PlayerSettings setttings = null;
+    protected PlayerPunishment[] punishments = null;
 
     private boolean vanished = false;
     private long lastMessage = 0;
@@ -74,7 +75,7 @@ public class MadPlayer extends CommandExecutor {
     }
 
     public boolean isFriend(MadPlayer player) {
-        return this.isFriend(player.getData().id);
+        return this.isFriend(player.getUUID());
     }
 
     public void sendToServer(String server) {
@@ -86,31 +87,37 @@ public class MadPlayer extends CommandExecutor {
     }
 
     public void kick(String message) {
-        Bukkit.getScheduler().runTask(this.plugin, () -> {
+        Bukkit.getScheduler().runTaskLater(this.plugin, () -> {
             this.getBukkitPlayer().kickPlayer(message);
-        });
+        }, 1L);
     }
 
     public PlayerPunishment[] getPunishments() {
-        return this.plugin.getPlayerPunishmentsRepository().findMany(
-            MapFactory.create("playerId", this.getData().id)
-        );
+        return this.punishments;
     }
 
     public PlayerPunishment[] getPunishmentsEmited() {
         return this.plugin.getPlayerPunishmentsRepository().findMany(
-            MapFactory.create("emisorId", this.getData().id)
+            MapFactory.create("uuid", this.getUUID())
         );
     }
 
-    public PlayerPunishment getActiveBan() {
+    public PlayerPunishment getActivePunishment(int type) {
         for (PlayerPunishment punishment : this.getPunishments()) {
-            if (punishment.type == PunishmentType.BAN && PunishmentsUtil.isActive(punishment)) {
+            if (punishment.type == type && PunishmentsUtil.isActive(punishment)) {
                 return punishment;
             }
         }
     
         return null;
+    }
+
+    public PlayerPunishment getActiveBan() {
+        return this.getActivePunishment(PunishmentType.BAN);
+    }
+
+    public PlayerPunishment getActiveMute() {
+        return this.getActivePunishment(PunishmentType.MUTE);
     }
 
     public PlayerData[] getAlts() {
@@ -120,6 +127,10 @@ public class MadPlayer extends CommandExecutor {
     }
 
     /* Utils */
+    public String getUUID() {
+        return this.bukkitPlayer.getUniqueId().toString();
+    }
+
     public List<PlayerData> getFriends() {
         List<PlayerData> friends = new ArrayList<>();
 
@@ -202,23 +213,31 @@ public class MadPlayer extends CommandExecutor {
         }
     }
 
-    public void downloadSettings() {
-        if (this.data == null) {
-            return;
-        }
+    public void downloadPunishments() {
+        this.punishments = this.plugin.getPlayerPunishmentsRepository().findMany(
+            MapFactory.create("uuid", this.getUUID())
+        );
 
-        String id = this.data.id;
-        this.setttings = this.plugin.getPlayerSettingsRepository().findOne(MapFactory.create("playerId", id));
+        for (PlayerPunishment punishment : this.punishments) {
+            punishment.emisorName = this.plugin.getPlayerDataRepository().findOne(
+                MapFactory.create("uuid", punishment.emisorId)
+            ).displayName;
+        }
+    }
+
+    public void downloadSettings() {
+        String uuid = this.getUUID();
+        this.setttings = this.plugin.getPlayerSettingsRepository().findOne(MapFactory.create("uuid", uuid));
 
         if (this.setttings == null) {
             this.setttings = new PlayerSettings();
-            this.setttings.playerId = id;
+            this.setttings.uuid = uuid;
             this.setttings.save();
         }
     }
 
     public void downloadData() {
-        String uuid = this.bukkitPlayer.getUniqueId().toString();
+        String uuid = this.getUUID();
         String name = this.bukkitPlayer.getName();
 
         this.data = this.plugin.getPlayerDataRepository().findOne(MapFactory.create("uuid", uuid));
@@ -229,7 +248,7 @@ public class MadPlayer extends CommandExecutor {
             this.data.username = name.toLowerCase();
             this.data.displayName = name;
             this.data.save();
-        } else if (!this.data.username.equalsIgnoreCase(name)) {
+        } else if (!this.data.username.equals(name)) {
             this.data.username = name.toLowerCase();
             this.data.displayName = name;
             this.data.save();

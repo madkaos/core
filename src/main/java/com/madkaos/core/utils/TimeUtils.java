@@ -41,8 +41,7 @@ public class TimeUtils {
                 return number * multiplier;
             }
         }
-       
-        System.out.println("woops");
+
         return -1;
     }
 }
