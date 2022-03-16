@@ -8,9 +8,9 @@ common:
   no-permission-vip: "&aNecesitas rango &6VIP &ao superior para usar este comando."
   no-permission-admin: "&cEste comando es solo para uso administrativo."
   unknown-command: "&cComando desconocido, intenta usar /help para obtener ayuda."
-  offline-player: "&cEste jugador no se encuentra conectado."
-  unknown-player: "&cEste jugador no ha sido encontrado."
-  no-by-player: "&cEste comando no puede ser ejecutado por un jugador."
+  offline-player: "&cEste usuario no se encuentra conectado."
+  unknown-player: "&cEste usuario no ha sido encontrado."
+  no-by-player: "&cEste comando no puede ser ejecutado por un usuario."
   no-by-console: "&cEste comando no puede ser ejecutado por la consola."
   accept: "&8[&aAceptar&r&8]"
   accept-icon: "&8[&a✔&8]"
@@ -21,7 +21,7 @@ common:
 ###     Punishments Module     ###
 ######                      ######
 alts:
-  usage: "&eUso: &c/alts <jugador>"
+  usage: "&eUso: &c/alts <usuario>"
   alts-list: |-
     &7
     &c======== &lAlts de {player}&r &c========
