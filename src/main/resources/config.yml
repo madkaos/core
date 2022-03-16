@@ -12,6 +12,10 @@ chat:
   command-cooldown: 1000
   message-cooldown: 1000
 
+slots:
+  normal: 100
+  vip: 100
+
 motd: |-
   &r
   &r

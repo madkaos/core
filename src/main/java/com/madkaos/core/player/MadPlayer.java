@@ -38,6 +38,20 @@ public class MadPlayer extends CommandExecutor {
         this.bukkitPlayer = bukkitPlayer;
     }
 
+    public void free() {
+        this.plugin.getPlayerManager().removePlayer(this.getBukkitPlayer());
+
+        this.plugin = null;
+        this.bukkitPlayer = null;
+        this.data = null;
+        this.setttings = null;
+        this.punishments = null;
+    }
+
+    public boolean hasPermission(String perm) {
+        return this.bukkitPlayer.hasPermission(perm);
+    }
+
     public void setLastMessage() {
         this.lastMessage = System.currentTimeMillis();
     }

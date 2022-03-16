@@ -101,6 +101,10 @@ server:
   usage: "&eUso: &b/server <server>"
   unknown-error: "&cNo se pudo enviarte al servidor {server}."
 
+slots:
+  server-full: "&cEl servidor está lleno, los slots restantes están reservado para usuarios de Patreon."
+  server-full-vip: "&cLamentablemente todos los slots disponibles están ocupados (incluyendo los reservado para donantes)"
+
 
 ######                      ######
 ###       Social Module        ###

@@ -1,6 +1,7 @@
 package com.madkaos.core.listeners;
 
 import com.madkaos.core.MadKaosCore;
+import com.madkaos.core.player.MadPlayer;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,8 +16,9 @@ public class PlayerQuitListener implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e) {
-        this.plugin.getPlayerManager().removePlayer(e.getPlayer());
-
+        MadPlayer player = this.plugin.getPlayerManager().getPlayer(e.getPlayer());
+        player.free();
+        
         e.setQuitMessage(null);
     }
 }

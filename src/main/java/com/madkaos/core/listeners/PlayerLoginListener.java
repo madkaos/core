@@ -6,6 +6,7 @@ import com.madkaos.core.player.entities.PlayerPunishment;
 import com.madkaos.core.utils.PunishmentsUtil;
 import com.madkaos.core.utils.TimeUtils;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
@@ -21,8 +22,39 @@ public class PlayerLoginListener implements Listener {
     @EventHandler
     public void onPlayerLogin(PlayerLoginEvent e) {
         if (e.getResult() == Result.ALLOWED) {
-            // Download initial player data
+            // Initialize player
             MadPlayer player = this.plugin.getPlayerManager().addPlayer(e.getPlayer());
+
+            // Check for server full
+            int onlinePlayers = Bukkit.getOnlinePlayers().size();
+            int maxPlayers = this.plugin.getMainConfig().getInt("slots.normal");
+            int maxVipPlayers = this.plugin.getMainConfig().getInt("slots.vip");
+
+            if (onlinePlayers >= maxPlayers) {
+                if (!player.hasPermission("core.slot.bypass")) {
+                    if (!player.hasPermission("core.slot.vip")) {
+                        e.disallow(
+                            Result.KICK_FULL, 
+                            player.formatMessage(player.getI18nMessage("slots.server-full"))
+                        );
+                        player.free();
+                        return;
+                    }
+
+                    else {
+                        if (onlinePlayers >= maxVipPlayers) {
+                            e.disallow(
+                                Result.KICK_FULL, 
+                                player.formatMessage(player.getI18nMessage("slots.server-full-vip"))
+                            );
+                            player.free();
+                            return;
+                        }
+                    }
+                }
+            }
+
+            // Download initial player data
             player.downloadData();
             player.downloadSettings();
             player.downloadPunishments();
@@ -47,6 +79,7 @@ public class PlayerLoginListener implements Listener {
                             .replace("{expiration}", expires)
                     )
                 );
+                player.free();
                 return;
             }
         }
