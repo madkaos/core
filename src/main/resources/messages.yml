@@ -111,7 +111,7 @@ slots:
 ######                      ######
 friends:
   add:
-    usage: "&eUso: &c/friends add <jugador>"
+    usage: "&eUso: &c/friends add <usuario>"
     user-dont-accept-friends: "&cEste usuario no acepta solicitudes de amistad."
     request-sent: "&aSe ha enviado tu solicitud de amistad, el usuario tiene 5 minutos para aceptarla."
     already-sent: "&eEste usuario ya posee una solicitud pendiente de amistad."
@@ -121,34 +121,34 @@ friends:
       &r
       &2======= &lSolicitud De amistad&r &2=======
       &r
-      &7El jugador &b{player} &7quiere que sean amigos
+      &7El usuario &b{player} &7quiere que sean amigos
       &r
       &7¿Que desea hacer? 
   accept:
-    usage: "&eUso: &c/friends accept <jugador>"
+    usage: "&eUso: &c/friends accept <usuario>"
     no-request: "&cNo tienes una solicitud de amistad pendiente de este usuario."
     max-friends-reached: "&cYa has alcanzado el límite de amigos para tu cuenta ({count}/{max})"
     max-friends-other: "&c{player} ya ha alcanzado el límite máximo de amigos."
     accepted: "&a¡Bien! Ahora {player} y tu son amigos."
     accepted-notify: "&b{player} &aaceptó tu solicitud de amistad."
   deny:
-    usage: "&eUso: &c/friends deny <jugador>"
+    usage: "&eUso: &c/friends deny <usuario>"
     no-request: "&cNo tienes una solicitud de amistad pendiente de este usuario."
     denied: "&eHas rechazado la solicitud de amistad de &b{player}"
   remove:
-    usage: "&eUso: &c/friends remove <jugador>"
-    not-your-friend: "&cEste jugador no es tu amigo."
-    removed: "&eHas removido al jugador &b{player} &ede tus amigos."
+    usage: "&eUso: &c/friends remove <usuario>"
+    not-your-friend: "&cEste usuario no es tu amigo."
+    removed: "&eHas removido al usuario &b{player} &ede tus amigos."
   help: |-
     &r
     &2======== &lComando de Amigos&r &2========
     &r
-    &a/friends add <nombre> &8» &7Añadir a un amigo.
-    &a/friends accept <nombre> &8» &7Aceptar una peticion.
-    &a/friends deny <nombre> &8» &7Rechazar una peticion.
+    &a/friends add <usuario> &8» &7Añadir a un amigo.
+    &a/friends accept <usuario> &8» &7Aceptar una peticion.
+    &a/friends deny <usuario> &8» &7Rechazar una peticion.
     &a/friends list &8» &7Ver lista de amigos.
     &a/friends requests &8» &7Ver lista de peticiones.
-    &a/friends remove <nombre> &8» &7Eliminar a un amigo.
+    &a/friends remove <usuario> &8» &7Eliminar a un amigo.
     &r
   list: |-
     &r
