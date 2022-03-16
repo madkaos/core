@@ -28,7 +28,7 @@ alts:
     &7
 
 ban:
-  usage: "&eUso: &c/ban <jugador> [tiempo] <razon>"
+  usage: "&eUso: &c/ban <usuario> [tiempo] <razon>"
   notify: "&b⛏ {emisor} &7ha baneado a &c{player} &7por &6{reason} &7durante &d{expiration}"
   message: |-
     &5&lMad&d&lKaos
@@ -41,7 +41,7 @@ ban:
     &bhttps://discord.gg/madkaos
 
 mute:
-  usage: "&eUso: &c/mute <jugador> [tiempo] <razon>"
+  usage: "&eUso: &c/mute <usuario> [tiempo] <razon>"
   notify: "&b⛏ {emisor} &7ha muteado a &c{player} &7por &6{reason} &7durante &d{expiration}"
   message: |-
     &r
@@ -64,7 +64,7 @@ gamemode:
   switched: "&aHas cambiado tu modo de juego a &b%player_gamemode%"
 
 report:
-  usage: "&eUso: &b/report <jugador> <razón>"
+  usage: "&eUso: &b/report <usuario> <razón>"
   report-success: |-
     &r
     &6============= &lReporte&r &6=============
@@ -83,7 +83,7 @@ report:
     &7
 
 vanish:
-  description: "Ocultate de los demas jugadores."
+  description: "Ocultate de los demas usuarios."
   enabled: "&aHas &2activado &ael modo vanish &e(nadie podrá verte)"
   disabled: "&aHas &cdesactivado &ael modo vanish &c(todos podrán verte)"
   join: "&aEstás en modo vanish &e(nadie podrá verte)"
@@ -160,7 +160,7 @@ friends:
     &r
 
 message:
-  usage: "&eUso: &b/msg <player> <mensaje>"
+  usage: "&eUso: &b/msg <usuario> <mensaje>"
   cannot-your-self: "&cNo puedes enviarte mensaje a ti mismo."
   user-dont-accept-messages: "&cEste usuario no acepta mensajes privados."
   user-dont-accept-unknown: "&cEste usuario solo acepta mensajes de sus amigos."
