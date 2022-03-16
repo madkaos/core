@@ -10,7 +10,6 @@ import com.madkaos.core.player.MadPlayer;
 
 @Command(
     name = "reply",
-    permission = "core.commands.reply",
     minArguments = 1,
     arguments = {
         Argument.LARGE_STRING

@@ -12,7 +12,7 @@ import com.madkaos.core.utils.TimeUtils;
 
 @Command(
     name = "ban",
-    permission = "core.commands.ban",
+    permission = "core.ban",
     minArguments = 1,
     arguments = { 
         Argument.PLAYER,

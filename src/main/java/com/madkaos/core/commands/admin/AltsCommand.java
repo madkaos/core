@@ -13,7 +13,7 @@ import net.md_5.bungee.api.chat.ComponentBuilder;
 
 @Command(
     name = "alts",
-    permission = "core.commands.alts",
+    permission = "core.alts",
     minArguments = 1,
     arguments = { 
         Argument.PLAYER

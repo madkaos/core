@@ -19,7 +19,7 @@ public class PlayerJoinListener implements Listener {
     }
 
     private String handleJoinMessage(MadPlayer player) {
-        if (player.getBukkitPlayer().hasPermission("core.module.join-message") && this.plugin.isLobby()) {
+        if (player.getBukkitPlayer().hasPermission("core.join-message") && this.plugin.isLobby()) {
             return player.formatMessage(player.getI18nMessage("join-message"));
         } else {
             return null;

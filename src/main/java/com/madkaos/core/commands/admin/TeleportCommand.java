@@ -6,7 +6,7 @@ import com.madkaos.core.commands.CommandContext;
 import com.madkaos.core.commands.CommandListener;
 import com.madkaos.core.player.MadPlayer;
 
-@Command(name = "tp", permission = "core.commands.tp", minArguments = 1, arguments = {
+@Command(name = "tp", permission = "core.tp", minArguments = 1, arguments = {
         Argument.ONLINE_PLAYER
 })
 public class TeleportCommand extends CommandListener {

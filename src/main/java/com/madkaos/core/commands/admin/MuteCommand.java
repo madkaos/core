@@ -12,7 +12,7 @@ import com.madkaos.core.utils.TimeUtils;
 
 @Command(
     name = "mute",
-    permission = "core.commands.mute",
+    permission = "core.mute",
     minArguments = 1,
     arguments = { 
         Argument.PLAYER,

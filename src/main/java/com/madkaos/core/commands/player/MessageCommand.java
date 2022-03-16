@@ -11,7 +11,6 @@ import com.madkaos.core.player.PlayerFilter;
 
 @Command(
     name = "message",
-    permission = "core.commands.msg",
     minArguments = 2,
     arguments = {
         Argument.PLAYER,

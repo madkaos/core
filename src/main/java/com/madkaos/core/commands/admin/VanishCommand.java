@@ -8,7 +8,7 @@ import com.madkaos.core.player.entities.PlayerSettings;
 
 @Command(
     name = "vanish",
-    permission = "core.commands.vanish"
+    permission = "core.vanish"
 )
 public class VanishCommand extends CommandListener {
     @Override

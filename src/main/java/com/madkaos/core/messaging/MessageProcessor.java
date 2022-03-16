@@ -93,7 +93,7 @@ public class MessageProcessor {
 
     public void process(ReportPacket packet) {
         for (MadPlayer player : this.plugin.getPlayerManager().getPlayers()) {
-            if (player.getBukkitPlayer().hasPermission("core.module.reports")) {
+            if (player.getBukkitPlayer().hasPermission("core.report.notify")) {
                 ComponentBuilder builder = new ComponentBuilder(
                     player.formatMessage(
                         player.getI18nMessage("report.report-notify")
@@ -155,7 +155,7 @@ public class MessageProcessor {
 
         // Announce to all staff online about the punishment.
         for (MadPlayer player : this.plugin.getPlayerManager().getPlayers()) {
-            if (player.getBukkitPlayer().hasPermission("core.module.punishments")) {
+            if (player.getBukkitPlayer().hasPermission("core.ban.notify") || player.getBukkitPlayer().hasPermission("core.mute.notify")) {
                 String path = null;
 
                 if (type == PunishmentType.BAN) {

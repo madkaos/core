@@ -11,8 +11,7 @@ import com.madkaos.core.commands.player.friends.FriendRemoveSubCommand;
 import com.madkaos.core.commands.player.friends.FriendRequestsSubCommand;
 
 @Command(
-    name = "friends",
-    permission = "core.commands.friends"
+    name = "friends"
 )
 public class FriendsCommand extends CommandListener {
     public FriendsCommand() {

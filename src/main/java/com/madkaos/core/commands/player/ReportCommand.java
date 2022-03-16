@@ -10,7 +10,6 @@ import com.madkaos.core.player.MadPlayer;
 
 @Command(
     name = "report",
-    permission = "core.commands.report",
     minArguments = 2,
     arguments = {
         Argument.PLAYER,

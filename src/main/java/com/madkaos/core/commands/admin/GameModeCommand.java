@@ -10,7 +10,7 @@ import org.bukkit.GameMode;
 
 @Command(
     name = "gamemode",
-    permission = "core.commands.gamemode",
+    permission = "core.gamemode",
     minArguments = 1,
     arguments = { 
         Argument.STRING 
@@ -22,7 +22,6 @@ public class GameModeCommand extends CommandListener {
         MadPlayer player = ctx.getPlayer();
         String arg = ctx.getArguments().getString(0);
         GameMode mode = null;
-
 
         if (arg == "3" || arg.startsWith("sp")) {
             mode = GameMode.SPECTATOR;
@@ -38,6 +37,11 @@ public class GameModeCommand extends CommandListener {
         }
 
         if (mode != null) {
+            if (!player.getBukkitPlayer().hasPermission(this.command.permission() + "." + mode.name().toLowerCase())) {
+                super.onMissingPermission(ctx);
+                return;
+            }
+
             player.getBukkitPlayer().setGameMode(mode);
             player.sendMessage(
                 player.getI18nMessage("gamemode.switched")

@@ -8,7 +8,7 @@ import com.madkaos.core.player.entities.PlayerSettings;
 
 @Command(
     name = "fly",
-    permission = "core.commands.fly",
+    permission = "core.fly",
     isVIP = true
 )
 public class FlyCommand extends CommandListener {
