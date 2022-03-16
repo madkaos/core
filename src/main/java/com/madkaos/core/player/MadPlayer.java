@@ -207,10 +207,14 @@ public class MadPlayer extends CommandExecutor {
     /* Override methods */
     @Override
     public String formatMessage(String message) {
-        return super.formatMessage(
-            PlaceholderAPI.setPlaceholders(this.bukkitPlayer, message)
-                .replace("{pron}", this.data.pron)
-        );
+        String out = PlaceholderAPI.setPlaceholders(this.bukkitPlayer, message);
+
+        if (this.data != null) {
+            out = out
+                .replace("{pron}", this.data.pron);
+        }
+
+        return super.formatMessage(out);
     }
 
     /* Initial methods */
