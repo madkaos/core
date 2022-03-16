@@ -33,7 +33,8 @@ public class MessageBroker {
         this.publisher = new Jedis(redisURI);
     }
 
-    public MessageBroker start() {        this.pubsub = new JedisPubSub() {
+    public MessageBroker start() {        
+        this.pubsub = new JedisPubSub() {
             @Override
             public void onMessage(String channel, String message) {
                 processMessage(channel, message);

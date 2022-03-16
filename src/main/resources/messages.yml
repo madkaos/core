@@ -35,7 +35,6 @@ ban:
     &cHas sido baneado del servidor
     &7
     &dRazón: &7{reason}
-    &dBaneado por: &7{emisor}
     &dExpira en: &7{expiration}
     &r
     &bhttps://discord.gg/madkaos
@@ -49,7 +48,6 @@ mute:
     &cEstás muteado del servidor
     &7
     &dRazón: &7{reason}
-    &dMuteado por: &7{emisor}
     &dExpira en: &7{expiration}
     &r
     &bhttps://discord.gg/madkaos
