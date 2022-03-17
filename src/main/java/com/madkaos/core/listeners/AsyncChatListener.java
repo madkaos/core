@@ -6,6 +6,7 @@ import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.player.MadPlayer;
 import com.madkaos.core.player.PlayerFilter;
 import com.madkaos.core.player.entities.PlayerPunishment;
+import com.madkaos.core.utils.ColorUtils;
 import com.madkaos.core.utils.PunishmentsUtil;
 import com.madkaos.core.utils.TimeUtils;
 
@@ -24,7 +25,7 @@ public class AsyncChatListener implements Listener {
         this.chatCooldown =  this.plugin.getMainConfig().getInt("chat.message-cooldown");
     }
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onPlayerChat(AsyncPlayerChatEvent e) {
         MadPlayer player = this.plugin.getPlayerManager().getPlayer(e.getPlayer());
 
@@ -54,14 +55,18 @@ public class AsyncChatListener implements Listener {
             return;
         }
 
+        // Chat color
+        if (player.hasPermission("core.chat-color")) {
+            e.setMessage(ColorUtils.colorize(e.getMessage()));
+        }
+
         // Chat format
         e.setFormat(
             player.formatMessage(
                 plugin.getMainConfig().getString("chat.format")
-                    .replace("{message}", e.getMessage())
-            )
+            ).replace("{message}", "%s").replace("{username}", "%s")
         );
-        
+
         // Visibility filter
         Iterator<Player> iterator = e.getRecipients().iterator();
 

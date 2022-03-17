@@ -1,8 +1,8 @@
 package com.madkaos.core.commands;
 
 import com.madkaos.core.MadKaosCore;
+import com.madkaos.core.utils.ColorUtils;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -16,7 +16,7 @@ public class CommandExecutor {
     }
 
     public String formatMessage(String message) {
-        return ChatColor.translateAlternateColorCodes('&', message);
+        return ColorUtils.colorize(message);
     }
 
     public String getI18nMessage(String key) {

@@ -7,11 +7,11 @@ import com.madkaos.core.player.MadPlayer;
 
 import org.bukkit.Location;
 
-@Command(name = "spawn", permission = "core.spawn")
+@Command(name = "spawn")
 public class SpawnCommand extends CommandListener {
     @Override
     protected void onExecuteByPlayer(CommandContext ctx) {
-        MadPlayer player = ctx.getArguments().getPlayer(0);
+        MadPlayer player = ctx.getPlayer();
 
         Location loc = ctx.getPlugin().getMainConfig().getLocation("spawn.position", true);
         player.getBukkitPlayer().teleport(loc);

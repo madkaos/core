@@ -149,7 +149,7 @@ public class MadPlayer extends CommandExecutor {
         List<PlayerData> friends = new ArrayList<>();
 
         for (String id : this.data.friends) {
-            friends.add(this.plugin.getPlayerDataRepository().findByID(id));
+            friends.add(this.plugin.getPlayerDataRepository().findOne(MapFactory.create("uuid", id)));
         }
 
         return friends;
@@ -159,7 +159,7 @@ public class MadPlayer extends CommandExecutor {
         List<PlayerData> friends = new ArrayList<>();
 
         for (String id : this.data.friendRequests) {
-            friends.add(this.plugin.getPlayerDataRepository().findByID(id));
+            friends.add(this.plugin.getPlayerDataRepository().findOne(MapFactory.create("uuid", id)));
         }
 
         return friends;

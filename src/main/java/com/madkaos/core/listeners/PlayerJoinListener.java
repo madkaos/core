@@ -23,11 +23,13 @@ public class PlayerJoinListener implements Listener {
     }
 
     private void handleMotd(MadPlayer player) {
-        player.sendMessage(this.plugin.getMainConfig().getString("motd"));
+        if (this.plugin.isLobby()) {
+            player.sendMessage(this.plugin.getMainConfig().getString("motd"));
+        }
     }
 
     private String handleJoinMessage(MadPlayer player) {
-        if (player.getBukkitPlayer().hasPermission("core.join-message") && this.plugin.isLobby()) {
+        if (player.getBukkitPlayer().hasPermission("core.join-message") && !player.isVanished() && this.plugin.isLobby()) {
             return player.formatMessage(player.getI18nMessage("join-message"));
         } else {
             return null;
@@ -57,7 +59,7 @@ public class PlayerJoinListener implements Listener {
         this.handleVanish(player);
         this.handleSpawnTP(player);
 
-        e.setJoinMessage(handleJoinMessage(player));
         player.setupPlayer();
+        e.setJoinMessage(handleJoinMessage(player));
     }
 }

@@ -1,5 +1,5 @@
 # Modules
-join-message: "&8[&2+&8] &7%player_name%"
+join-message: "&8[&2+&8] %vault_prefix% %player_name% &ase ha unido al servidor."
 chat-cooldown: "&cNo envies mensajes tan rápido."
 command-cooldown: "&cNo uses comandos tan rápido."
 
@@ -100,6 +100,7 @@ fly:
 
 server:
   usage: "&eUso: &b/server <server>"
+  sending: "&bEnviandote al servidor {server}..."
   unknown-error: "&cNo se pudo enviarte al servidor {server}."
 
 slots:

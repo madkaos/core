@@ -24,6 +24,12 @@ commands:
     aliases: ["r"]
   report:
     aliases: []
+  server:
+    aliases: []
+  spawn:
+    aliases: []
+  setspawn:
+    aliases: []
   tp:
     aliases: []
   tpos:
