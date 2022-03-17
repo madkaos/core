@@ -17,6 +17,7 @@ import com.madkaos.core.commands.player.FriendsCommand;
 import com.madkaos.core.commands.player.MessageCommand;
 import com.madkaos.core.commands.player.ReplyCommand;
 import com.madkaos.core.commands.player.ReportCommand;
+import com.madkaos.core.commands.player.menu.MainMenuCommand;
 import com.madkaos.core.config.ConfigManager;
 import com.madkaos.core.config.Configuration;
 import com.madkaos.core.listeners.AsyncChatListener;
@@ -94,6 +95,7 @@ public class MadKaosCore extends JavaPlugin {
         this.addCommand(new TeleportCommand());
         this.addCommand(new TeleportPosCommand());
         this.addCommand(new VanishCommand());
+        this.addCommand(new MainMenuCommand());
 
         // Register listeners
         this.addListener(new AsyncChatListener(this));
