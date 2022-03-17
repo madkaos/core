@@ -196,7 +196,17 @@ public class MadPlayer extends CommandExecutor {
         }
     }
 
-    public void teleport(int x, int y, int z) {
+    public void teleport(float x, float y, float z, float yaw, float pitch) {
+        Location loc = this.bukkitPlayer.getLocation().clone();
+        loc.setX(x);
+        loc.setY(y);
+        loc.setZ(z);
+        loc.setYaw(yaw);
+        loc.setPitch(pitch);
+        this.bukkitPlayer.teleport(loc);
+    }
+
+    public void teleport(float x, float y, float z) {
         Location loc = this.bukkitPlayer.getLocation().clone();
         loc.setX(x);
         loc.setY(y);

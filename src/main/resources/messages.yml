@@ -54,13 +54,16 @@ mute:
     &8===========================
 
 ######                      ######
-###        Staff Module        ###
+###        Admin Module        ###
 ######                      ######
 gamemode:
   description: "Cambia tu modo de juego"
   usage: "&eUso: &b/gamemode <modo>"
   switched: "&aHas cambiado tu modo de juego a &b%player_gamemode%"
 
+######                      ######
+###        Staff Module        ###
+######                      ######
 report:
   usage: "&eUso: &b/report <usuario> <razón>"
   report-success: |-
@@ -103,7 +106,9 @@ slots:
   server-full: "&cEl servidor está lleno, los slots restantes están reservado para usuarios de Patreon."
   server-full-vip: "&cLamentablemente todos los slots disponibles están ocupados (incluyendo los reservado para donantes)"
 
-
+spawn:
+  teleport: "&aHas sido teletransportado al spawn."
+  set: "&aHas definido el spawn en tu posición actual."
 ######                      ######
 ###       Social Module        ###
 ######                      ######

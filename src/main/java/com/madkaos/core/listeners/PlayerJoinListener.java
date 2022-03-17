@@ -3,6 +3,7 @@ package com.madkaos.core.listeners;
 import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.player.MadPlayer;
 
+import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -12,6 +13,13 @@ public class PlayerJoinListener implements Listener {
     
     public PlayerJoinListener(MadKaosCore plugin) {
         this.plugin = plugin;
+    }
+
+    private void handleSpawnTP(MadPlayer player) {
+        if (plugin.getMainConfig().getBoolean("spawn.teleport-on-join")) {
+            Location loc = plugin.getMainConfig().getLocation("spawn.position", true);
+            player.getBukkitPlayer().teleport(loc);
+        }
     }
 
     private void handleMotd(MadPlayer player) {
@@ -47,6 +55,7 @@ public class PlayerJoinListener implements Listener {
 
         this.handleMotd(player);
         this.handleVanish(player);
+        this.handleSpawnTP(player);
 
         e.setJoinMessage(handleJoinMessage(player));
         player.setupPlayer();

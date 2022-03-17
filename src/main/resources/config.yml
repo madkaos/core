@@ -12,6 +12,16 @@ chat:
   command-cooldown: 1000
   message-cooldown: 1000
 
+spawn:
+  teleport-on-join: false
+  position:
+    world: ""
+    x: 0
+    y: 0
+    z: 0
+    pitch: 0
+    yaw: 0
+
 slots:
   normal: 100
   vip: 100
