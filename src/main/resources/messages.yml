@@ -116,7 +116,7 @@ delhome:
 
 home:
   usage: "&eUso: &b/home <nombre>"
-  not-exist: "&cEl hogar con este nombre no existe."
+  not-exist: "&cEl hogar con este nombre no existe. Tus hogares fijados son: {homes}"
   teleported: "&aHas sido teletransportado a tu hogar &b{home}&a."
 
 sethome:

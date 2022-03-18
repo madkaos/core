@@ -3,6 +3,7 @@ package com.madkaos.core;
 import com.dotphin.milkshakeorm.MilkshakeORM;
 import com.dotphin.milkshakeorm.providers.Provider;
 import com.dotphin.milkshakeorm.repository.Repository;
+
 import com.madkaos.core.cache.CacheEngine;
 import com.madkaos.core.commands.CommandListener;
 import com.madkaos.core.commands.admin.AltsCommand;
@@ -115,7 +116,6 @@ public class MadKaosCore extends JavaPlugin {
         this.addListener(new PlayerJoinListener(this));
         this.addListener(new PlayerLoginListener(this));
         this.addListener(new PlayerQuitListener(this));
-        this.addListener(new PlayerInteractListener(this));
 
         // Initialize
         this.playerManager.addAll();

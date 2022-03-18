@@ -18,14 +18,14 @@ public class DelHomeCommand extends CommandListener {
     public void onExecuteByPlayer(CommandContext ctx) {
         MadPlayer player = ctx.getPlayer();
         String homeName = ctx.getArguments().getString(0);
-        PlayerHome home = player.createHome(homeName);
+        PlayerHome home = player.deleteHome(homeName);
         if (home != null) {
             player.sendMessage(
                 player.getI18nMessage("delhome.deleted")
                     .replace("{home}", home.name)
             );
         } else {
-            player.sendI18nMessage("home.no-exist");
+            player.sendI18nMessage("home.not-exist");
         }
     } 
 }

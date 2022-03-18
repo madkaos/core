@@ -24,10 +24,10 @@ public class PlayerHome extends Entity {
     public double z;
 
     @Prop
-    public float pitch;
+    public double pitch;
 
     @Prop
-    public float yaw;
+    public double yaw;
 
     @Prop
     public String world;

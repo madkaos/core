@@ -1,7 +1,6 @@
 package com.madkaos.core.player;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.dotphin.milkshakeorm.utils.MapFactory;
@@ -61,6 +60,24 @@ public class MadPlayer extends CommandExecutor {
         }
 
         return home;
+    }
+
+    public String getHomeAsString() {
+        String output = "";
+
+        for (PlayerHome home : this.getHomes()) {
+            if (output != "") {
+                output += ", ";
+            }
+
+            output += home.name;
+        }
+
+        if (output == "") {
+            output = "(Ninguno)";
+        }
+
+        return output;
     }
 
     public PlayerHome createHome(String name) {
@@ -293,10 +310,13 @@ public class MadPlayer extends CommandExecutor {
     }
 
     public void downloadHomes() {
+        this.homes = new ArrayList<>();
         PlayerHome[] homeArray = this.plugin.getPlayerHomeRepository().findMany(
             MapFactory.create("uuid", this.getUUID())
         );
-        this.homes = Arrays.asList(homeArray);
+        for (PlayerHome home : homeArray) {
+            this.homes.add(home);
+        }
     }
 
     public void downloadPunishments() {

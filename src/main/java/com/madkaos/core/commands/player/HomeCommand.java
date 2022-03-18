@@ -24,13 +24,12 @@ public class HomeCommand extends CommandListener {
         PlayerHome home = player.getHome(homeName);
 
         if (home == null) {
-            player.sendI18nMessage("home.not-exist");
+            player.sendMessage(
+                player.getI18nMessage("home.not-exist")
+                    .replace("{homes}", player.getHomeAsString())  
+            );
         } else {
-            home = new PlayerHome();
-            home.uuid = player.getUUID();
-            home.name = homeName;
-            
-            Location loc = new Location(Bukkit.getWorld(home.world), home.x, home.y, home.z, home.yaw, home.pitch);
+            Location loc = new Location(Bukkit.getWorld(home.world), home.x, home.y, home.z, (float) home.yaw, (float) home.pitch);
             player.getBukkitPlayer().teleport(loc);
             player.sendMessage(
                 player.getI18nMessage("home.teleported")
