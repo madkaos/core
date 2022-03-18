@@ -8,7 +8,7 @@ settings:
   mongodb-uri: mongodb://localhost/madkaos
 
 chat:
-  format: "&7{username} &8» &7{message}"
+  format: "%vault_prefix% {username} &8» &7{message}"
   command-cooldown: 1000
   message-cooldown: 1000
 

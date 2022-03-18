@@ -110,6 +110,21 @@ fly:
   enabled: "&aHas &2activado &ael modo de vuelo."
   disabled: "&aHas &cdesactivado &ael modo de vuelo."
 
+delhome:
+  usage: "&eUso: &b/delhome <nombre>"
+  deleted: "&aHas eliminado el hogar &b{home}&a."
+
+home:
+  usage: "&eUso: &b/home <nombre>"
+  not-exist: "&cEl hogar con este nombre no existe."
+  teleported: "&aHas sido teletransportado a tu hogar &b{home}&a."
+
+sethome:
+  usage: "&eUso: &b/sethome <nombre>"
+  already-exist: "&cYa existe un hogar con este nombre."
+  too-many: "&cYa has alcanzado el máximo limite de hogares permitidos."
+  created: "&aHas definido tu hogar &b{home} &aen tu ubicación actual."
+
 server:
   usage: "&eUso: &b/server <server>"
   sending: "&bEnviandote al servidor {server}..."
