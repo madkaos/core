@@ -61,6 +61,18 @@ gamemode:
   usage: "&eUso: &b/gamemode <modo>"
   switched: "&aHas cambiado tu modo de juego a &b%player_gamemode%"
 
+tp:
+  usage: "&bUso: &c/tp <jugador>"
+  teleported: "&aTe has teletransportado al jugador &b{player}&a."
+
+tpos:
+  usage: "&bUso: &c/tpos <x> <y> <z>"
+  teleported: "&aTe has teletransportado a las coordenadas &b{x} {y} {z}&a."
+
+tphere:
+  usage: "&bUso: &c/tphere <jugador>"
+  teleported: "&aHas teletransportado al jugador &b{player} &aa tu posición."
+
 ######                      ######
 ###        Staff Module        ###
 ######                      ######
