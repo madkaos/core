@@ -340,4 +340,11 @@ public class MadPlayer extends CommandExecutor {
             this.data.save();
         }
     }
+
+    public void download() {
+        this.downloadData();
+        this.downloadHomes();
+        this.downloadPunishments();
+        this.downloadSettings();
+    }
 }
