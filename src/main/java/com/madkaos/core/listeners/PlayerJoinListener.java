@@ -55,7 +55,6 @@ public class PlayerJoinListener implements Listener {
             player.getData().save();
         }
 
-        player.download();
         player.setupPlayer();
 
         this.handleMotd(player);
