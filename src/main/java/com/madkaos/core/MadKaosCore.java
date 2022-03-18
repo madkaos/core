@@ -133,6 +133,10 @@ public class MadKaosCore extends JavaPlugin {
         return this.getMainConfig().getString("server.type").equalsIgnoreCase("lobby");
     }
 
+    public String getServerID() {
+        return this.getMainConfig().getString("server.id");
+    }
+
     // Get managers
     public MadPlayerManager getPlayerManager() {
         return this.playerManager;

@@ -15,6 +15,9 @@ public class PlayerHome extends Entity {
     public String name;
 
     @Prop
+    public String server;
+
+    @Prop
     public double x;
     
     @Prop

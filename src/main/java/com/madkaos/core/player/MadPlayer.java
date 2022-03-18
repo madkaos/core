@@ -93,6 +93,7 @@ public class MadPlayer extends CommandExecutor {
             home.pitch = loc.getPitch();
             home.yaw = loc.getYaw();
             home.world = loc.getWorld().getName();
+            home.server = this.plugin.getServerID();
             home.save();
 
             this.homes.add(home);
@@ -312,7 +313,7 @@ public class MadPlayer extends CommandExecutor {
     public void downloadHomes() {
         this.homes = new ArrayList<>();
         PlayerHome[] homeArray = this.plugin.getPlayerHomeRepository().findMany(
-            MapFactory.create("uuid", this.getUUID())
+            MapFactory.create("uuid", this.getUUID()).add("server", this.plugin.getServerID())
         );
         for (PlayerHome home : homeArray) {
             this.homes.add(home);
