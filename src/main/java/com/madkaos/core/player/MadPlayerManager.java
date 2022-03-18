@@ -52,9 +52,7 @@ public class MadPlayerManager {
     public void addAll() {
         for (Player bukkitPlayer : this.plugin.getServer().getOnlinePlayers()) {
             MadPlayer player = this.addPlayer(bukkitPlayer);
-            player.downloadData();
-            player.downloadSettings();
-            player.downloadPunishments();
+            player.download();
             player.setupPlayer();
         }
     }

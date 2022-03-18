@@ -55,9 +55,7 @@ public class PlayerLoginListener implements Listener {
             }
 
             // Download initial player data
-            player.downloadData();
-            player.downloadSettings();
-            player.downloadPunishments();
+            player.download();
 
             // Check for ban
             PlayerPunishment ban = player.getActiveBan();
