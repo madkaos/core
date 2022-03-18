@@ -10,12 +10,16 @@ commands:
     aliases: []
   ban:
     aliases: []
+  delhome:
+    aliases: []
   fly:
     aliases: []
   friends:
     aliases: ["friend"]
   gamemode:
     aliases: ["gm"]
+  home:
+    aliases: []
   message:
     aliases: ["msg"]
   mute:
@@ -24,9 +28,19 @@ commands:
     aliases: ["r"]
   report:
     aliases: []
+  server:
+    aliases: []
+  sethome:
+    aliases: []
+  setspawn:
+    aliases: []
+  spawn:
+    aliases: []
   tp:
     aliases: []
   tpos:
+    aliases: []
+  tphere:
     aliases: []
   vanish:
     aliases: ["v"]

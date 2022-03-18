@@ -1,6 +1,7 @@
 package com.madkaos.core.player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.dotphin.milkshakeorm.utils.MapFactory;
@@ -8,6 +9,7 @@ import com.dotphin.milkshakeorm.utils.MapFactory;
 import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.commands.CommandExecutor;
 import com.madkaos.core.player.entities.PlayerData;
+import com.madkaos.core.player.entities.PlayerHome;
 import com.madkaos.core.player.entities.PlayerPunishment;
 import com.madkaos.core.player.entities.PlayerSettings;
 import com.madkaos.core.utils.ProxyUtils;
@@ -26,6 +28,8 @@ public class MadPlayer extends CommandExecutor {
     protected PlayerData data = null;
     protected PlayerSettings setttings = null;
     protected PlayerPunishment[] punishments = null;
+
+    protected List<PlayerHome> homes = null;
 
     private boolean vanished = false;
     private long lastMessage = 0;
@@ -46,6 +50,39 @@ public class MadPlayer extends CommandExecutor {
         this.data = null;
         this.setttings = null;
         this.punishments = null;
+    }
+
+    public PlayerHome deleteHome(String name) {
+        PlayerHome home = this.getHome(name);
+
+        if (home != null) {
+            home.delete();
+            this.homes.remove(home);
+        }
+
+        return home;
+    }
+
+    public PlayerHome createHome(String name) {
+        if (this.getHome(name) == null) {
+            PlayerHome home = new PlayerHome();
+            home.uuid = this.getUUID();
+            home.name = name;
+            
+            Location loc = this.getBukkitPlayer().getLocation();
+            home.x = loc.getX();
+            home.y = loc.getY();
+            home.z = loc.getZ();
+            home.pitch = loc.getPitch();
+            home.yaw = loc.getYaw();
+            home.world = loc.getWorld().getName();
+            home.save();
+
+            this.homes.add(home);
+            return home;
+        } else {
+            return null;
+        }
     }
 
     public boolean hasPermission(String perm) {
@@ -145,11 +182,25 @@ public class MadPlayer extends CommandExecutor {
         return this.bukkitPlayer.getUniqueId().toString();
     }
 
+    public List<PlayerHome> getHomes() {
+        return this.homes;
+    }
+
+    public PlayerHome getHome(String name) {
+        for (PlayerHome home : this.getHomes()) {
+            if (home.name.equalsIgnoreCase(name)) {
+                return home;
+            }
+        }
+
+        return null;
+    }
+
     public List<PlayerData> getFriends() {
         List<PlayerData> friends = new ArrayList<>();
 
         for (String id : this.data.friends) {
-            friends.add(this.plugin.getPlayerDataRepository().findByID(id));
+            friends.add(this.plugin.getPlayerDataRepository().findOne(MapFactory.create("uuid", id)));
         }
 
         return friends;
@@ -159,7 +210,7 @@ public class MadPlayer extends CommandExecutor {
         List<PlayerData> friends = new ArrayList<>();
 
         for (String id : this.data.friendRequests) {
-            friends.add(this.plugin.getPlayerDataRepository().findByID(id));
+            friends.add(this.plugin.getPlayerDataRepository().findOne(MapFactory.create("uuid", id)));
         }
 
         return friends;
@@ -239,6 +290,13 @@ public class MadPlayer extends CommandExecutor {
             this.sendI18nMessage("vanish.join");
             this.setVanish(true);
         }
+    }
+
+    public void downloadHomes() {
+        PlayerHome[] homeArray = this.plugin.getPlayerHomeRepository().findMany(
+            MapFactory.create("uuid", this.getUUID())
+        );
+        this.homes = Arrays.asList(homeArray);
     }
 
     public void downloadPunishments() {

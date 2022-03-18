@@ -6,19 +6,19 @@ import com.madkaos.core.commands.CommandContext;
 import com.madkaos.core.commands.CommandListener;
 import com.madkaos.core.player.MadPlayer;
 
-@Command(name = "tp", permission = "core.tp", minArguments = 1, arguments = {
+@Command(name = "tphere", permission = "core.tphere", minArguments = 1, arguments = {
         Argument.ONLINE_PLAYER
 })
-public class TeleportCommand extends CommandListener {
+public class TeleportHereCommand extends CommandListener {
     @Override
     protected void onExecuteByPlayer(CommandContext ctx) {
         MadPlayer player = ctx.getPlayer();
         MadPlayer target = ctx.getArguments().getPlayer(0);
 
-        player.getBukkitPlayer().teleport(target.getBukkitPlayer().getLocation());
         player.sendMessage(
-            player.getI18nMessage("tp.teleported")
+            player.getI18nMessage("tphere.teleported")
                 .replace("{player}", target.getBukkitPlayer().getName())
         );
+        target.getBukkitPlayer().teleport(player.getBukkitPlayer().getLocation());
     }
 }

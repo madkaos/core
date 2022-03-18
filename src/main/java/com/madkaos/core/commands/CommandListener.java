@@ -24,7 +24,7 @@ public abstract class CommandListener implements CommandExecutor {
         ctx.getExecutor().sendI18nMessage("common.no-by-player");
     }
     
-    protected void onExecuteByconsole(CommandContext ctx) {
+    protected void onExecuteByConsole(CommandContext ctx) {
         ctx.getExecutor().sendI18nMessage("common.no-by-console");
     }
 
@@ -32,7 +32,7 @@ public abstract class CommandListener implements CommandExecutor {
         if (ctx.isPlayer()) {
             this.onExecuteByPlayer(ctx);
         } else {
-            this.onExecuteByconsole(ctx);
+            this.onExecuteByConsole(ctx);
         }
     }
 

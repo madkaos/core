@@ -19,6 +19,12 @@ public class CommandPreProcessListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onCommandPreProcess(PlayerCommandPreprocessEvent e) {
         MadPlayer player = this.plugin.getPlayerManager().getPlayer(e.getPlayer());
+
+        if (this.plugin.getMainConfig().getStringList("blocked-commands").contains(e.getMessage().split(" ")[0].toLowerCase())) {
+            player.sendI18nMessage("common.no-permission-admin");
+            e.setCancelled(true);
+            return;
+        }
         
         // Command cooldown
         if (player.getLastCommand() < this.commandCooldown) {

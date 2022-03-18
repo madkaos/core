@@ -9,21 +9,28 @@ import com.madkaos.core.commands.admin.AltsCommand;
 import com.madkaos.core.commands.admin.BanCommand;
 import com.madkaos.core.commands.admin.GameModeCommand;
 import com.madkaos.core.commands.admin.MuteCommand;
+import com.madkaos.core.commands.admin.SetSpawnCommand;
 import com.madkaos.core.commands.admin.TeleportCommand;
+import com.madkaos.core.commands.admin.TeleportHereCommand;
 import com.madkaos.core.commands.admin.TeleportPosCommand;
 import com.madkaos.core.commands.admin.VanishCommand;
+import com.madkaos.core.commands.player.DelHomeCommand;
 import com.madkaos.core.commands.player.FlyCommand;
 import com.madkaos.core.commands.player.FriendsCommand;
+import com.madkaos.core.commands.player.HomeCommand;
 import com.madkaos.core.commands.player.MessageCommand;
 import com.madkaos.core.commands.player.ReplyCommand;
 import com.madkaos.core.commands.player.ReportCommand;
-import com.madkaos.core.commands.player.menu.MainMenuCommand;
+import com.madkaos.core.commands.player.ServerCommand;
+import com.madkaos.core.commands.player.SetHomeCommand;
+import com.madkaos.core.commands.player.SpawnCommand;
 import com.madkaos.core.config.ConfigManager;
 import com.madkaos.core.config.Configuration;
 import com.madkaos.core.listeners.*;
 import com.madkaos.core.messaging.MessageBroker;
 import com.madkaos.core.player.MadPlayerManager;
 import com.madkaos.core.player.entities.PlayerData;
+import com.madkaos.core.player.entities.PlayerHome;
 import com.madkaos.core.player.entities.PlayerPunishment;
 import com.madkaos.core.player.entities.PlayerSettings;
 
@@ -41,6 +48,7 @@ public class MadKaosCore extends JavaPlugin {
 
     // Repositories
     private Repository<PlayerData> playerDataRepository;
+    private Repository<PlayerHome> playerHomeRepository;
     private Repository<PlayerSettings> playerSettingsRepository;
     private Repository<PlayerPunishment> playerPunishments;
 
@@ -72,6 +80,7 @@ public class MadKaosCore extends JavaPlugin {
         this.playerDataRepository = MilkshakeORM.addRepository(PlayerData.class, provider, "Players");
         this.playerSettingsRepository = MilkshakeORM.addRepository(PlayerSettings.class, provider, "PlayerSettings");
         this.playerPunishments = MilkshakeORM.addRepository(PlayerPunishment.class, provider, "PlayerPunishments");
+        this.playerHomeRepository = MilkshakeORM.addRepository(PlayerHome.class, provider, "PlayerHomes");
 
         // Connect to redis cache & pubsub
         String redisURI = this.getMainConfig().getString("settings.redis-uri");
@@ -81,17 +90,24 @@ public class MadKaosCore extends JavaPlugin {
         // Register commands
         this.addCommand(new AltsCommand());
         this.addCommand(new BanCommand());
+        this.addCommand(new DelHomeCommand());
         this.addCommand(new FlyCommand());
         this.addCommand(new FriendsCommand());
         this.addCommand(new GameModeCommand());
+        this.addCommand(new HomeCommand());
         this.addCommand(new MessageCommand());
         this.addCommand(new MuteCommand());
         this.addCommand(new ReplyCommand());
         this.addCommand(new ReportCommand());
+        this.addCommand(new ServerCommand());
+        this.addCommand(new SetHomeCommand());
+        this.addCommand(new SetSpawnCommand());
+        this.addCommand(new SpawnCommand());
         this.addCommand(new TeleportCommand());
+        this.addCommand(new TeleportHereCommand());
         this.addCommand(new TeleportPosCommand());
         this.addCommand(new VanishCommand());
-        this.addCommand(new MainMenuCommand());
+        // this.addCommand(new MainMenuCommand());
 
         // Register listeners
         this.addListener(new AsyncChatListener(this));
@@ -145,6 +161,10 @@ public class MadKaosCore extends JavaPlugin {
 
     public Repository<PlayerPunishment> getPlayerPunishmentsRepository() {
         return this.playerPunishments;
+    }
+
+    public Repository<PlayerHome> getPlayerHomeRepository() {
+        return this.playerHomeRepository;
     }
 
     // Get configurations

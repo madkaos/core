@@ -1,5 +1,5 @@
 # Modules
-join-message: "&8[&2+&8] &7%player_name%"
+join-message: "&8[&2+&8] %vault_prefix% %player_name% &ase ha unido al servidor."
 chat-cooldown: "&cNo envies mensajes tan rápido."
 command-cooldown: "&cNo uses comandos tan rápido."
 
@@ -61,6 +61,18 @@ gamemode:
   usage: "&eUso: &b/gamemode <modo>"
   switched: "&aHas cambiado tu modo de juego a &b%player_gamemode%"
 
+tp:
+  usage: "&bUso: &c/tp <jugador>"
+  teleported: "&aTe has teletransportado al jugador &b{player}&a."
+
+tpos:
+  usage: "&bUso: &c/tpos <x> <y> <z>"
+  teleported: "&aTe has teletransportado a las coordenadas &b{x} {y} {z}&a."
+
+tphere:
+  usage: "&bUso: &c/tphere <jugador>"
+  teleported: "&aHas teletransportado al jugador &b{player} &aa tu posición."
+
 ######                      ######
 ###        Staff Module        ###
 ######                      ######
@@ -98,8 +110,24 @@ fly:
   enabled: "&aHas &2activado &ael modo de vuelo."
   disabled: "&aHas &cdesactivado &ael modo de vuelo."
 
+delhome:
+  usage: "&eUso: &b/delhome <nombre>"
+  deleted: "&aHas eliminado el hogar &b{home}&a."
+
+home:
+  usage: "&eUso: &b/home <nombre>"
+  not-exist: "&cEl hogar con este nombre no existe."
+  teleported: "&aHas sido teletransportado a tu hogar &b{home}&a."
+
+sethome:
+  usage: "&eUso: &b/sethome <nombre>"
+  already-exist: "&cYa existe un hogar con este nombre."
+  too-many: "&cYa has alcanzado el máximo limite de hogares permitidos."
+  created: "&aHas definido tu hogar &b{home} &aen tu ubicación actual."
+
 server:
   usage: "&eUso: &b/server <server>"
+  sending: "&bEnviandote al servidor {server}..."
   unknown-error: "&cNo se pudo enviarte al servidor {server}."
 
 slots:
