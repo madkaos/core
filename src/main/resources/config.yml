@@ -12,6 +12,10 @@ chat:
   command-cooldown: 1000
   message-cooldown: 1000
 
+blocked-commands:
+  - "minecraft:me"
+  - "me"
+
 spawn:
   teleport-on-join: false
   position:

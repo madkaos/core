@@ -101,7 +101,7 @@ public class MadKaosCore extends JavaPlugin {
         this.addCommand(new TeleportCommand());
         this.addCommand(new TeleportPosCommand());
         this.addCommand(new VanishCommand());
-        this.addCommand(new MainMenuCommand());
+        // this.addCommand(new MainMenuCommand());
 
         // Register listeners
         this.addListener(new AsyncChatListener(this));
