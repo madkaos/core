@@ -1,6 +1,7 @@
-package com.madkaos.core.constructors;
+package com.madkaos.core.menus;
 
 import com.madkaos.core.player.MadPlayer;
+import items.Item;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 

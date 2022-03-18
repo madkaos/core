@@ -20,11 +20,7 @@ import com.madkaos.core.commands.player.ReportCommand;
 import com.madkaos.core.commands.player.menu.MainMenuCommand;
 import com.madkaos.core.config.ConfigManager;
 import com.madkaos.core.config.Configuration;
-import com.madkaos.core.listeners.AsyncChatListener;
-import com.madkaos.core.listeners.CommandPreProcessListener;
-import com.madkaos.core.listeners.PlayerJoinListener;
-import com.madkaos.core.listeners.PlayerLoginListener;
-import com.madkaos.core.listeners.PlayerQuitListener;
+import com.madkaos.core.listeners.*;
 import com.madkaos.core.messaging.MessageBroker;
 import com.madkaos.core.player.MadPlayerManager;
 import com.madkaos.core.player.entities.PlayerData;
@@ -103,6 +99,7 @@ public class MadKaosCore extends JavaPlugin {
         this.addListener(new PlayerJoinListener(this));
         this.addListener(new PlayerLoginListener(this));
         this.addListener(new PlayerQuitListener(this));
+        this.addListener(new PlayerInteractListener(this));
 
         // Initialize
         this.playerManager.addAll();

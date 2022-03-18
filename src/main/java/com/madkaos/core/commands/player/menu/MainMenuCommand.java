@@ -1,11 +1,10 @@
 package com.madkaos.core.commands.player.menu;
 
-import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.commands.Command;
 import com.madkaos.core.commands.CommandContext;
 import com.madkaos.core.commands.CommandListener;
-import com.madkaos.core.constructors.Item;
-import com.madkaos.core.constructors.Menu;
+import items.Item;
+import com.madkaos.core.menus.Menu;
 import com.madkaos.core.player.MadPlayer;
 import org.bukkit.Material;
 
@@ -20,7 +19,7 @@ public class MainMenuCommand extends CommandListener {
     public void onExecuteByPlayer(CommandContext ctx) {
         MadPlayer player = ctx.getPlayer();
 
-        com.madkaos.core.constructors.Menu menu = new Menu(player, 54, "Menú principal");
+        Menu menu = new Menu(player, 54, "Menú principal");
 
         menu.addItem(20, new Item(player, Material.NAME_TAG, "menus.prefix.name", "menus.prefix.lore"));
 

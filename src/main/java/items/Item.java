@@ -1,4 +1,4 @@
-package com.madkaos.core.constructors;
+package items;
 
 import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.player.MadPlayer;

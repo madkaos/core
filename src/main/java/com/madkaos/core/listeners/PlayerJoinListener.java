@@ -1,9 +1,11 @@
 package com.madkaos.core.listeners;
 
 import com.madkaos.core.MadKaosCore;
+import items.Item;
 import com.madkaos.core.player.MadPlayer;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -34,6 +36,14 @@ public class PlayerJoinListener implements Listener {
         }
     }
 
+    private void givePlayerItems(MadPlayer player){
+        if (this.plugin.isLobby()) {
+            new Item(player, Material.COMPASS, "items.games.name", "items.games.lore").giveItems(0);
+            new Item(player, Material.valueOf("SKULL_ITEM"), "items.profile.name", "items.profile.lore").giveItems(1);
+            new Item(player, Material.NETHER_STAR, "items.lobby.name", "items.lobby.lore").giveItems(8);
+        }
+    }
+
     private void handleVanish(MadPlayer player) {
         for (MadPlayer mp : this.plugin.getPlayerManager().getPlayers()) {
             if (mp.isVanished()) {
@@ -56,6 +66,13 @@ public class PlayerJoinListener implements Listener {
         this.handleMotd(player);
         this.handleVanish(player);
         this.handleSpawnTP(player);
+
+        player.getBukkitPlayer().getInventory().clear();
+        givePlayerItems(player);
+
+        player.getBukkitPlayer().setFoodLevel(20);
+        player.getBukkitPlayer().setHealth(20);
+        player.getBukkitPlayer().getInventory().setHeldItemSlot(0);
 
         e.setJoinMessage(handleJoinMessage(player));
         player.setupPlayer();
