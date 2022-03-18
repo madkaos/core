@@ -114,10 +114,19 @@ delhome:
   usage: "&eUso: &b/delhome <nombre>"
   deleted: "&aHas eliminado el hogar &b{home}&a."
 
+delwarp:
+  usage: "&cUso: &b/delwarp <nombre>"
+  deleted: "&aHas eliminado el warp &b{warp}&a."
+
 home:
   usage: "&eUso: &b/home <nombre>"
   not-exist: "&cEl hogar con este nombre no existe. Tus hogares fijados son: {homes}"
   teleported: "&aHas sido teletransportado a tu hogar &b{home}&a."
+
+server:
+  usage: "&eUso: &b/server <server>"
+  sending: "&bEnviandote al servidor {server}..."
+  unknown-error: "&cNo se pudo enviarte al servidor {server}."
 
 sethome:
   usage: "&eUso: &b/sethome <nombre>"
@@ -125,10 +134,10 @@ sethome:
   too-many: "&cYa has alcanzado el máximo limite de hogares permitidos."
   created: "&aHas definido tu hogar &b{home} &aen tu ubicación actual."
 
-server:
-  usage: "&eUso: &b/server <server>"
-  sending: "&bEnviandote al servidor {server}..."
-  unknown-error: "&cNo se pudo enviarte al servidor {server}."
+setwarp:
+  usage: "&eUso: &b/setwarp <nombre>"
+  already-exist: "&cYa existe un warp con este nombre."
+  created: "&aHas creado el warp &b{warp} &aen tu posición actual."
 
 slots:
   server-full: "&cEl servidor está lleno, los slots restantes están reservado para usuarios de Patreon."
@@ -137,6 +146,12 @@ slots:
 spawn:
   teleport: "&aHas sido teletransportado al spawn."
   set: "&aHas definido el spawn en tu posición actual."
+
+warp:
+  message: "&aLista de warps: &b{warps}"
+  not-exist: "&cEl warp {warp} no existe."
+  teleported: "&aTe has teletransportado al warp &b{warp}&a."
+
 ######                      ######
 ###       Social Module        ###
 ######                      ######

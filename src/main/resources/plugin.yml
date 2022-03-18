@@ -12,6 +12,8 @@ commands:
     aliases: []
   delhome:
     aliases: []
+  delwarp:
+    aliases: []
   fly:
     aliases: []
   friends:
@@ -34,6 +36,8 @@ commands:
     aliases: []
   setspawn:
     aliases: []
+  setwarp:
+    aliases: []
   spawn:
     aliases: []
   tp:
@@ -44,3 +48,5 @@ commands:
     aliases: []
   vanish:
     aliases: ["v"]
+  warp:
+    aliases: ["warps"]

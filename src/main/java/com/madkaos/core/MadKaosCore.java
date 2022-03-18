@@ -8,9 +8,11 @@ import com.madkaos.core.cache.CacheEngine;
 import com.madkaos.core.commands.CommandListener;
 import com.madkaos.core.commands.admin.AltsCommand;
 import com.madkaos.core.commands.admin.BanCommand;
+import com.madkaos.core.commands.admin.DelWarpCommand;
 import com.madkaos.core.commands.admin.GameModeCommand;
 import com.madkaos.core.commands.admin.MuteCommand;
 import com.madkaos.core.commands.admin.SetSpawnCommand;
+import com.madkaos.core.commands.admin.SetWarpCommand;
 import com.madkaos.core.commands.admin.TeleportCommand;
 import com.madkaos.core.commands.admin.TeleportHereCommand;
 import com.madkaos.core.commands.admin.TeleportPosCommand;
@@ -25,10 +27,12 @@ import com.madkaos.core.commands.player.ReportCommand;
 import com.madkaos.core.commands.player.ServerCommand;
 import com.madkaos.core.commands.player.SetHomeCommand;
 import com.madkaos.core.commands.player.SpawnCommand;
+import com.madkaos.core.commands.player.WarpCommand;
 import com.madkaos.core.config.ConfigManager;
 import com.madkaos.core.config.Configuration;
 import com.madkaos.core.listeners.*;
 import com.madkaos.core.messaging.MessageBroker;
+import com.madkaos.core.modules.warp.WarpManager;
 import com.madkaos.core.player.MadPlayerManager;
 import com.madkaos.core.player.entities.PlayerData;
 import com.madkaos.core.player.entities.PlayerHome;
@@ -43,6 +47,7 @@ public class MadKaosCore extends JavaPlugin {
     // Managers
     private ConfigManager configManager;
     private MadPlayerManager playerManager;
+    private WarpManager warpManager;
 
     private CacheEngine cacheEngine;
     private MessageBroker messageBroker;
@@ -74,6 +79,7 @@ public class MadKaosCore extends JavaPlugin {
         // Initialize managers
         this.configManager = new ConfigManager(this);
         this.playerManager = new MadPlayerManager(this);
+        this.warpManager = new WarpManager(this);
 
         // Connect to MongoDB database
         Provider provider = MilkshakeORM.connect(this.getMainConfig().getString("settings.mongodb-uri"));
@@ -92,6 +98,7 @@ public class MadKaosCore extends JavaPlugin {
         this.addCommand(new AltsCommand());
         this.addCommand(new BanCommand());
         this.addCommand(new DelHomeCommand());
+        this.addCommand(new DelWarpCommand());
         this.addCommand(new FlyCommand());
         this.addCommand(new FriendsCommand());
         this.addCommand(new GameModeCommand());
@@ -103,11 +110,13 @@ public class MadKaosCore extends JavaPlugin {
         this.addCommand(new ServerCommand());
         this.addCommand(new SetHomeCommand());
         this.addCommand(new SetSpawnCommand());
+        this.addCommand(new SetWarpCommand());
         this.addCommand(new SpawnCommand());
         this.addCommand(new TeleportCommand());
         this.addCommand(new TeleportHereCommand());
         this.addCommand(new TeleportPosCommand());
         this.addCommand(new VanishCommand());
+        this.addCommand(new WarpCommand());
         // this.addCommand(new MainMenuCommand());
 
         // Register listeners
@@ -142,6 +151,10 @@ public class MadKaosCore extends JavaPlugin {
         return this.playerManager;
     }
 
+    public WarpManager getWarpManager() {
+        return this.warpManager;
+    }
+
     public Configuration getConfig(String name) {
         return this.configManager.getConfig(name);
     }
@@ -174,6 +187,10 @@ public class MadKaosCore extends JavaPlugin {
     // Get configurations
     public Configuration getMainConfig() {
         return this.configManager.getConfig("config.yml");
+    }
+
+    public Configuration getWarpConfig() {
+        return this.configManager.getConfig("warps.yml");
     }
 
     public Configuration getPunishmentConfig() {
