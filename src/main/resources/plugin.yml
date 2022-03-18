@@ -34,5 +34,7 @@ commands:
     aliases: []
   tpos:
     aliases: []
+  tphere:
+    aliases: []
   vanish:
     aliases: ["v"]
