@@ -7,6 +7,7 @@ import com.dotphin.milkshakeorm.utils.MapFactory;
 
 import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.commands.CommandExecutor;
+import com.madkaos.core.messaging.packets.PlayerPunishPacket;
 import com.madkaos.core.player.entities.PlayerData;
 import com.madkaos.core.player.entities.PlayerHome;
 import com.madkaos.core.player.entities.PlayerPunishment;
@@ -181,6 +182,60 @@ public class MadPlayer extends CommandExecutor {
         }, 1L);
     }
 
+    public void unban(MadPlayer emisor) {
+        PlayerPunishment prevBan = this.getActiveBan();
+
+        if (prevBan != null) {
+            if (emisor == null) {
+                prevBan.revokedId = "console";
+            } else {
+                prevBan.revokedId = emisor.getUUID();
+            }
+
+            prevBan.save();
+        }
+    }
+
+    public void unban() {
+        this.unban(null);
+    }
+
+    public void ban(MadPlayer emisor, String reason, int time) {
+        String emisorId = "console";
+        String emisorName = "Consola";
+
+        if (emisor != null) {
+            emisorId = emisor.getUUID();
+            emisorName = emisor.getData().displayName;
+        }
+
+        PlayerPunishment punishment = new PlayerPunishment();
+        punishment.createdOn = System.currentTimeMillis();
+        punishment.expiresOn = time;
+        punishment.emisorId = emisorId;
+        punishment.ofIP = false;
+        punishment.uuid = this.getUUID();
+        punishment.reason = reason;
+        punishment.type = PunishmentType.BAN;
+        punishment.save();
+
+        this.plugin.getMessageBroker().publish(
+            new PlayerPunishPacket(
+                emisorName,
+                this.getData().displayName,
+                punishment
+            )
+        );
+    }
+
+    public void ban(String reason, int time) {
+        this.ban(null, reason, time);
+    }
+
+    public void ban(String reason) {
+        this.ban(reason, -1);
+    }
+
     public PlayerPunishment[] getPunishments() {
         return this.punishments;
     }
@@ -346,9 +401,13 @@ public class MadPlayer extends CommandExecutor {
         );
 
         for (PlayerPunishment punishment : this.punishments) {
-            punishment.emisorName = this.plugin.getPlayerDataRepository().findOne(
-                MapFactory.create("uuid", punishment.emisorId)
-            ).displayName;
+            if (punishment.emisorId == null || punishment.emisorId.equalsIgnoreCase("console")) {
+                punishment.emisorName = "Consola";
+            } else {
+                punishment.emisorName = this.plugin.getPlayerDataRepository().findOne(
+                    MapFactory.create("uuid", punishment.emisorId)
+                ).displayName;
+            }
         }
     }
 

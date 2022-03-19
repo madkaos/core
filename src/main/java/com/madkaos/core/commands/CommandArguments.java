@@ -127,9 +127,7 @@ public class CommandArguments {
                     value = this.plugin.getPlayerManager().getPlayer(bukkitPlayer);
                 } else {
                     OfflineMadPlayer player = new OfflineMadPlayer(plugin, arg);
-                    player.downloadData();
-                    player.downloadSettings();
-                    player.getPunishments();
+                    player.download();
 
                     if (player.exist()) {
                         value = player;

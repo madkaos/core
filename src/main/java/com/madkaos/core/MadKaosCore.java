@@ -16,6 +16,7 @@ import com.madkaos.core.commands.admin.SetWarpCommand;
 import com.madkaos.core.commands.admin.TeleportCommand;
 import com.madkaos.core.commands.admin.TeleportHereCommand;
 import com.madkaos.core.commands.admin.TeleportPosCommand;
+import com.madkaos.core.commands.admin.UnbanCommand;
 import com.madkaos.core.commands.admin.VanishCommand;
 import com.madkaos.core.commands.player.DelHomeCommand;
 import com.madkaos.core.commands.player.FlyCommand;
@@ -115,6 +116,7 @@ public class MadKaosCore extends JavaPlugin {
         this.addCommand(new TeleportCommand());
         this.addCommand(new TeleportHereCommand());
         this.addCommand(new TeleportPosCommand());
+        this.addCommand(new UnbanCommand());
         this.addCommand(new VanishCommand());
         this.addCommand(new WarpCommand());
         // this.addCommand(new MainMenuCommand());

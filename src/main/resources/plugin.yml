@@ -46,6 +46,8 @@ commands:
     aliases: []
   tphere:
     aliases: []
+  unban:
+    aliases: []
   vanish:
     aliases: ["v"]
   warp:
