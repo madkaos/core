@@ -27,9 +27,9 @@ public class MadPlayer extends CommandExecutor {
     protected PlayerData data = null;
     protected PlayerSettings setttings = null;
     protected PlayerPunishment[] punishments = null;
-
     protected List<PlayerHome> homes = null;
 
+    private PendingTeleport pendingTeleport;
     private boolean vanished = false;
     private long lastMessage = 0;
     private long lastCommand = 0;
@@ -49,6 +49,26 @@ public class MadPlayer extends CommandExecutor {
         this.data = null;
         this.setttings = null;
         this.punishments = null;
+    }
+
+    public void cancelPendingTeleport() {
+        if (this.pendingTeleport != null) {
+            this.pendingTeleport.cancel();
+            this.pendingTeleport = null;
+        }
+    }
+
+    public void teleport(Location location, int time) {
+        this.cancelPendingTeleport();
+        this.pendingTeleport = new PendingTeleport(this, location, time);
+    }
+
+    public void teleport(Location location) {
+        this.bukkitPlayer.teleport(location);
+    }
+
+    public PendingTeleport getPendingTeleport() {
+        return this.pendingTeleport;
     }
 
     public PlayerHome deleteHome(String name) {
