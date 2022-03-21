@@ -69,13 +69,13 @@ tablist:
   interval: 5
   header: |-
     &r
-    &r &7&m---------&r &dMADKAOS NETWORK &7&m---------&r 
+    &r &7&m---------&r &d&lMADKAOS NETWORK &7&m---------&r 
     &bplay.madkaos.com
     &7v&f1.9 &7➡ &7v&f1.18
     &r
   footer: |-
     &r
-    &7Conectados » (&b%server_online%&r)
+    &7Conectados &8» &r(&b%server_online%&r)
     &r
     &lÚnete a Patreon
     &e&nwww.patreon.com/rubius
