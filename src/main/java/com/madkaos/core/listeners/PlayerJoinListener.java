@@ -1,6 +1,7 @@
 package com.madkaos.core.listeners;
 
 import com.madkaos.core.MadKaosCore;
+import com.madkaos.core.config.Configuration;
 import com.madkaos.core.player.MadPlayer;
 
 import org.bukkit.Location;
@@ -10,37 +11,39 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerJoinListener implements Listener {
     private MadKaosCore plugin;
+    private Configuration config;
     
     public PlayerJoinListener(MadKaosCore plugin) {
         this.plugin = plugin;
+        this.config = plugin.getMainConfig();
     }
 
     private void handleSpawnTP(MadPlayer player) {
-        if (plugin.getMainConfig().getBoolean("spawn.teleport-on-join")) {
-            Location loc = plugin.getMainConfig().getLocation("spawn.position", true);
+        if (this.config.getBoolean("spawn.enabled") && this.config.getBoolean("spawn.teleport-on-join")) {
+            Location loc = config.getLocation("spawn.position", true);
             player.getBukkitPlayer().teleport(loc);
         }
     }
 
     private void handleMotd(MadPlayer player) {
-        if (this.plugin.getMainConfig().getBoolean("join.motd.enabled")) {
-            player.sendMessage(this.plugin.getMainConfig().getString("join.motd.message"));
+        if (this.config.getBoolean("join.motd.enabled")) {
+            player.sendMessage(this.config.getString("join.motd.message"));
         }
     }
 
     private void handleTitle(MadPlayer player) {
-        if (this.plugin.getMainConfig().getBoolean("join.title.enabled")) {
+        if (this.config.getBoolean("join.title.enabled")) {
             player.sendTitle(
-                this.plugin.getMainConfig().getString("join.title.title"),
-                this.plugin.getMainConfig().getString("join.title.subtitle"),
-                this.plugin.getMainConfig().getInt("join.title.duration")
+                this.config.getString("join.title.title"),
+                this.config.getString("join.title.subtitle"),
+                this.config.getInt("join.title.duration")
             );
         }
     }
 
     private void handleSound(MadPlayer player) {
-        if (this.plugin.getMainConfig().getBoolean("join.sound.enabled")) {
-            player.playSound(this.plugin.getMainConfig().getSound("join.sound.sound", "LEVELUP"));
+        if (this.config.getBoolean("join.sound.enabled")) {
+            player.playSound(this.config.getSound("join.sound.sound", "LEVELUP"));
         }
     }
 
@@ -73,9 +76,12 @@ public class PlayerJoinListener implements Listener {
 
         player.setupPlayer();
 
+        this.plugin.getServer().getScheduler().runTaskLater(this.plugin, () -> {
+            this.handleTitle(player);
+            this.handleSound(player);
+        }, 40L);
+
         this.handleMotd(player);
-        this.handleTitle(player);
-        this.handleSound(player);
         this.handleVanish(player);
         this.handleSpawnTP(player);
 

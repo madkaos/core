@@ -15,8 +15,14 @@ blocked-commands:
 - minecraft:me
 - me
 
+teleport:
+  delay: 3
+  sound: "ENDERMAN_TELEPORT"
+
 spawn:
-  teleport-on-join: false
+  enabled: false
+  teleport-on-void: true
+  teleport-on-join: true
   position:
     world: ''
     x: 0

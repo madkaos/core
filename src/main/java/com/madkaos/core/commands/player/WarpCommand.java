@@ -39,12 +39,16 @@ public class WarpCommand extends CommandListener {
                     );
                     player.teleport(loc);
                 } else {
-                    // Teleport after 3
+                    // Delayed teleport
                     player.sendMessage(
                         player.getI18nMessage("warp.teleport-after")
                             .replace("{warp}", warp.getName())
                     );
-                    player.teleport(loc, 3, player.getI18nMessage("warp.teleport").replace("{warp}", warp.getName()));
+                    player.delayedTeleport(
+                        loc, 
+                        player.getI18nMessage("warp.teleport")
+                            .replace("{warp}", warp.getName())
+                    );
                 }
             } else {
                 player.sendMessage(

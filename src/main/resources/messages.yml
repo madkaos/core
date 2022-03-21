@@ -146,6 +146,7 @@ slots:
   server-full-vip: "&cLamentablemente todos los slots disponibles están ocupados (incluyendo los reservado para donantes)"
 
 spawn:
+  not-exist: "&cNo hay ninguna ubicación donde teletransportarte."
   teleport: "&aHas sido teletransportado al spawn."
   teleport-after: "&aSerás teletransportado al spawn en 3 segundos, no te muevas."
   set: "&aHas definido el spawn en tu posición actual."

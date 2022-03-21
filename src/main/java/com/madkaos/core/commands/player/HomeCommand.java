@@ -31,9 +31,9 @@ public class HomeCommand extends CommandListener {
                 player.sendMessage(player.getI18nMessage("home.teleport").replace("{home}", home.name));
                 player.teleport(loc);
             } else {
-                // Teleport after 3
+                // Delayed teleport
                 player.sendMessage(player.getI18nMessage("home.teleport-after").replace("{home}", home.name));
-                player.teleport(loc, 3, player.getI18nMessage("home.teleport").replace("{home}", home.name));
+                player.delayedTeleport(loc, player.getI18nMessage("home.teleport").replace("{home}", home.name));
             }
         }
     }

@@ -61,13 +61,14 @@ public class MadPlayer extends CommandExecutor {
         }
     }
 
-    public void teleport(Location location, int time, String message) {
+    public void delayedTeleport(Location location, String message) {
         this.cancelPendingTeleport();
-        this.pendingTeleport = new PendingTeleport(this, location, time, message);
+        this.pendingTeleport = new PendingTeleport(this, location, this.plugin.getMainConfig().getInt("teleport.sound"), message);
     }
 
     public void teleport(Location location) {
         this.bukkitPlayer.teleport(location);
+        this.playSound(this.plugin.getMainConfig().getSound("teleport.sound", "ENDERMAN_TELEPORT"));
     }
 
     public PendingTeleport getPendingTeleport() {

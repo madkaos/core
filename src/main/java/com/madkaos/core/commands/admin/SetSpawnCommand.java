@@ -15,6 +15,7 @@ public class SetSpawnCommand extends CommandListener {
     protected void onExecuteByPlayer(CommandContext ctx) {
         MadPlayer player = ctx.getPlayer();
         Location loc = player.getBukkitPlayer().getLocation();
+        ctx.getPlugin().getMainConfig().set("spawn.enabled", true);
         ctx.getPlugin().getMainConfig().setLocation("spawn.position", loc);
         try {
             ctx.getPlugin().getMainConfig().save();

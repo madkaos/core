@@ -130,8 +130,10 @@ public class MadKaosCore extends JavaPlugin {
         // Register listeners
         this.addListener(new AsyncChatListener(this));
         this.addListener(new CommandPreProcessListener(this));
+        this.addListener(new EntityDamageListener(this));
         this.addListener(new PlayerJoinListener(this));
         this.addListener(new PlayerLoginListener(this));
+        this.addListener(new PlayerMoveListener(this));
         this.addListener(new PlayerQuitListener(this));
 
         // Register Tasks
