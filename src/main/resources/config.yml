@@ -67,9 +67,19 @@ spawn:
 tablist:
   enabled: true
   interval: 5
-  header: "%player_ping% %player_name%"
-  footer: "%server_online%"
-
+  header: |-
+  
+    &7&m---------&r &dMADKAOS NETWORK &7&m---------&r 
+   &bplay.madkaos.com
+   &7v&f1.9 &7➡ &7v&f1.18
+   
+  footer: |-
+  
+   &7Conectados: (&b%server_online%&r)
+  
+   &lÚnete a Patreon
+   &e&nwww.patreon.com/rubius
+  
 teleport:
   delay: 3
   sound: "ENDERMAN_TELEPORT"
