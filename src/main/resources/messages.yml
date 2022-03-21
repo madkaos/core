@@ -1,5 +1,5 @@
 # Modules
-join-message: "&8[&2+&8] %vault_prefix% %player_name% &ase ha unido al servidor."
+join-message: "&8[&2+&8] %vault_prefix%%player_name% &ase ha unido al servidor."
 chat-cooldown: "&cNo envies mensajes tan rápido."
 command-cooldown: "&cNo uses comandos tan rápido."
 

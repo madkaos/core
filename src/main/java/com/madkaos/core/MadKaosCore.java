@@ -40,6 +40,7 @@ import com.madkaos.core.player.entities.PlayerHome;
 import com.madkaos.core.player.entities.PlayerPunishment;
 import com.madkaos.core.player.entities.PlayerSettings;
 import com.madkaos.core.tasks.PendingTeleportTask;
+import com.madkaos.core.tasks.TablistTask;
 
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -139,6 +140,7 @@ public class MadKaosCore extends JavaPlugin {
 
         // Register Tasks
         this.runTaskTimer(new PendingTeleportTask(this), 20L);
+        this.runTaskTimer(new TablistTask(this), getMainConfig().getInt("tablist.interval"));
 
         // Initialize
         this.playerManager.addAll();

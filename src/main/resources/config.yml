@@ -1,3 +1,4 @@
+# General server settings.
 server:
   id: server-1
   type: lobby
@@ -6,34 +7,15 @@ settings:
   redis-uri: redis://localhost:6379/0
   mongodb-uri: mongodb://localhost/madkaos
 
-chat:
-  format: '%vault_prefix% {username} &8» &7{message}'
-  command-cooldown: 1000
-  message-cooldown: 1000
-
+# Plugin modules.
 blocked-commands:
 - minecraft:me
 - me
 
-teleport:
-  delay: 3
-  sound: "ENDERMAN_TELEPORT"
-
-spawn:
-  enabled: false
-  teleport-on-void: true
-  teleport-on-join: true
-  position:
-    world: ''
-    x: 0
-    y: 0
-    z: 0
-    pitch: 0
-    yaw: 0
-
-slots:
-  normal: 100
-  vip: 100
+chat:
+  format: '%vault_prefix%{username} &8» &7{message}'
+  command-cooldown: 500
+  message-cooldown: 1000
 
 join:
   title:
@@ -64,3 +46,30 @@ join:
       &r   &b&l✦ TWITTER&r &7twitter.com/madkaosoficial
       &r &r
       &8&m«-+-----------------------------+-»
+
+
+slots:
+  normal: 100
+  vip: 100
+
+spawn:
+  enabled: false
+  teleport-on-void: true
+  teleport-on-join: true
+  position:
+    world: ''
+    x: 0
+    y: 0
+    z: 0
+    pitch: 0
+    yaw: 0
+
+tablist:
+  enabled: true
+  interval: 5
+  header: "%player_ping% %player_name%"
+  footer: "%server_online%"
+
+teleport:
+  delay: 3
+  sound: "ENDERMAN_TELEPORT"

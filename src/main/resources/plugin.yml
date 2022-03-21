@@ -4,7 +4,7 @@ author: ${author}
 main: ${mainClass}
 version: ${version}
 url: ${url}
-depend: [PlaceholderAPI, Milkshake-Bukkit]
+depend: [Milkshake-Bukkit, PlaceholderAPI, ProtocolLib]
 commands:
   alts:
     aliases: []

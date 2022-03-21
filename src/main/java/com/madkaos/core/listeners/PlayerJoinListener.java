@@ -3,6 +3,7 @@ package com.madkaos.core.listeners;
 import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.config.Configuration;
 import com.madkaos.core.player.MadPlayer;
+import com.madkaos.core.utils.ProtocolUtils;
 
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
@@ -55,6 +56,15 @@ public class PlayerJoinListener implements Listener {
         }
     }
 
+    private void handleTablist(MadPlayer player) {
+        if (this.config.getBoolean("tablist.enabled")) {
+            String header = player.formatMessage(plugin.getMainConfig().getString("tablist.header"));
+            String footer = player.formatMessage(plugin.getMainConfig().getString("tablist.footer"));
+
+            ProtocolUtils.sendTabList(player.getBukkitPlayer(), header, footer);
+        }
+    }
+
     private void handleVanish(MadPlayer player) {
         for (MadPlayer mp : this.plugin.getPlayerManager().getPlayers()) {
             if (mp.isVanished()) {
@@ -82,9 +92,10 @@ public class PlayerJoinListener implements Listener {
         }, 40L);
 
         this.handleMotd(player);
+        this.handleTablist(player);
         this.handleVanish(player);
         this.handleSpawnTP(player);
-
+        
         e.setJoinMessage(handleJoinMessage(player));
     }
 }
