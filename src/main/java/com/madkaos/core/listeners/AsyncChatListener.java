@@ -2,7 +2,6 @@ package com.madkaos.core.listeners;
 
 import java.util.Iterator;
 
-import com.iridium.iridiumcolorapi.IridiumColorAPI;
 import com.madkaos.core.MadKaosCore;
 import com.madkaos.core.player.MadPlayer;
 import com.madkaos.core.player.PlayerFilter;
@@ -59,10 +58,6 @@ public class AsyncChatListener implements Listener {
         // Chat color
         if (player.hasPermission("core.chat-color")) {
             e.setMessage(ColorUtils.colorize(e.getMessage()));
-        }
-
-        if (player.hasPermission("core.chat-effects")) {
-            e.setMessage(IridiumColorAPI.process(e.getMessage()));
         }
 
         // Chat format

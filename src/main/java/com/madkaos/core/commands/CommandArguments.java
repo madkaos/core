@@ -112,7 +112,7 @@ public class CommandArguments {
             }
 
             else if (type == Argument.ONLINE_PLAYER) {
-                Player player = Bukkit.getServer().getPlayer(arg);
+                Player player = Bukkit.getServer().getPlayerExact(arg.toLowerCase());
                 if (player.isOnline()) {
                     value = this.plugin.getPlayerManager().getPlayer(player);
                 } else {
@@ -121,12 +121,12 @@ public class CommandArguments {
             }
 
             else if (type == Argument.PLAYER) {
-                Player bukkitPlayer = Bukkit.getServer().getPlayer(arg);
+                Player bukkitPlayer = Bukkit.getServer().getPlayerExact(arg.toLowerCase());
 
                 if (bukkitPlayer != null && bukkitPlayer.isOnline()) {
                     value = this.plugin.getPlayerManager().getPlayer(bukkitPlayer);
                 } else {
-                    OfflineMadPlayer player = new OfflineMadPlayer(plugin, arg);
+                    OfflineMadPlayer player = new OfflineMadPlayer(plugin, arg.toLowerCase());
                     player.download();
 
                     if (player.exist()) {

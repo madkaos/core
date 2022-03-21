@@ -13,6 +13,7 @@ common:
   no-by-player: "&cEste comando no puede ser ejecutado por un usuario."
   no-by-console: "&cEste comando no puede ser ejecutado por la consola."
   teleported: "&aHas sido teletransportado."
+  teleported-cancelled: "&cEl teletransporte ha sido cancelado."
   accept: "&8[&aAceptar&r&8]"
   accept-icon: "&8[&a✔&8]"
   deny: "&8[&cRechazar&r&8]"

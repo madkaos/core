@@ -40,6 +40,7 @@ public class BanCommand extends CommandListener {
         target.unban(executor);
         target.ban(executor, reason, (int) time);
     }
+    
     @Override
     public void onExecuteByConsole(CommandContext ctx) {
         MadPlayer target = ctx.getArguments().getOfflinePlayer(0);
