@@ -10,12 +10,7 @@ import com.madkaos.core.player.entities.PlayerHome;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
-@Command(
-    name = "home",
-    arguments = { Argument.STRING },
-    permission = "core.home",
-    minArguments = 1
-)
+@Command(name = "home", arguments = { Argument.STRING }, permission = "core.home", minArguments = 1)
 public class HomeCommand extends CommandListener {
     @Override
     public void onExecuteByPlayer(CommandContext ctx) {
@@ -25,16 +20,21 @@ public class HomeCommand extends CommandListener {
 
         if (home == null) {
             player.sendMessage(
-                player.getI18nMessage("home.not-exist")
-                    .replace("{homes}", player.getHomeAsString())  
-            );
+                    player.getI18nMessage("home.not-exist")
+                            .replace("{homes}", player.getHomeAsString()));
         } else {
-            Location loc = new Location(Bukkit.getWorld(home.world), home.x, home.y, home.z, (float) home.yaw, (float) home.pitch);
-            player.getBukkitPlayer().teleport(loc);
-            player.sendMessage(
-                player.getI18nMessage("home.teleported")
-                    .replace("{home}", home.name)
-            );
+            Location loc = new Location(Bukkit.getWorld(home.world), home.x, home.y, home.z, (float) home.yaw,
+                    (float) home.pitch);
+
+            if (ctx.getPlugin().isLobby()) {
+                // Instant teleport
+                player.sendMessage(player.getI18nMessage("home.teleport").replace("{home}", home.name));
+                player.teleport(loc);
+            } else {
+                // Teleport after 3
+                player.sendMessage(player.getI18nMessage("home.teleport-after").replace("{home}", home.name));
+                player.teleport(loc, 3, player.getI18nMessage("home.teleport").replace("{home}", home.name));
+            }
         }
-    } 
+    }
 }

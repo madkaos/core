@@ -16,7 +16,7 @@ public class TeleportHereCommand extends CommandListener {
         MadPlayer target = ctx.getArguments().getPlayer(0);
 
         player.sendMessage(
-            player.getI18nMessage("tphere.teleported")
+            player.getI18nMessage("tphere.teleport")
                 .replace("{player}", target.getBukkitPlayer().getName())
         );
         target.getBukkitPlayer().teleport(player.getBukkitPlayer().getLocation());

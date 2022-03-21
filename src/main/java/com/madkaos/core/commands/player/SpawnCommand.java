@@ -14,7 +14,13 @@ public class SpawnCommand extends CommandListener {
         MadPlayer player = ctx.getPlayer();
 
         Location loc = ctx.getPlugin().getMainConfig().getLocation("spawn.position", true);
-        player.getBukkitPlayer().teleport(loc);
-        player.sendI18nMessage("spawn.teleport");
+
+        if (ctx.getPlugin().isLobby()) {
+            player.sendI18nMessage("spawn.teleport");
+            player.teleport(loc);
+        } else {
+            player.sendI18nMessage("spawn.teleport-after");
+            player.teleport(loc, 3, player.getI18nMessage("spawn.teleport"));
+        }
     }
 }

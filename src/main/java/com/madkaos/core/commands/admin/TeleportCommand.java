@@ -17,7 +17,7 @@ public class TeleportCommand extends CommandListener {
 
         player.getBukkitPlayer().teleport(target.getBukkitPlayer().getLocation());
         player.sendMessage(
-            player.getI18nMessage("tp.teleported")
+            player.getI18nMessage("tp.teleport")
                 .replace("{player}", target.getBukkitPlayer().getName())
         );
     }

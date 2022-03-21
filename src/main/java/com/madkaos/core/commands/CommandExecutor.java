@@ -34,4 +34,8 @@ public class CommandExecutor {
     public boolean isPlayer() {
         return this.sender instanceof Player;
     }
+
+    public MadKaosCore getPlugin() {
+        return this.plugin;
+    }
 }

@@ -30,22 +30,29 @@ slots:
   normal: 100
   vip: 100
 
+bossbar:
+  interval: 10
+  messages:
+   - "1"
+   - "2"
+   - "3"
+
 motd: |-
-  &r
-  &r
-  &r
-  &r
-  &r
-  &r
-  &r
-  &r
+  &r &r
+  &r &r
+  &r &r
+  &r &r
+  &r &r
+  &r &r
+  &r &r
+  &r &r
   &8&m-+-------------------------------+-
-  &r
+  &r &r
   &r ¡Hola! &b%player_name%
   &r Bienvenid{pron} a &5&lMADKAOS NETWORK
-  &r
+  &r &r
   &r &7» &6&lPATREON&r &fpatreon.com/rubius
   &r &7» &3&lTWITTER&r &ftwitter.com/madkaosoficial
   &r &7» &9&lDISCORD&r &fdiscord.gg/madkaos
-  &r
+  &r &r
   &8&m-+-------------------------------+-

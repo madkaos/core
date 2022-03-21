@@ -22,7 +22,7 @@ public class TeleportPosCommand extends CommandListener {
 
         player.teleport(x, y, z);
         player.sendMessage(
-            player.getI18nMessage("tp.teleported")
+            player.getI18nMessage("tp.teleport")
                 .replace("{x}", x + "")
                 .replace("{y}", y + "")
                 .replace("{z}", z + "")

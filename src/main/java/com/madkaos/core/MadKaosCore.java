@@ -39,6 +39,7 @@ import com.madkaos.core.player.entities.PlayerData;
 import com.madkaos.core.player.entities.PlayerHome;
 import com.madkaos.core.player.entities.PlayerPunishment;
 import com.madkaos.core.player.entities.PlayerSettings;
+import com.madkaos.core.tasks.PendingTeleportTask;
 
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -72,6 +73,12 @@ public class MadKaosCore extends JavaPlugin {
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, channel);
     }
     
+    public void runTaskTimer(Runnable task, long interval) {
+        this.getServer().getScheduler().runTaskTimer(
+            this, task, interval, interval
+        );
+    }
+
     @Override
     public void onEnable() {
         // Register channels
@@ -119,7 +126,6 @@ public class MadKaosCore extends JavaPlugin {
         this.addCommand(new UnbanCommand());
         this.addCommand(new VanishCommand());
         this.addCommand(new WarpCommand());
-        // this.addCommand(new MainMenuCommand());
 
         // Register listeners
         this.addListener(new AsyncChatListener(this));
@@ -127,6 +133,9 @@ public class MadKaosCore extends JavaPlugin {
         this.addListener(new PlayerJoinListener(this));
         this.addListener(new PlayerLoginListener(this));
         this.addListener(new PlayerQuitListener(this));
+
+        // Register Tasks
+        this.runTaskTimer(new PendingTeleportTask(this), 20L);
 
         // Initialize
         this.playerManager.addAll();

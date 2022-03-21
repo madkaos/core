@@ -59,9 +59,9 @@ public class MadPlayer extends CommandExecutor {
         }
     }
 
-    public void teleport(Location location, int time) {
+    public void teleport(Location location, int time, String message) {
         this.cancelPendingTeleport();
-        this.pendingTeleport = new PendingTeleport(this, location, time);
+        this.pendingTeleport = new PendingTeleport(this, location, time, message);
     }
 
     public void teleport(Location location) {

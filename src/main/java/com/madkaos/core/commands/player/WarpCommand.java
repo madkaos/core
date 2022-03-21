@@ -7,6 +7,8 @@ import com.madkaos.core.commands.CommandListener;
 import com.madkaos.core.modules.warp.Warp;
 import com.madkaos.core.player.MadPlayer;
 
+import org.bukkit.Location;
+
 @Command(
     name = "warp",
     arguments = { Argument.STRING },
@@ -27,11 +29,23 @@ public class WarpCommand extends CommandListener {
             Warp warp = ctx.getPlugin().getWarpManager().getWarp(warpName);
 
             if (warp != null) {
-                player.getBukkitPlayer().teleport(warp.getLocation());
-                player.sendMessage(
-                    player.getI18nMessage("warp.teleported")
-                        .replace("{warp}", warp.getName())
-                );
+                Location loc = warp.getLocation();
+
+                if (ctx.getPlugin().isLobby()) {
+                    // Instant teleport
+                    player.sendMessage(
+                        player.getI18nMessage("warp.teleport")
+                            .replace("{warp}", warp.getName())
+                    );
+                    player.teleport(loc);
+                } else {
+                    // Teleport after 3
+                    player.sendMessage(
+                        player.getI18nMessage("warp.teleport-after")
+                            .replace("{warp}", warp.getName())
+                    );
+                    player.teleport(loc, 3, player.getI18nMessage("warp.teleport").replace("{warp}", warp.getName()));
+                }
             } else {
                 player.sendMessage(
                     player.getI18nMessage("warp.not-exist")

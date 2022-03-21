@@ -12,8 +12,7 @@ common:
   unknown-player: "&cEste usuario no ha sido encontrado."
   no-by-player: "&cEste comando no puede ser ejecutado por un usuario."
   no-by-console: "&cEste comando no puede ser ejecutado por la consola."
-  teleported: "&aHas sido teletransportado."
-  teleported-cancelled: "&cEl teletransporte ha sido cancelado."
+  teleport-cancelled: "&cEl teletransporte ha sido cancelado."
   accept: "&8[&aAceptar&r&8]"
   accept-icon: "&8[&a✔&8]"
   deny: "&8[&cRechazar&r&8]"
@@ -25,9 +24,9 @@ common:
 alts:
   usage: "&eUso: &c/alts <usuario>"
   alts-list: |-
-    &7
+    &7 &r
     &c======== &lAlts de {player}&r &c========
-    &7
+    &7 &r
 
 ban:
   usage: "&eUso: &c/ban <usuario> [tiempo] <razon>"
@@ -35,23 +34,23 @@ ban:
   message: |-
     &5&lMad&d&lKaos
     &cHas sido baneado del servidor
-    &7
+    &7 &r
     &dRazón: &7{reason}
     &dExpira en: &7{expiration}
-    &r
+    &r &r
     &bhttps://discord.gg/madkaos
 
 mute:
   usage: "&eUso: &c/mute <usuario> [tiempo] <razon>"
   notify: "&b⛏ {emisor} &7ha muteado a &c{player} &7por &6{reason} &7durante &d{expiration}"
   message: |-
-    &r
+    &r &r
     &8===========================
     &cEstás muteado del servidor
-    &7
+    &7 &r
     &dRazón: &7{reason}
     &dExpira en: &7{expiration}
-    &r
+    &r &r
     &bhttps://discord.gg/madkaos
     &8===========================
 
@@ -65,15 +64,15 @@ gamemode:
 
 tp:
   usage: "&bUso: &c/tp <jugador>"
-  teleported: "&aTe has teletransportado al jugador &b{player}&a."
+  teleport: "&aTe has teletransportado al jugador &b{player}&a."
 
 tpos:
   usage: "&bUso: &c/tpos <x> <y> <z>"
-  teleported: "&aTe has teletransportado a las coordenadas &b{x} {y} {z}&a."
+  teleport: "&aTe has teletransportado a las coordenadas &b{x} {y} {z}&a."
 
 tphere:
   usage: "&bUso: &c/tphere <jugador>"
-  teleported: "&aHas teletransportado al jugador &b{player} &aa tu posición."
+  teleport: "&aHas teletransportado al jugador &b{player} &aa tu posición."
 
 ######                      ######
 ###        Staff Module        ###
@@ -81,21 +80,21 @@ tphere:
 report:
   usage: "&eUso: &b/report <usuario> <razón>"
   report-success: |-
-    &r
+    &r &r
     &6============= &lReporte&r &6=============
-    &7
+    &7 &r
     &eHas reportado correctamente a &b{player}
     &7(Nota: hacer reportes falsos es sancionable)
-    &7
+    &7 &r
   report-notify: |-
     &r
     &6============= &lReporte&r &6=============
-    &7
+    &7 &r
     &eReportante: &7{author}
     &eReportado: &7{target}
     &eRazón: &7{reason}
-    &7
-    &7
+    &7 &r
+    &7 &r
 
 vanish:
   description: "Ocultate de los demas usuarios."
@@ -123,7 +122,8 @@ delwarp:
 home:
   usage: "&eUso: &b/home <nombre>"
   not-exist: "&cEl hogar con este nombre no existe. Tus hogares fijados son: {homes}"
-  teleported: "&aHas sido teletransportado a tu hogar &b{home}&a."
+  teleport: "&aHas sido teletransportado a tu hogar &b{home}&a."
+  teleport-after: "&aSerás teletransportado a tu hogar en 3 segundos, no te muevas."
 
 server:
   usage: "&eUso: &b/server <server>"
@@ -147,12 +147,14 @@ slots:
 
 spawn:
   teleport: "&aHas sido teletransportado al spawn."
+  teleport-after: "&aSerás teletransportado al spawn en 3 segundos, no te muevas."
   set: "&aHas definido el spawn en tu posición actual."
 
 warp:
   message: "&aLista de warps: &b{warps}"
   not-exist: "&cEl warp {warp} no existe."
-  teleported: "&aTe has teletransportado al warp &b{warp}&a."
+  teleport: "&aTe has teletransportado al warp &b{warp}&a."
+  teleport-after: "&aSerás teletransportado a este warp en 3 segundos, no te muevas."
 
 ######                      ######
 ###       Social Module        ###
@@ -168,9 +170,9 @@ friends:
     friend-request: |-
       &r
       &2======= &lSolicitud De amistad&r &2=======
-      &r
+      &r &r
       &7El usuario &b{player} &7quiere que sean amigos
-      &r
+      &r &r
       &7¿Que desea hacer? 
   accept:
     usage: "&eUso: &c/friends accept <usuario>"
@@ -190,22 +192,22 @@ friends:
   help: |-
     &r
     &2======== &lComando de Amigos&r &2========
-    &r
+    &r &r
     &a/friends add <usuario> &8» &7Añadir a un amigo.
     &a/friends accept <usuario> &8» &7Aceptar una peticion.
     &a/friends deny <usuario> &8» &7Rechazar una peticion.
     &a/friends list &8» &7Ver lista de amigos.
     &a/friends requests &8» &7Ver lista de peticiones.
     &a/friends remove <usuario> &8» &7Eliminar a un amigo.
-    &r
+    &r &r
   list: |-
-    &r
+    &r &r
     &2========= &lLista de Amigos&r &2=========
-    &r
+    &r &r
   requests: |-
-    &r
+    &r &r
     &2======= &lLista de Peticiones&r &2=======
-    &r
+    &r &r
 
 message:
   usage: "&eUso: &b/msg <usuario> <mensaje>"
