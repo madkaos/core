@@ -68,18 +68,18 @@ tablist:
   enabled: true
   interval: 5
   header: |-
-  &r
-  &r &7&m---------&r &dMADKAOS NETWORK &7&m---------&r 
-  &bplay.madkaos.com
-  &7v&f1.9 &7➡ &7v&f1.18
-  &r
+    &r
+    &r &7&m---------&r &dMADKAOS NETWORK &7&m---------&r 
+    &bplay.madkaos.com
+    &7v&f1.9 &7➡ &7v&f1.18
+    &r
   footer: |-
-  &r
-  &7Conectados » (&b%server_online%&r)
-  &r
-  &lÚnete a Patreon
-  &e&nwww.patreon.com/rubius
-  &r
+    &r
+    &7Conectados » (&b%server_online%&r)
+    &r
+    &lÚnete a Patreon
+    &e&nwww.patreon.com/rubius
+    &r
 teleport:
   delay: 3
   sound: "ENDERMAN_TELEPORT"
