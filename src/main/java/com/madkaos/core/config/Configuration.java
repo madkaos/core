@@ -75,7 +75,7 @@ public class Configuration extends YamlConfiguration {
         final String name = this.getString(key);
 
         for (final Sound sound : Sound.values()) {
-            if (name.equals(sound.name())) {
+            if (name.equalsIgnoreCase(sound.name())) {
                 return sound;
             }
         }

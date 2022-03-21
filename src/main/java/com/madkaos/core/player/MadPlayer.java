@@ -18,6 +18,7 @@ import com.madkaos.core.utils.ServerUtils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 import me.clip.placeholderapi.PlaceholderAPI;
@@ -92,6 +93,12 @@ public class MadPlayer extends CommandExecutor {
     
     public void sendTitle(final String title, final String subtitle, final int duration) {
         this.sendTitle(title, subtitle, 2, duration * 20, 2);
+    }
+
+    public void playSound(final Sound sound) {
+        if (sound != null) {
+            this.getBukkitPlayer().playSound(this.getBukkitPlayer().getLocation(), sound, 1, 1);
+        }
     }
 
     public PlayerHome deleteHome(String name) {
@@ -344,6 +351,7 @@ public class MadPlayer extends CommandExecutor {
         return this.vanished;
     }
 
+    @SuppressWarnings("deprecation")
     public void setVanish(boolean vanished) {
         if (this.vanished == vanished) {
             return;
@@ -353,11 +361,19 @@ public class MadPlayer extends CommandExecutor {
         
         if (vanished) {
             for (Player player : Bukkit.getOnlinePlayers()) {
-                player.hidePlayer(this.plugin, this.getBukkitPlayer());
+                if (ServerUtils.isLegacy()) {
+                    player.hidePlayer(this.getBukkitPlayer());
+                } else {
+                    player.hidePlayer(this.plugin, this.getBukkitPlayer());
+                }
             }
         } else {
             for (Player player : Bukkit.getOnlinePlayers()) {
-                player.showPlayer(this.plugin, this.getBukkitPlayer());
+                if (ServerUtils.isLegacy()) {
+                    player.showPlayer(this.getBukkitPlayer());
+                } else {
+                    player.showPlayer(this.plugin, this.getBukkitPlayer());
+                }
             }
         }
     }

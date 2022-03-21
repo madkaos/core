@@ -38,6 +38,12 @@ public class PlayerJoinListener implements Listener {
         }
     }
 
+    private void handleSound(MadPlayer player) {
+        if (this.plugin.getMainConfig().getBoolean("join.sound.enabled")) {
+            player.playSound(this.plugin.getMainConfig().getSound("join.sound.sound", "LEVELUP"));
+        }
+    }
+
     private String handleJoinMessage(MadPlayer player) {
         if (player.getBukkitPlayer().hasPermission("core.join-message") && !player.isVanished() && this.plugin.isLobby()) {
             return player.formatMessage(player.getI18nMessage("join-message"));
@@ -69,6 +75,7 @@ public class PlayerJoinListener implements Listener {
 
         this.handleMotd(player);
         this.handleTitle(player);
+        this.handleSound(player);
         this.handleVanish(player);
         this.handleSpawnTP(player);
 

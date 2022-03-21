@@ -33,7 +33,7 @@ public class MadPlayerManager {
     }
 
     public MadPlayer getPlayer(String name) {
-        Player bukkitPlayer = this.plugin.getServer().getPlayerExact(name);
+        Player bukkitPlayer = this.plugin.getServer().getPlayer(name);
         if (bukkitPlayer != null && bukkitPlayer.isOnline()) {
             return this.getPlayer(bukkitPlayer);
         } else {

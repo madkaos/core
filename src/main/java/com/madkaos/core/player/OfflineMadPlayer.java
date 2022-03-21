@@ -4,13 +4,11 @@ import com.dotphin.milkshakeorm.utils.MapFactory;
 
 import com.madkaos.core.MadKaosCore;
 
-import org.bukkit.Bukkit;
-
 public class OfflineMadPlayer extends MadPlayer {
     private String name;
     
     public OfflineMadPlayer(MadKaosCore plugin, String name) {
-        super(plugin, Bukkit.getPlayer(name));
+        super(plugin, plugin.getServer().getPlayer(name));
         this.name = name;
     }
 
