@@ -1,7 +1,7 @@
 server:
   id: server-1
   type: lobby
-  
+
 settings:
   redis-uri: redis://localhost:6379/0
   mongodb-uri: mongodb://localhost/madkaos
@@ -29,21 +29,29 @@ slots:
   normal: 100
   vip: 100
 
-motd: |-
-  &r &r
-  &r &r
-  &r &r
-  &r &r
-  &r &r
-  &r &r
-  &r &r
-  &r &r
-  &8&m«-+-----------------------------+-»
-  &r &r
-  &r        &f☄ &5&lMadKaos&r &d&lNetwork&r &f✯
-  &r &r
-  &r   &9&l✦ DISCORD&r &7discord.gg/madkaos
-  &r   &6&l✦ PATREON&r &7patreon.com/rubius
-  &r   &b&l✦ TWITTER&r &7twitter.com/madkaosoficial
-  &r &r
-  &8&m«-+-----------------------------+-»
+join:
+  title:
+    enabled: true
+    duration: 2
+    title: "&d¡Bienvenid{pron} %player_name%!"
+    subtitle: "&bEs un gusto verte por aquí"
+  motd: 
+    enabled: true
+    message: |-
+      &r &r
+      &r &r
+      &r &r
+      &r &r
+      &r &r
+      &r &r
+      &r &r
+      &r &r
+      &8&m«-+-----------------------------+-»
+      &r &r
+      &r        &f☄ &5&lMadKaos&r &d&lNetwork&r &f✯
+      &r &r
+      &r   &9&l✦ DISCORD&r &7discord.gg/madkaos
+      &r   &6&l✦ PATREON&r &7patreon.com/rubius
+      &r   &b&l✦ TWITTER&r &7twitter.com/madkaosoficial
+      &r &r
+      &8&m«-+-----------------------------+-»

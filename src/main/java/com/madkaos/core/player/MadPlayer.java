@@ -14,6 +14,7 @@ import com.madkaos.core.player.entities.PlayerPunishment;
 import com.madkaos.core.player.entities.PlayerSettings;
 import com.madkaos.core.utils.ProxyUtils;
 import com.madkaos.core.utils.PunishmentsUtil;
+import com.madkaos.core.utils.ServerUtils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -70,6 +71,27 @@ public class MadPlayer extends CommandExecutor {
 
     public PendingTeleport getPendingTeleport() {
         return this.pendingTeleport;
+    }
+    
+    @SuppressWarnings("deprecation")
+    public void sendTitle(final String title, final String subtitle, final int fadeInTime, final int showTime,
+            final int fadeOutTime) {
+        if (ServerUtils.isLegacy()) {
+            this.getBukkitPlayer().resetTitle();
+            this.getBukkitPlayer().sendTitle(this.formatMessage(title), this.formatMessage(subtitle));
+        } else {
+            this.getBukkitPlayer().sendTitle(
+                this.formatMessage(title), 
+                this.formatMessage(subtitle), 
+                fadeInTime, 
+                showTime, 
+                fadeOutTime
+            );
+        }
+    }
+    
+    public void sendTitle(final String title, final String subtitle, final int duration) {
+        this.sendTitle(title, subtitle, 2, duration * 20, 2);
     }
 
     public PlayerHome deleteHome(String name) {

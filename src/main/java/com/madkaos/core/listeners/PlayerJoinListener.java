@@ -23,8 +23,18 @@ public class PlayerJoinListener implements Listener {
     }
 
     private void handleMotd(MadPlayer player) {
-        if (this.plugin.isLobby()) {
-            player.sendMessage(this.plugin.getMainConfig().getString("motd"));
+        if (this.plugin.getMainConfig().getBoolean("join.motd.enabled")) {
+            player.sendMessage(this.plugin.getMainConfig().getString("join.motd.message"));
+        }
+    }
+
+    private void handleTitle(MadPlayer player) {
+        if (this.plugin.getMainConfig().getBoolean("join.title.enabled")) {
+            player.sendTitle(
+                this.plugin.getMainConfig().getString("join.title.title"),
+                this.plugin.getMainConfig().getString("join.title.subtitle"),
+                this.plugin.getMainConfig().getInt("join.title.duration")
+            );
         }
     }
 
@@ -58,6 +68,7 @@ public class PlayerJoinListener implements Listener {
         player.setupPlayer();
 
         this.handleMotd(player);
+        this.handleTitle(player);
         this.handleVanish(player);
         this.handleSpawnTP(player);
 
