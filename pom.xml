@@ -68,6 +68,12 @@
             <version>4.1.1</version>
         </dependency>
         <dependency>
+            <groupId>dev._2lstudios</groupId>
+            <artifactId>InterfaceMaker</artifactId>
+            <version>0.0.4</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
             <version>2.11.1</version>

@@ -1,6 +1,8 @@
 # General server settings.
 server:
-  id: server-1
+  # Unique identifier.
+  id: lobby-1
+  # Server type (game/lobby)
   type: lobby
 
 settings:
@@ -47,7 +49,6 @@ join:
       &r &r
       &8&m«-+-----------------------------+-»
 
-
 slots:
   normal: 100
   vip: 100
@@ -75,7 +76,7 @@ tablist:
     &r
   footer: |-
     &r
-    &7Conectados &8» &r(&b%server_online%&r)
+    &7Jugadores &8» &7(&b%server_online%&7) &8| &7Conexión &8» &7(&a%player_ping%ms&7)
     &r
     &lÚnete a Patreon
     &e&nwww.patreon.com/rubius
