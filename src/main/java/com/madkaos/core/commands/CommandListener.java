@@ -95,6 +95,12 @@ public abstract class CommandListener implements CommandExecutor {
             return;
         }
 
+        // Check for only lobby
+        if (command.onlyGame() && this.plugin.isLobby()) {
+            ctx.getExecutor().sendI18nMessage("common.not-lobby");
+            return;
+        }
+
         // Check for subcommands
         if (args.length > 0) {
             String possibleSubCommand = args[0];

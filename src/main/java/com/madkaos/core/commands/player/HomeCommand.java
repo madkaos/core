@@ -10,7 +10,7 @@ import com.madkaos.core.player.entities.PlayerHome;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
-@Command(name = "home", arguments = { Argument.STRING }, permission = "core.home", minArguments = 1)
+@Command(name = "home", arguments = { Argument.STRING }, permission = "core.home", minArguments = 1, onlyGame = true)
 public class HomeCommand extends CommandListener {
     @Override
     public void onExecuteByPlayer(CommandContext ctx) {

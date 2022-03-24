@@ -11,7 +11,8 @@ import com.madkaos.core.player.entities.PlayerHome;
     name = "delhome",
     arguments = { Argument.STRING },
     permission = "core.delhome",
-    minArguments = 1
+    minArguments = 1,
+    onlyGame = true
 )
 public class DelHomeCommand extends CommandListener {
     @Override

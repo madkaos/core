@@ -16,6 +16,8 @@ public @interface Command {
 
     public boolean isVIP() default false;
 
+    public boolean onlyGame() default false;
+
     public Argument[] arguments() default {};
 
     public int minArguments() default Integer.MIN_VALUE;

@@ -11,7 +11,8 @@ import com.madkaos.core.player.entities.PlayerHome;
     name = "sethome",
     arguments = { Argument.STRING },
     permission = "core.sethome",
-    minArguments = 1
+    minArguments = 1,
+    onlyGame = true
 )
 public class SetHomeCommand extends CommandListener {
     @Override
