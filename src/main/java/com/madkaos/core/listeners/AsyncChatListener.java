@@ -56,7 +56,14 @@ public class AsyncChatListener implements Listener {
         }
 
         // Chat color
-        if (player.hasPermission("core.chat-color")) {
+        if (player.hasPermission("core.chatcolor")) {
+            String autoColor = player.getSettings().chatColor;
+            // 7 is the default value in old save date plugin. :(
+            // ToDo: Remove the .equals("7") on old database drop.
+            if (autoColor != null && !autoColor.equals("7")) {
+                e.setMessage(autoColor + e.getMessage());
+            }
+
             e.setMessage(ColorUtils.colorize(e.getMessage()));
         }
 

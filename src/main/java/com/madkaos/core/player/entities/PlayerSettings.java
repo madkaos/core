@@ -25,7 +25,7 @@ public class PlayerSettings extends Entity {
 
     // Chat settings
     @Prop
-    public String chatColor = "7";
+    public String chatColor;
 
     @Prop
     public int chatVisibilityFilter = PlayerFilter.ANYBODY;

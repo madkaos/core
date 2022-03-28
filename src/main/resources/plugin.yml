@@ -10,6 +10,8 @@ commands:
     aliases: []
   ban:
     aliases: []
+  chatcolor:
+    aliases: ["color"]
   delhome:
     aliases: []
   delwarp:

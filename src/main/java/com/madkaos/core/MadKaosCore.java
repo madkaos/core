@@ -18,6 +18,7 @@ import com.madkaos.core.commands.admin.TeleportHereCommand;
 import com.madkaos.core.commands.admin.TeleportPosCommand;
 import com.madkaos.core.commands.admin.UnbanCommand;
 import com.madkaos.core.commands.admin.VanishCommand;
+import com.madkaos.core.commands.player.ChatColor;
 import com.madkaos.core.commands.player.DelHomeCommand;
 import com.madkaos.core.commands.player.FlyCommand;
 import com.madkaos.core.commands.player.FriendsCommand;
@@ -106,6 +107,7 @@ public class MadKaosCore extends JavaPlugin {
         // Register commands
         this.addCommand(new AltsCommand());
         this.addCommand(new BanCommand());
+        this.addCommand(new ChatColor());
         this.addCommand(new DelHomeCommand());
         this.addCommand(new DelWarpCommand());
         this.addCommand(new FlyCommand());
@@ -133,6 +135,8 @@ public class MadKaosCore extends JavaPlugin {
         this.addListener(new CommandPreProcessListener(this));
         this.addListener(new EntityDamageListener(this));
         this.addListener(new FoodLevelChangeListener(this));
+        this.addListener(new InventoryClickListener());
+        this.addListener(new InventoryCloseListener());
         this.addListener(new PlayerJoinListener(this));
         this.addListener(new PlayerLoginListener(this));
         this.addListener(new PlayerMoveListener(this));
